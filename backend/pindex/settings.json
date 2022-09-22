@@ -1,0 +1,10 @@
+{
+    "books_url": "https://gutenberg.org/cache/epub/feeds/rdf-files.tar.bz2",
+    "download_location": "/Users/jazz/gutenbook",
+    "unzip_location": "/Users/jazz/gutenbook",
+    "latest_unzip_path": "/Users/jazz/gutenbook/16092022",
+    "store_path": "/Users/Jazz/gutenbook_store",
+    "page_size": 20,
+    "es_host": "http://localhost:9200",
+    "es_index": "gutenbook"
+}

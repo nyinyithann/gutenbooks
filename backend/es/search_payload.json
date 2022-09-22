@@ -1,0 +1,7 @@
+// from client to web server
+{
+  "page": 0,
+  "query": "fantasy",
+  "fields": ["title", "authors.name", "bookshelves"],
+  "sort": { "field": "download_count", "order": "desc" }
+}

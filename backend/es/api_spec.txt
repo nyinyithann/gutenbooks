@@ -1,0 +1,49 @@
+Spec for searching books with pagination API
+--------------------------------------------
+
+PUT /api/books/
+{
+  "page": 1,
+  "query" : "pride",
+  "fields": ["title", "author", "bookshelf"],
+  "sort" : [{"field": "index_id", "order": "asc"},{ "field" : "download_count", "order": "desc"}]
+}
+
+- page size is 20.
+- if page number is not provided or is negative, error wll be received.
+- if query is null, "" will be used.
+- if fields is null or member item is "" or null,e.g. [""] or ["", ""] or [ null ] or [ null, null ] or [ "", null ], the query will search against all fields of book.
+- if sort is null, the result will be sorted by score in descending order.
+- if order is null or empty, the sorting of the field will be dropped.
+
+
+bookshelves API
+---------------
+GET /api/books/bookshelves
+
+
+individual book API
+-------------------
+GET /api/books/:id
+e.g GET /api/books/1 will return book with id 1
+
+- if id is not a number, error will be responsed.
+
+books by page
+-------------
+GET /api/books/pages/:page
+e.g GET /api/books/pages/1 will return first 20 books
+
+- page size is 20.
+- if page is not a number, error will be responsed.
+
+autocomplete search
+-------------------
+POST /api/books/search
+{
+    "query" : "james",
+    "fields" : ["title", "author"]
+}
+
+- if query is empty or null, no hits will returned.
+- if fields is empty or null, query will be searched against all fields.

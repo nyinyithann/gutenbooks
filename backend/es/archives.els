@@ -1,0 +1,895 @@
+
+PUT /movies
+{
+  "settings": {
+    "number_of_shards": 5,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "properties": {
+      "id" : { "type" : "long"},
+      "title": {"type" : "text"},
+      "genres" : { "type" : "keyword"},
+      "year": { "type": "date" }
+    }
+  }
+}
+
+DELETE /_all
+
+GET /movies
+
+DELETE /movies
+GET /movies/_search
+
+GET /_cluster/state
+
+GET /movies/_search?q=+year:>1900
+
+DELETE /gutenbook
+
+PUT /gutenbook
+
+GET /gutenbook/_search
+
+POST /gutenbook/_doc
+{
+  "id" : 4,
+  "title" : "second book"
+}
+
+PUT /gutenbook/_settings
+{
+ "index.indexing.slowlog.threshold.index.warn": "0s",
+  "index.indexing.slowlog.threshold.index.info": "0s",
+  "index.indexing.slowlog.threshold.index.debug": "0s",
+  "index.indexing.slowlog.threshold.index.trace": "0ms",
+  "index.indexing.slowlog.level": "trace",
+  "index.indexing.slowlog.source": "1000"
+}
+
+GET /_nodes
+
+GET /_cluster/state
+
+
+GET /gutenbook/_search
+{
+  "query" : {
+    "match": {
+      "authors.name": "james"
+    }
+    },
+    "aggs" : {
+      "group by b year" : {
+        "terms" : {
+          "field" : "authors.birth_year"
+        }
+      }
+    }
+
+}
+
+
+GET /gutentest/_mapping
+
+GET /gutenbook/_doc/1
+
+GET /gutenbook/_mappin
+
+GET /guten_alpha/_search
+
+GET /guten_alpha/_search
+{
+  "query" : {
+   "match" : {
+      "formats.type" : "image/jpeg"
+    }
+  }
+}
+
+GET /gutenbook/_stats
+
+GET /gutenbook/_search
+{
+  "query" : {
+    "match" : {
+      "authors.name": "a"
+    }
+  }
+}
+
+GET /guten_alpha/_search
+{
+  "query" : {
+    "match" : {
+      "authors.name": "thomas"
+    }
+  }
+}
+
+
+
+GET /guten_alpha/_settings
+
+
+
+
+DELETE /guten_alpha
+
+
+GET /guten_alpha/_search
+{
+    "query" : {
+        "multi_match" : {
+            "query" : "thomas law",
+            "type" : "bool_prefix",
+            "fields" : ["title^3", "authors.name^2",
+            "contributers.name", "editors.name", "subject"]
+        }
+    }
+}
+
+
+
+
+GET /guten_alpha/_search
+{
+  "query" : {
+    "match": {
+      "authors.name": "dick"
+    }
+    },
+    "aggs" : {
+      "group by author" : {
+        "terms" : {
+          "field" : "authors.name.keyword"
+        }
+      }
+    }
+
+}
+
+GET /guten_alpha/_search
+{
+ "size" : 2,
+ "query" : {
+        "multi_match" : {
+            "query" : "thomas law",
+            "type" : "bool_prefix",
+            "fields" : ["title^3", "authors.name^2",
+            "contributers.name^1", "editors.name^1", "subject"]
+        }
+    },
+
+  "aggs" : {
+    "by_bookshelf" : {
+      "terms" : {
+        "field": "bookshelves.keyword"
+      }
+    },
+    "by_subject" : {
+      "terms" : {
+        "field" : "long_subject"
+      }
+    },
+    "by_lang" : {
+      "terms" : {
+        "field" : "languages"
+      }
+    }
+  }
+}
+
+GET /guten_alpha/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "multi_match" : {
+            "query" : "thomas law",
+            "type" : "bool_prefix",
+            "fields" : ["title^3", "authors.name^2",
+            "contributers.name^1", "editors.name^1", "subject"]
+          }
+        },
+        {
+          "match": {
+            "languages": "fa"
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+GET /guten_alpha/_search
+{
+  "size" : 0,
+  "query": {
+    "match_all": {}
+  },
+  "sort" : [{"id" : "asc"}],
+
+  "aggs" : {
+    "by_bookshelf" : {
+      "terms" : {
+        "field": "bookshelves.keyword",
+        "size" : 2147483647
+      }
+    },
+    "by_subject" : {
+      "terms" : {
+        "field" : "long_subject",
+        "size" : 2147483647
+      }
+    },
+    "by_lang" : {
+      "terms" : {
+        "field" : "languages",
+        "size" : 2147483647
+      }
+    }
+  }
+}
+
+GET /guten_alpha/_search
+{
+
+  "query": {
+    "match_all": {}
+  },
+
+  "aggs" : {
+    "types_count" : { "value_count" : { "field" : "id" } }
+  }
+}
+
+
+POST /guten_alpha/_search
+{
+  "query": {
+    "ids": {
+      "values": [3]
+    }
+  }
+}
+
+GET /guten_alpha/_count
+
+POST /guten_alpha/_delete_by_query
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+POST /guten_alpha/_search?size=0
+{
+  "aggs" : {
+    "types_count" : { "value_count" : { "field" : "id" } }
+  }
+}
+
+
+# search with pagenation and total books count
+GET /guten_alpha/_search
+{
+  "size" : 60,
+  "query": {
+    "match_all": {}
+  },
+  "sort" : [{"index_id": "asc"}],
+  "search_after" : [0],
+
+  "aggs" : {
+    "total_books" : { "value_count" : { "field" : "id" } }
+  }
+}
+
+DELETE /guten_alpha
+
+PUT /guten_alpha
+{
+    "settings": {
+        "analysis": {
+            "normalizer": {
+                "keyword_lowercase": {
+                    "type": "custom",
+                    "filter": [
+                        "lowercase"
+                    ]
+                }
+            }
+        },
+        "index": {
+            "sort.field": "id",
+            "sort.order": "asc"
+        },
+        "number_of_shards": 5,
+        "number_of_replicas": 1
+    },
+    "mappings": {
+        "properties": {
+            "id": {
+                "type": "long"
+            },
+            "index_id": {
+              "type": "long"
+            },
+            "title": {
+                "type": "search_as_you_type"
+            },
+            "formats": {
+                "type": "flattened",
+                "index": false
+            },
+            "download_count": {
+                "type": "integer"
+            },
+            "authors": {
+                "properties": {
+                    "alias": {
+                        "type": "text",
+                        "index": false
+                    },
+                    "birth_year": {
+                        "type": "date",
+                        "format": "year"
+                    },
+                    "death_year": {
+                        "type": "date",
+                        "format": "year"
+                    },
+                    "name": {
+                        "type": "text",
+                        "fields": {
+                            "keyword": {
+                                "type": "keyword",
+                                "normalizer": "keyword_lowercase",
+                                "ignore_above": 256
+                            }
+                        }
+                    },
+                    "webpage": {
+                        "type": "text",
+                        "index": false
+                    }
+                }
+            },
+            "editors": {
+                "properties": {
+                    "alias": {
+                        "type": "text",
+                        "index": false
+                    },
+                    "birth_year": {
+                        "type": "date",
+                        "format": "year"
+                    },
+                    "death_year": {
+                        "type": "date",
+                        "format": "year"
+                    },
+                    "name": {
+                        "type": "text",
+                        "fields": {
+                            "keyword": {
+                                "type": "keyword",
+                                "normalizer": "keyword_lowercase",
+                                "ignore_above": 256
+                            }
+                        }
+                    },
+                    "webpage": {
+                        "type": "text",
+                        "index": false
+                    }
+                }
+            },
+            "contributers": {
+                "properties": {
+                    "alias": {
+                        "type": "text",
+                        "index": false
+                    },
+                    "birth_year": {
+                        "type": "date",
+                        "format": "year"
+                    },
+                    "death_year": {
+                        "type": "date",
+                        "format": "year"
+                    },
+                    "name": {
+                        "type": "text",
+                        "fields": {
+                            "keyword": {
+                                "type": "keyword",
+                                "normalizer": "keyword_lowercase",
+                                "ignore_above": 256
+                            }
+                        }
+                    },
+                    "webpage": {
+                        "type": "text",
+                        "index": false
+                    }
+                }
+            },
+            "languages": {
+                "type": "keyword",
+                "normalizer": "keyword_lowercase",
+                "ignore_above": 256
+            },
+            "subjects": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "normalizer": "keyword_lowercase",
+                        "ignore_above": 256
+                    }
+                }
+            },
+            "bookshelves": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "normalizer": "keyword_lowercase",
+                        "ignore_above": 256
+                    }
+                }
+            }
+        },
+        "runtime": {
+            "long_subject": {
+                "type": "keyword",
+                "script": {
+                    "source": "if (!doc['subjects.keyword'].isEmpty()) {String subject = doc['subjects.keyword'].value;if (subject.length() > 6) {emit(subject);} }"
+                }
+            }
+        }
+    }
+}
+
+
+GET /guten_alpha/_settings
+
+GET /guten_alpha/_search
+{
+  "from": 0,
+  "size": 20,
+  "query": {
+    "multi_match": {
+      "query": "fantasy",
+      "type": "bool_prefix",
+      "fields": [
+        "title^2",
+        "authors.name^1",
+        "bookshelves"
+      ]
+    }
+  },
+  "sort": [
+    {
+      "download_count": "desc"
+    }
+  ],
+  "aggs": {
+    "total": {
+      "value_count": {
+        "field": "id"
+      }
+    }
+  }
+}
+
+GET /guten_alpha/_search
+{
+  "from": 0,
+  "size": 20,
+  "query": {
+    "multi_match": {
+      "query": "Thief of",
+      "type": "bool_prefix",
+      "fields": [
+        "title^2",
+        "authors.name.keyword^1",
+        "bookshelves.keyword"
+      ]
+    }
+  },
+  "sort": [
+    {
+      "_score": "desc"
+    }
+  ],
+  "aggs": {
+    "total": {
+      "value_count": {
+        "field": "id"
+      }
+    },
+    "related_bookshelves": {
+      "terms": {
+        "field": "bookshelves.keyword",
+        "size": 2147483647
+      }
+    }
+  }
+}
+
+GET /guten_alpha/_search
+{
+    "size" : 3,
+    "query" : {
+        "multi_match" : {
+            "query" : "Addison, Joseph",
+            "type" : "bool_prefix",
+            "fields" : ["title", "title._2gram", "title._3gram",
+            "title._index_prefix", "authors.name", "bookshelves"]
+        }
+    }
+}
+
+# all bookshelves
+GET /guten_alpha/_search
+{
+  "size": 0,
+  "query": {
+    "match_all": {}
+  },
+
+  "aggs": {
+    "by_bookshelf": {
+      "terms": {
+        "field": "bookshelves.keyword",
+        "size": 2147483647
+      }
+    }
+  }
+}
+
+
+GET /guten_alpha/_search
+{
+  "from": 0,
+  "size": 20,
+  "query": {
+    "match_all": {}
+  },
+  "sort": [
+    {
+      "_script": {
+        "type": "number",
+        "script": "doc['bookshelves.keyword'].size()",
+        "order": "desc"
+      }
+    }
+  ],
+  "aggs": {
+    "total": {
+      "value_count": {
+        "field": "id"
+      }
+    }
+  }
+}
+
+
+# single field search with pagination
+# - search term
+# - sorting field & indicator
+# - size
+GET /guten_alpha/_search
+{
+  "from": 0,
+  "size": 10,
+  "query": {
+    "match": {
+      "title": ""
+    }
+  },
+
+  "sort": [
+    {
+      "_score": "desc"
+    }
+  ],
+
+  "aggs": {
+    "total": {
+      "value_count": {
+        "field": "id"
+      }
+    }
+  }
+}
+
+
+GET /guten_alpha/_search
+{
+    "size": 4,
+    "query": {
+        "multi_match": {
+            "query": "",
+            "type": "bool_prefix",
+            "fields": [
+
+
+            ]
+        }
+    },
+    "sort": [
+    {
+      "_score": "desc"
+    }
+  ],
+     "aggs": {
+    "total": {
+      "value_count": {
+        "field": "id"
+      }
+    }
+  }
+}
+
+
+
+GET /guten_alpha/_search
+{
+  "size" : 4,
+  "sort" : [
+    {"download_count": "desc"}],
+  "search_after" : [512]
+}
+
+PUT _settings
+{
+  "index.max_result_window": 10000
+}
+
+GET /guten_alpha/_search
+{
+ "size" : 2,
+  "query": {
+    "match_all": {}
+  },
+  "sort" : [{"id" : "asc"}],
+  "search_after" : [0]
+}
+
+GET /guten_alpha/_search
+{
+
+  "query": {
+    "match_all": {}
+  },
+
+  "aggs" : {
+    "types_count" : { "value_count" : { "field" : "id" } }
+  }
+}
+
+PUT /my-index-000001
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "default": {
+          "tokenizer": "whitespace",
+          "filter": [ "my_custom_stop_words_filter" ]
+        }
+      },
+      "filter": {
+        "my_custom_stop_words_filter": {
+          "type": "stop",
+          "ignore_case": true,
+          "stopwords": [ "and", "is", "the" ]
+        }
+      }
+    }
+  }
+}
+
+DELETE /guten_alpha
+
+
+PUT /guten_alpha
+{
+  "settings": {
+    "analysis": {
+      "normalizer": {
+        "keyword_lowercase": {
+          "type": "custom",
+          "filter": [
+            "lowercase"
+          ]
+        }
+      },
+      "analyzer": {
+        "default": {
+          "tokenizer": "whitespace",
+          "filter": [
+            "stop_words_filter", "lowercase"
+          ]
+        }
+      },
+      "filter": {
+        "stop_words_filter": {
+          "type": "stop",
+          "ignore_case": true,
+          "stopwords": "_english_"
+        }
+      }
+    },
+    "index": {
+      "sort.field": [
+        "id",
+        "index_id",
+        "download_count"
+      ],
+      "sort.order": [
+        "asc",
+        "asc",
+        "asc"
+      ]
+    },
+    "number_of_shards": 5,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "long"
+      },
+      "index_id": {
+        "type": "long"
+      },
+      "title": {
+        "type": "search_as_you_type",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "normalizer": "keyword_lowercase",
+            "ignore_above": 256
+          }
+        }
+      },
+      "formats": {
+        "type": "flattened",
+        "index": false
+      },
+      "download_count": {
+        "type": "integer"
+      },
+      "authors": {
+        "properties": {
+          "alias": {
+            "type": "text",
+            "index": false
+          },
+          "birth_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "death_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "normalizer": "keyword_lowercase",
+                "ignore_above": 256
+              }
+            }
+          },
+          "webpage": {
+            "type": "text",
+            "index": false
+          }
+        }
+      },
+      "editors": {
+        "properties": {
+          "alias": {
+            "type": "text",
+            "index": false
+          },
+          "birth_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "death_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "normalizer": "keyword_lowercase",
+                "ignore_above": 256
+              }
+            }
+          },
+          "webpage": {
+            "type": "text",
+            "index": false
+          }
+        }
+      },
+      "contributers": {
+        "properties": {
+          "alias": {
+            "type": "text",
+            "index": false
+          },
+          "birth_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "death_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "normalizer": "keyword_lowercase",
+                "ignore_above": 256
+              }
+            }
+          },
+          "webpage": {
+            "type": "text",
+            "index": false
+          }
+        }
+      },
+      "languages": {
+        "type": "keyword",
+        "normalizer": "keyword_lowercase",
+        "ignore_above": 256
+      },
+      "subjects": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "normalizer": "keyword_lowercase",
+            "ignore_above": 256
+          }
+        }
+      },
+      "bookshelves": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "normalizer": "keyword_lowercase",
+            "ignore_above": 256
+          }
+        }
+      }
+    },
+    "runtime": {
+      "long_subject": {
+        "type": "keyword",
+        "script": {
+          "source": "if (!doc['subjects.keyword'].isEmpty()) {String subject = doc['subjects.keyword'].value;if (subject.length() > 6) {emit(subject);} }"
+        }
+      }
+    }
+  }
+}

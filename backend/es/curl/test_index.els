@@ -1,0 +1,237 @@
+/* create index */
+curl -X PUT  localhost:9200/gutenbook?pretty
+
+/* create index with shards and replicas */
+curl -X PUT "localhost:9200/gutenbook?pretty" -H 'Content-Type: application/json' -d '{
+    "settings": {
+        "number_of_shards": 5,
+        "number_of_replicas": 1,
+        
+    "index": {
+      "sort.field": [
+        "id",
+        "index_id",
+        "download_count"
+      ],
+      "sort.order": [
+        "asc",
+        "asc",
+        "asc"
+      ]
+    },
+    }
+}'
+
+/* delete index */
+curl -X DELETE  localhost:9200/gutenbook?pretty
+
+/* get index */
+curl -X GET localhost:9200/gutenbook?pretty
+
+/****************************************
+    NOTE
+    -----
+    To update index settings 
+     1. close the index
+     2. update the settings
+     3. reopen the index
+******************************************/
+
+/* close the index */
+curl -X POST  localhost:9200/gutenbook/_close
+
+/* open the index */
+curl -X POST  localhost:9200/gutenbook/_open
+
+/* update mappings */
+curl -X PUT "localhost:9200/gutenbook/_mapping?pretty" -H 'Content-Type: application/json' -d '{
+    "properties": {
+      "id": {
+        "type": "long"
+      },
+      "index_id": {
+        "type": "long"
+      },
+      "title": {
+        "type": "text",
+        "analyzer": "standard",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "normalizer": "lowercase",
+            "ignore_above": 256
+          },
+          "searchasyoutype": {
+            "type": "search_as_you_type"
+          }
+        }
+      },
+      "formats": {
+        "type": "flattened",
+        "index": false
+      },
+      "download_count": {
+        "type": "integer"
+      },
+      "authors": {
+        "properties": {
+          "alias": {
+            "type": "text",
+            "index": false
+          },
+          "birth_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "death_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "normalizer": "lowercase",
+                "ignore_above": 256
+              },
+              "searchasyoutype": {
+                "type": "search_as_you_type"
+              }
+            }
+          },
+          "webpage": {
+            "type": "text",
+            "index": false
+          }
+        }
+      },
+      "editors": {
+        "properties": {
+          "alias": {
+            "type": "text",
+            "index": false
+          },
+          "birth_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "death_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "normalizer": "lowercase",
+                "ignore_above": 256
+              }
+            }
+          },
+          "webpage": {
+            "type": "text",
+            "index": false
+          }
+        }
+      },
+      "contributers": {
+        "properties": {
+          "alias": {
+            "type": "text",
+            "index": false
+          },
+          "birth_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "death_year": {
+            "type": "date",
+            "format": "year"
+          },
+          "name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "normalizer": "lowercase",
+                "ignore_above": 256
+              }
+            }
+          },
+          "webpage": {
+            "type": "text",
+            "index": false
+          }
+        }
+      },
+      "languages": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "normalizer": "lowercase",
+            "ignore_above": 256
+          }
+        }
+      },
+      "subjects": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "normalizer": "lowercase",
+            "ignore_above": 256
+          }
+        }
+      },
+      "bookshelves": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "normalizer": "lowercase",
+            "ignore_above": 256
+          }
+        }
+      }
+    }
+}'
+
+/* update settings */ 
+curl -X PUT "localhost:9200/gutenbook/_settings?pretty" -H 'Content-Type: application/json' -d '{
+    "analysis": {
+      "normalizer": {
+        "keyword_lowercase": {
+          "type": "custom",
+          "filter": [
+            "lowercase"
+          ]
+        }
+      },
+      "analyzer": {
+        "default": {
+          "tokenizer": "whitespace",
+          "filter": [
+            "stop_words_filter",
+            "lowercase"
+          ]
+        }
+      },
+      "filter": {
+        "stop_words_filter": {
+          "type": "stop",
+          "ignore_case": true,
+          "stopwords": "_english_"
+        }
+      }
+    }
+}'
+
+curl -X GET "localhost:9200/gutenbook/_msearch?pretty" -H 'Content-Type: application/json' -d'
+{ }
+{"query" : {"match" : { "title": "a"}}}
+{"index": "gutenbook"}
+{"query" : {"match_all" : {}}}
+'

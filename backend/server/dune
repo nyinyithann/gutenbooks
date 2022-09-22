@@ -1,0 +1,4 @@
+(executable
+ (name gutenwebapi)
+ (libraries lwt lwt.unix dream Common cohttp cohttp-lwt-unix)
+ (preprocess (pps lwt_ppx ppx_yojson_conv)))

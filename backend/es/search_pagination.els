@@ -1,0 +1,98 @@
+GET /guten_alpha/_search
+{
+    "from": 0,
+    "size": 20,
+    "query": {
+        "multi_match": {
+            "query": "self for",
+            "type": "bool_prefix",
+            "fields": [
+                "title"
+            ]
+        }
+    },
+    "sort": [
+        {
+            "_score": "desc"
+        }
+    ],
+    "aggs": {
+        "total": {
+            "value_count": {
+                "field": "id"
+            }
+        },
+        "related_bookshelves": {
+            "terms": {
+                "field": "bookshelves.keyword",
+                "size": 2147483647
+            }
+        }
+    }
+}
+
+GET /guten_alpha/_search
+{
+    "from": 0,
+    "size": 20,
+    "query": {
+        "multi_match": {
+            "query": "the g",
+            "type": "bool_prefix",
+            "fields": [
+                "bookshelves.keyword^1", "bookshelves"
+            ]
+        }
+    },
+    "sort": [
+        {
+            "_score": "desc"
+        }
+    ],
+    "aggs": {
+        "total": {
+            "value_count": {
+                "field": "id"
+            }
+        },
+        "related_bookshelves": {
+            "terms": {
+                "field": "bookshelves.keyword",
+                "size": 2147483647
+            }
+        }
+    }
+}
+
+GET /guten_alpha/_search
+{
+    "from": 0,
+    "size": 20,
+    "query": {
+        "multi_match": {
+            "query": "the",
+            "type": "bool_prefix",
+            "fields": [
+                "authors.name.keyword^2", "authors.name^1"
+            ]
+        }
+    },
+    "sort": [
+        {
+            "_score": "desc"
+        }
+    ],
+    "aggs": {
+        "total": {
+            "value_count": {
+                "field": "id"
+            }
+        },
+        "related_bookshelves": {
+            "terms": {
+                "field": "bookshelves.keyword",
+                "size": 2147483647
+            }
+        }
+    }
+}

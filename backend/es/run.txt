@@ -1,0 +1,11 @@
+To have launchd start elastic/tap/elasticsearch-full now and restart at login:
+  brew services start elastic/tap/elasticsearch-full
+Or, if you don't want/need a background service you can just run:
+  elasticsearch
+
+To have launchd start elastic/tap/kibana-full now and restart at login:
+  brew services start elastic/tap/kibana-full
+Or, if you don't want/need a background service you can just run:
+  kibana
+
+http://localhost:5601/app/home#/

@@ -1,0 +1,133 @@
+GET /guten_alpha/_doc/1?routing=1
+
+# multi-match query. search by 
+# title
+# author name
+# contributer name
+# editor name
+# subject
+GET /guten_alpha/_search
+{ "size": 1000,
+    "query": {
+        "multi_match": {
+            "query": "thomas law",
+            "type": "bool_prefix",
+            "fields": [
+                "title^3",
+                "authors.name^2",
+                "contributers.name^1",
+                "editors.name^1",
+                "subject" ]
+        }
+    }
+}
+
+# loading page search with pagenation and aggregations
+GET /guten_alpha/_search
+{
+  "size" : 20,
+  "query": {
+    "match_all": {}
+  },
+  "sort" : [{"id" : "asc"}],
+  "search_after" : [0],
+}
+
+# search with pagenation and total books count
+GET /guten_alpha/_search
+{
+  "size" : 20,
+  "query": {
+    "match_all": {}
+  },
+  "sort" : [{"id" : "asc"}],
+  "search_after" : [0],
+  
+  "aggs" : {
+    "total_books" : { "value_count" : { "field" : "id" } }
+    }
+}
+
+# aggregations only
+GET /guten_alpha/_search
+{
+  "size" : 0,
+  "query": {
+    "match_all": {}
+  },
+  "sort" : [{"id" : "asc"}],
+ 
+  aggs" : {
+    "by_bookshelf" : {
+      "terms" : {
+        "field": "bookshelves.keyword",
+        "size" : 2147483647
+      }
+    },
+    "by_subject" : {
+      "terms" : {
+        "field" : "long_subject",
+        "size" : 2147483647
+      }
+    },
+    "by_lang" : {
+      "terms" : {
+        "field" : "languages",
+        "size" : 2147483647
+      }
+    }
+}
+ }
+
+#autocomplete query for 
+# title
+# author name
+# contributer name
+# editor name
+# bookshelves
+GET /guten_alpha/_search
+{
+    "size" : 3,
+    "query" : {
+        "multi_match" : {
+            "query" : "Addison, Joseph",
+            "type" : "bool_prefix",
+            "fields" : ["title", "title._2gram", "title._3gram",
+            "title._index_prefix", "authors.name", "bookshelves"]
+        }
+    }
+}
+
+# sample search
+GET /guten_alpha/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "multi_match" : {
+            "query" : "thomas law",
+            "type" : "bool_prefix",
+            "fields" : ["title^3", "authors.name^2",
+            "contributers.name^1", "editors.name^1", "subject"]
+          }
+        },
+        {
+          "match": {
+            "languages": "fa"
+          }
+        }
+      ]
+    }
+  }
+}
+
+# search by book id
+GET /guten_alpha/_search
+{
+  "query": {
+    "ids": {
+      "values": [3]
+    }
+   }
+}

@@ -1,0 +1,4 @@
+(library
+ (name Common)
+ (preprocess (pps ppx_yojson_conv ))
+ (libraries yojson unix ppx_yojson_conv easy_logging))

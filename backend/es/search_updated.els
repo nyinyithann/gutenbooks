@@ -1,0 +1,58 @@
+# default pagination or autocomplete search
+GET /guten_alpha/_search
+{
+  "from": 0,
+  "size": 20,
+  "query": {
+    "multi_match": {
+      "query": "fantasy fiction",
+      "type": "bool_prefix",
+      "fields": [
+         "title.searchasyoutype._index_prefix",
+         "title.searchasyoutype", 
+         "authors.name.searchasyoutype._index_prefix",
+         "authors.name.searchasyoutype",
+         "bookshelves"
+      ]
+    }
+  },
+  "sort": [
+    {
+      "id": "asc", 
+      "title.keyword": "asc", 
+      "authors.name.keyword": "asc",
+      "download_count": "desc"
+    }
+  ],
+  "aggs": {
+    "total": {
+      "value_count": {
+        "field": "id"
+      }
+    },
+    "related_bookshelves" : {
+      "terms" : {
+        "field": "bookshelves.keyword",
+        "size" : 2147483647
+      }
+    }
+  }
+}
+
+# all bookshelves
+GET /guten_alpha/_search
+{
+  "size": 0,
+  "query": {
+    "match_all": {}
+  },
+ 
+  "aggs": {
+    "by_bookshelf": {
+      "terms": {
+        "field": "bookshelves.keyword",
+        "size": 2147483647
+      }
+    }
+  }
+}

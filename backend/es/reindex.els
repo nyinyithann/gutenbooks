@@ -1,0 +1,10 @@
+POST _reindex
+{
+    "source" : {
+        "index" : "gutenbook"
+    },
+    "dest" : {
+        "index" : "guten_alpha"
+    }
+}
+￼

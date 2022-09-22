@@ -1,0 +1,4 @@
+(executable
+ (name pindex)
+ (preprocess (pps lwt_ppx ppx_yojson_conv ))
+ (libraries fmt yojson piaf lwt lwt.unix lwt_ppx unix ppx_yojson_conv easy_logging Common Rdfdec parmap))

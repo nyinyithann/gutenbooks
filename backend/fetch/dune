@@ -1,0 +1,4 @@
+(executable
+ (name fetch)
+ (preprocess (pps lwt_ppx ppx_deriving_yojson))
+ (libraries unix lwt lwt_ppx lwt.unix piaf yojson easy_logging ppx_deriving_yojson.runtime Common))
