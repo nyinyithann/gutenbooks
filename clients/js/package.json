@@ -56,6 +56,12 @@
     },
     "dependencies": {
         "@headlessui/react": "^1.7.2",
+        "@heroicons/react": "^2.0.11",
+        "axios": "^0.27.2",
+        "axios-cache-adapter": "^2.7.3",
+        "jsurl": "^0.1.5",
+        "localforage": "^1.10.0",
+        "lodash.isequal": "^4.5.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router": "^6.4.1",
