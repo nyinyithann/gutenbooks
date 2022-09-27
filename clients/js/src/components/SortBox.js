@@ -4,13 +4,42 @@ import React, { Fragment, useEffect, useState } from 'react';
 
 import usePrevious from '../hooks/UsePrevious';
 
-function SortBox({
-  items,
-  selectedIndex,
-  displayField,
-  className,
-  onSelected,
-}) {
+const items = [
+  { id: 0, desc: 'Book Id: Asc', sort: [{ field: 'id', order: 'asc' }] },
+  { id: 1, desc: 'Book Id: Desc', sort: [{ field: 'id', order: 'desc' }] },
+  {
+    id: 2,
+    desc: 'Title: A to Z',
+    sort: [{ field: 'title.keyword', order: 'asc' }],
+  },
+  {
+    id: 3,
+    desc: 'Title: Z to A',
+    sort: [{ field: 'title.keyword', order: 'desc' }],
+  },
+  {
+    id: 4,
+    desc: 'Author: A to Z',
+    sort: [{ field: 'authors.name.keyword', order: 'asc' }],
+  },
+  {
+    id: 5,
+    desc: 'Author: Z to A',
+    sort: [{ field: 'authors.name.keyword', order: 'desc' }],
+  },
+  {
+    id: 6,
+    desc: 'Download: Asc',
+    sort: [{ field: 'download_count', order: 'asc' }],
+  },
+  {
+    id: 7,
+    desc: 'Download: Desc',
+    sort: [{ field: 'download_count', order: 'desc' }],
+  },
+];
+
+function SortBox({ selectedIndex, displayField, className, onSelected }) {
   const [selected, setSelected] = useState(null);
   const previousSelectedIndex = usePrevious(selected ? selected.id : null);
 
@@ -33,7 +62,6 @@ function SortBox({
     }
   });
 
-  // <SelectorIcon className="w-4 h-4 text-slate-600" />
   return (
     <Listbox value={selected} onChange={handleChange}>
       <div className={`${className} relative`}>
@@ -65,9 +93,9 @@ function SortBox({
           leaveTo="opacity-0"
         >
           <Listbox.Options className="absolute w-full mt-6 border-[1px] border-100 overflow-auto rounded-sm shadow-lg bg-white">
-            {items.map((item, i) => (
+            {items.map((item) => (
               <Listbox.Option
-                key={`sortinfo_${i}`}
+                key={item.id}
                 value={item}
                 className={({ active }) =>
                   `${
@@ -75,12 +103,12 @@ function SortBox({
                   } cursor-default select-none relative py-1 pl-4 md:pl-6`
                 }
               >
-                {({ selected }) => (
+                {({ isSelected }) => (
                   <>
                     <span className="p-1 pl-2 block truncate">
                       {item[displayField]}
                     </span>
-                    {selected ? (
+                    {isSelected ? (
                       <span className="absolute inset-y-0 left-0 flex items-center pl-1 text-900">
                         <CheckIcon
                           className="w-4 h-4 md:w-5 md:h-5"

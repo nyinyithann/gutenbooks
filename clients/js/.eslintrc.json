@@ -41,6 +41,13 @@
     "react/jsx-filename-extension": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off",
+    "no-nested-ternary": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/anchor-has-content": "off",
+    "jsx-a11y/no-noninteractive-tabindex": "off",
+    "no-underscore-dangle": "off",
+    "camelcase": "off",
     "no-unused-vars": [
       "warn",
       {

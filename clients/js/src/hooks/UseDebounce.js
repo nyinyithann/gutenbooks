@@ -1,16 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
 
 const useDebounce = (delay, initialValue) => {
-  let id = null;
+  const id = useRef(null);
   const [value, setValue] = useState(initialValue);
   const valRef = useRef();
-  const setDebounce = (val) => (valRef.current = val);
+
+  const setDebounce = (val) => {
+    valRef.current = val;
+  };
 
   useEffect(() => {
-    clearTimeout(id);
-    id = setTimeout(() => setValue(valRef.current), delay);
+    clearTimeout(id.current);
+    id.current = setTimeout(() => {
+      setValue(valRef.current);
+    }, delay);
     return () => {
-      clearTimeout(id);
+      clearTimeout(id.current);
     };
   }, [delay, valRef.current]);
 

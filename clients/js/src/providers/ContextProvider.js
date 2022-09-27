@@ -37,43 +37,43 @@ const convertToBookViewModelList = (hits) =>
   hits.map((hit) => {
     const medium = hit.formats.find(
       (x) =>
-        x.type.toLowerCase() == 'image/jpeg' &&
+        x.type.toLowerCase() === 'image/jpeg' &&
         x.link.toLowerCase().includes('medium')
     );
     const small = hit.formats.find(
       (x) =>
-        x.type.toLowerCase() == 'image/jpeg' &&
+        x.type.toLowerCase() === 'image/jpeg' &&
         x.link.toLowerCase().includes('small')
     );
     const map = new Map();
     hit.formats.forEach(({ type, link }) => {
       if (
-        type.toLowerCase() == 'application/epub+zip' &&
+        type.toLowerCase() === 'application/epub+zip' &&
         link.toLowerCase().includes('noimages')
       ) {
         map.set('epub', link);
       }
       if (
-        type.toLowerCase() == 'application/x-mobipocket-ebook' &&
+        type.toLowerCase() === 'application/x-mobipocket-ebook' &&
         link.toLowerCase().includes('noimages')
       ) {
         map.set('kindle', link);
       }
-      if (type.toLowerCase() == 'text/plain') {
+      if (type.toLowerCase() === 'text/plain') {
         map.set('text', link);
       }
-      if (type.toLowerCase() == 'text/html') {
+      if (type.toLowerCase() === 'text/html') {
         map.set('html', link);
       }
-      if (type.toLowerCase() == 'application/zip') {
+      if (type.toLowerCase() === 'application/zip') {
         map.set('zip', link);
       }
     });
 
     const links = [];
-    for (const [k, v] of map.entries()) {
-      links.push({ type: k, link: v });
-    }
+    map.forEach((value, key) => {
+      links.push({ type: key, link: value });
+    });
     links.sort((x, y) => {
       const xt = x.type.toLowerCase();
       const yt = y.type.toLowerCase();
@@ -285,32 +285,33 @@ function BookContextProvider({ children }) {
     [bookSearchDispatch]
   );
 
+  const contextValue = useMemo(
+    () => ({
+      bookList: {
+        getBooksByPage: gb,
+        queryInfo: bookListState.queryInfo,
+        currentPage: bookListState.currentPage,
+        perPageItems: bookListState.perPageItems,
+        totalHits: bookListState.totalHits,
+        totalPages: bookListState.totalPages,
+        hasMore: bookListState.currentPage < bookListState.totalPages,
+        loading: bookListState.loading,
+        error: bookListState.error,
+        books: bookListState.books,
+      },
+      bookSearch: {
+        searchBooks: getBooksForAutocomplete(bookSearchDispatch),
+        loading: bookSearchState.loading,
+        error: bookSearchState.error,
+        books: bookSearchState.books,
+        searchInfo: bookSearchState.searchInfo,
+      },
+    }),
+    [bookListState, bookSearchState, gb, sb, bookSearchDispatch]
+  );
+
   return (
-    <BookContext.Provider
-      value={{
-        bookList: {
-          getBooksByPage: gb,
-          queryInfo: bookListState.queryInfo,
-          currentPage: bookListState.currentPage,
-          perPageItems: bookListState.perPageItems,
-          totalHits: bookListState.totalHits,
-          totalPages: bookListState.totalPages,
-          hasMore: bookListState.currentPage < bookListState.totalPages,
-          loading: bookListState.loading,
-          error: bookListState.error,
-          books: bookListState.books,
-        },
-        bookSearch: {
-          searchBooks: sb,
-          loading: bookSearchState.loading,
-          error: bookSearchState.error,
-          books: bookSearchState.books,
-          searchInfo: bookSearchState.searchInfo,
-        },
-      }}
-    >
-      {children}
-    </BookContext.Provider>
+    <BookContext.Provider value={contextValue}>{children}</BookContext.Provider>
   );
 }
 

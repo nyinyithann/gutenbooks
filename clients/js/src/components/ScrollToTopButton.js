@@ -21,10 +21,10 @@ function ScrollToTopButton({ className }) {
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  className = isVisible ? `${className} opacity-100` : `${className} opacity-0`;
+  const cn = isVisible ? `${className} opacity-100` : `${className} opacity-0`;
 
   return (
-    <button type="button" className={className} onClick={scrollToTop}>
+    <button type="button" className={cn} onClick={scrollToTop}>
       <ChevronUpIcon />
     </button>
   );

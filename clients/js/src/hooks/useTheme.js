@@ -1,5 +1,5 @@
 /* eslint-disable no-empty */
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const THEME_KEY = 'gutenbooks_theme';
 const DEFAULT_THEME = 'theme-blue';

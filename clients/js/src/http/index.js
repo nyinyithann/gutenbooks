@@ -18,7 +18,7 @@ const cache = setupCache({
 });
 
 const client = axios.create({
-  //adapter: cache.adapter,
+  adapter: cache.adapter,
   headers: {
     baseURL: process.env.API_BASE,
     'Content-type': 'application/json',

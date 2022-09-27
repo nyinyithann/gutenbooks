@@ -1,6 +1,7 @@
 import { Menu } from '@headlessui/react';
-import { ThemeSwitchContext } from '../providers/ThemeSwitchProvider';
 import React, { useCallback } from 'react';
+
+import { ThemeSwitchContext } from '../providers/ThemeSwitchProvider';
 
 function ColorButton({ color, theme, onClick }) {
   return (

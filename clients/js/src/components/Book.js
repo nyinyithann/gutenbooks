@@ -27,14 +27,12 @@ function AuthorList({ authors }) {
         </span>
         {authors.map(({ name, webpage }, i) => (
           <div
-            key={i}
+            key={name}
             className="flex flex-wrap flex-none  md:text-[0.8rem] font-bookinfo md:font-booktitle"
           >
-            <Author key={i + len} name={name} webpage={webpage} />
-            {authors.length != i + 1 ? (
-              <span key={i + 1} className="pr-1 text-500">
-                ,
-              </span>
+            <Author name={name} webpage={webpage} />
+            {authors.length !== i + 1 ? (
+              <span className="pr-1 text-900"> ⃓</span>
             ) : null}
           </div>
         ))}
@@ -52,7 +50,7 @@ function Book(props) {
       <div className="flex flex-auto">
         <div className="flex-none mt-1 h-[99px] w-[66px]">
           <a href={imageSrc.medium} target="_blank" rel="noreferrer">
-            <img src={imageSrc.small} className="shadow" />
+            <img src={imageSrc.small} className="shadow" alt="book cover" />
           </a>
         </div>
         <div className="flex flex-col flex-grow pl-2">
@@ -65,13 +63,13 @@ function Book(props) {
           </span>
         </div>
       </div>
-      {!links || links.length == 0 ? null : (
+      {!links || links.length === 0 ? null : (
         <div className="flex flex-col pt-4">
           <span className="flex-none text-xs text-600">download as:</span>
           <div className="flex flex-wrap flex-none pt-1">
-            {links.map(({ type, link }, i) => (
+            {links.map(({ type, link }) => (
               <div
-                key={i}
+                key={link}
                 className="flex items-center justify-center flex-none h-8 mr-2 rounded-sm shadow w-14 text-900 bg-300"
               >
                 <a href={link} target="_blank" rel="noreferrer">

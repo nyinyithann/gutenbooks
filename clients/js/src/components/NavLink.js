@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
-function NavLink({ children, to, className, ...props }) {
+function NavLink({ children, to, className }) {
   const resolved = useResolvedPath(to);
   const match = useMatch({ path: resolved.pathname, end: true });
   return (
@@ -11,7 +11,7 @@ function NavLink({ children, to, className, ...props }) {
       }
       type="button"
     >
-      <Link to={to} className={className} {...props}>
+      <Link to={to} className={className}>
         {children}
       </Link>
     </button>

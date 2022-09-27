@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Logo(props) {
+function Logo({ fill }) {
   return (
     <svg
       version="1.0"
@@ -15,7 +15,7 @@ function Logo(props) {
       </metadata>
       <g
         transform="translate(0.000000,256.000000) scale(0.100000,-0.100000)"
-        fill={props.fill}
+        fill={fill}
         stroke=""
       >
         <path

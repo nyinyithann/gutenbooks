@@ -1,19 +1,25 @@
 import { Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon, XCircleIcon } from '@heroicons/react/24/solid';
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, {
+  Fragment,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import resolveConfig from 'tailwindcss/resolveConfig';
 
 import tailwindConfig from '../../tailwind.config';
-import { BookContext } from '../providers/ContextProvider';
 import useDebounce from '../hooks/UseDebounce';
 import useQueryParams from '../hooks/UseQueryParams';
+import { BookContext } from '../providers/ContextProvider';
 import spinner from '../resources/spinner.gif';
 
 const fullConfig = resolveConfig(tailwindConfig);
 const searchboxDropDownId = 'searchbox_dropdown';
 
-function SearchBox({ value }) {
+function SearchBox({ searchTerm }) {
   const { bookSearch } = useContext(BookContext);
   const { searchBooks, loading, error, books } = bookSearch;
   const [delayedQuery, setDelayedQuery] = useDebounce(500, '');
@@ -57,6 +63,33 @@ function SearchBox({ value }) {
       setDropdownOpen(true);
     } else {
       setDropdownOpen(false);
+    }
+  };
+
+  const getFilterFields = useCallback(
+    () =>
+      filterField === 3
+        ? ['title', 'author']
+        : filterField === 1
+        ? ['title']
+        : filterField === 2
+        ? ['author']
+        : [],
+    [filterField]
+  );
+
+  const searchAll = () => {
+    if (query) {
+      const info = {
+        query,
+        fields: getFilterFields(),
+        sortIndex: -1,
+        sort: [{ field: '_score', order: 'desc' }],
+      };
+
+      setUrlQueryParam(info);
+      setDropdownOpen(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -122,30 +155,6 @@ function SearchBox({ value }) {
     }
   };
 
-  const getFilterFields = () =>
-    filterField === 3
-      ? ['title', 'author']
-      : filterField === 1
-      ? ['title']
-      : filterField === 2
-      ? ['author']
-      : [];
-
-  const searchAll = () => {
-    if (query) {
-      const info = {
-        query,
-        fields: getFilterFields(),
-        sortIndex: -1,
-        sort: [{ field: '_score', order: 'desc' }],
-      };
-
-      setUrlQueryParam(info);
-      setDropdownOpen(false);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
   const clickDeleteBtn = (e) => {
     e.preventDefault();
     setDelayedQuery('');
@@ -167,9 +176,9 @@ function SearchBox({ value }) {
 
   useEffect(() => {
     setDropdownOpen(false);
-    setQuery(value);
-    setDelayedQuery(value);
-  }, [value]);
+    setQuery(searchTerm);
+    setDelayedQuery(searchTerm);
+  }, [searchTerm]);
 
   useEffect(() => {
     const mousedown = (e) => {
@@ -191,13 +200,13 @@ function SearchBox({ value }) {
   });
 
   useEffect(() => {
-    const query = delayedQuery ? delayedQuery.trim() : '';
-    const fields = query ? getFilterFields() : [];
+    const q = delayedQuery ? delayedQuery.trim() : '';
+    const fields = q ? getFilterFields() : [];
     searchBooks({
-      query,
+      query: q,
       fields,
     });
-  }, [delayedQuery, filterField]);
+  }, [delayedQuery]);
 
   const menuClass = `relative text-base focus:outline-none z-[100] top-[-1.5rem] ${
     dropdownOpen ? 'block' : 'hidden'
@@ -269,7 +278,11 @@ function SearchBox({ value }) {
             <MagnifyingGlassIcon className="w-6 h-6 text-slate-500" />
           </button>
           <div className={spinnerClass}>
-            <img src={spinner} className="flex-auto w-6 h-6" />
+            <img
+              src={spinner}
+              alt="spinner_gif"
+              className="flex-auto w-6 h-6"
+            />
           </div>
         </div>
       </div>
@@ -337,8 +350,8 @@ function SearchBox({ value }) {
           leaveTo="transform opacity-0 scale-95"
         >
           <ul
-            role="menuitems"
-            className="absolute w-full flex flex-col shadow-lg block w-full list-none bg-slate-50 border-[1px] border-[#ededed] rounded"
+            role="menu"
+            className="absolute flex flex-col shadow-lg w-full list-none bg-slate-50 border-[1px] border-[#ededed] rounded"
           >
             <li>
               <ul id={searchboxDropDownId} tabIndex="0">
@@ -351,16 +364,18 @@ function SearchBox({ value }) {
                     className="inline-block w-full focus:outline-none"
                     style={getActiveItemStyle(indexId)}
                     onMouseOver={hoverDropdown}
+                    onFocus={hoverDropdown}
                     onMouseDown={mouseDownSearchItem}
                   >
                     <a
-                      href="#"
+                      href={`/books/${indexId}`}
                       tabIndex="-1"
                       className="inline-block w-full focus:outline-none"
                     >
                       <div className="flex pb-1 pt-2 border-b-[1px] border-b-[#cccccc]">
                         <img
                           src={imageSrc.small}
+                          alt="small book cover"
                           className="flex-shrink-0 h-[50px] w-[35px] ml-2 my-1 shadow"
                         />
                         <div className="flex flex-col flex-grow pl-2 items-start">
@@ -385,7 +400,8 @@ function SearchBox({ value }) {
               role="menuitem"
               className="inline-flex w-full pt-1 pb-2 text-center focus:outline-none"
             >
-              <a
+              <button
+                type="button"
                 href="#"
                 aria-label="search all"
                 className="w-full inline px-2 text-sm md:text-[0.9rem] text-900"
@@ -394,7 +410,7 @@ function SearchBox({ value }) {
                 <p className="px-2 line-clamp-6">
                   {`See all results for "${query}"`}
                 </p>
-              </a>
+              </button>
             </li>
           </ul>
         </Transition>

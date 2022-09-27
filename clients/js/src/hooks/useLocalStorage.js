@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import { useState } from 'react';
 
 const useLocalStorage = (key, initialValue) => {

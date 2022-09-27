@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Navbar from '../src/components/NavBar';
-import BookContextProvider from '../src/providers/ContextProvider';
-import ThemeSwitchProvider from '../src/providers/ThemeSwitchProvider';
-import useTheme from '../src/hooks/useTheme';
+import Navbar from './components/NavBar';
+import useTheme from './hooks/useTheme';
 import About from './pages/about';
 import Book from './pages/book';
 import Home from './pages/home';
 import NoMatch from './pages/nomatch';
+import BookContextProvider from './providers/ContextProvider';
+import ThemeSwitchProvider from './providers/ThemeSwitchProvider';
 
 function App() {
   const [theme, setTheme] = useTheme('theme-blue');

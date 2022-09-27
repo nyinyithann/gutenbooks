@@ -1,12 +1,8 @@
 import React from 'react';
-import resolveConfig from 'tailwindcss/resolveConfig';
 
-import tailwindConfig from '../../tailwind.config';
 import Logo from './Logo';
 import NavLink from './NavLink';
 import ThemeMenu from './ThemeMenu';
-
-const fullConfig = resolveConfig(tailwindConfig);
 
 function Navbar() {
   return (
