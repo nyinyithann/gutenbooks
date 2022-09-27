@@ -5,7 +5,7 @@ import { BookList } from '../components/Book';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import SearchBox from '../components/SearchBox';
 import SortBox from '../components/SortBox';
-import { BookContext } from '../context/ContextProvider';
+import { BookContext } from '../providers/ContextProvider';
 import usePrevious from '../hooks/UsePrevious';
 import useQueryParams from '../hooks/UseQueryParams';
 import spinner from '../resources/spinner.gif';
@@ -125,13 +125,13 @@ export default function Home() {
   }
   return (
     <div className="flex w-full h-screen">
-      <div className="fixed w-full mt-[-0.7rem] md:mt-[-1.2rem] h-[20%]">
+      <div className="fixed w-full mt-[-0.7rem] md:mt-[-1.2rem] h-auto">
         <div className="flex flex-col w-full">
-          <div className="px-2 pt-3 pb-3 md:pt-2 bg-primary_200">
+          <div className="px-2 pt-3 pb-3 md:pt-2 bg-200">
             <SearchBox value={searchTerm} />
           </div>
           <div className="flex-auto w-full mt-[-0.5rem] px-3 pt-1 pb-1 text-[0.9rem] md:text-[0.85rem] bg-white">
-            <div className="flex pb-1 border-b-[2px] items-center border-primary_300">
+            <div className="flex pb-1 border-b-[2px] items-center border-300">
               <p className="inline-block pr-1">
                 {`${books.length} of ${totalHits} results`}
                 {searchTerm ? (
@@ -156,7 +156,7 @@ export default function Home() {
                   selectedIndex={sortIndex}
                   displayField="desc"
                   onSelected={handleSortItemSelected}
-                  className="flex w-[8.5rem] md:w-40 text-left text-[0.8rem] md:text-[0.85rem] rounded-sm text-primary_900 bg-white border-[1px] border-primary_100 hover:shadow-lg hover:border-primary_200 focus:border-primary_200"
+                  className="flex w-[8.5rem] md:w-40 text-left text-[0.8rem] md:text-[0.85rem] rounded-sm text-900 bg-white border-[1px] border-100 hover:shadow-lg hover:border-200 focus:border-200"
                 />
               </div>
             </div>
@@ -170,7 +170,7 @@ export default function Home() {
         {hasMore ? (
           <div className="flex items-stretch flex-none min-h-12">
             <button
-              className="flex grow h-12 m-4 rounded shadow md:h-8 bg-primary_400 md:hover:border-[1px] md:hover:border-primary_500 text-white justify-center"
+              className="flex grow h-12 m-4 rounded shadow md:h-8 bg-400 md:hover:border-[1px] md:hover:border-500 text-white justify-center"
               type="button"
               onClick={loadMore}
             >
@@ -189,7 +189,7 @@ export default function Home() {
         ) : null}
 
         <div className="flex flex-none shrink-0 justify-center items-center md:bottom-14 bottom-[1.25rem] right-4 fixed focus:outline-none focus:ring-0 rounded-full">
-          <ScrollToTopButton className="bg-white md:bg-primary_transparent shadow h-10 w-10 md:h-10 md:w-10 text-primary_400 rounded-full cursor-pointer focus:outline-none focus:ring-0" />
+          <ScrollToTopButton className="bg-white md:bg-transparent shadow h-10 w-10 md:h-10 md:w-10 text-400 rounded-full cursor-pointer focus:outline-none focus:ring-0" />
         </div>
       </div>
     </div>

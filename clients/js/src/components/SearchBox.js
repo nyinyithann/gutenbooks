@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import resolveConfig from 'tailwindcss/resolveConfig';
 
 import tailwindConfig from '../../tailwind.config';
-import { BookContext } from '../context/ContextProvider';
+import { BookContext } from '../providers/ContextProvider';
 import useDebounce from '../hooks/UseDebounce';
 import useQueryParams from '../hooks/UseQueryParams';
 import spinner from '../resources/spinner.gif';
@@ -218,18 +218,17 @@ function SearchBox({ value }) {
   const getActiveItemStyle = (indexId) =>
     `searchitem_${indexId}` === activeItemId
       ? {
-          backgroundColor: fullConfig.theme.backgroundColor.primary_100,
+          backgroundColor: fullConfig.theme.backgroundColor['100'],
         }
       : null;
 
   const searchFilterRadioClass =
-    'h-5 w-5 md:h-4 md:w-4 hover:cursor form-radio text-primary_600 focus:ring-1 focus:ring-primary_300';
-  const searchFilterRadioLabelClass =
-    'block text-sm ml-2 cursor text-primary_900';
+    'h-5 w-5 md:h-4 md:w-4 hover:cursor form-radio text-600 focus:ring-1 focus:ring-300';
+  const searchFilterRadioLabelClass = 'block text-sm ml-2 cursor text-900';
 
   return (
     <div className="relative flex flex-col w-full mx-auto z-100">
-      <div className="flex w-full border-[1px] border-primary_300 rounded-md bg-white focus:outline-none hover:border-primary_500">
+      <div className="flex w-full border-[1px] border-300 rounded-md bg-white focus:outline-none hover:border-500">
         <input
           className="md:font-normal flex-auto h-9 md:h-8 w-[80%] px-2 rounded-md text-medium md:text-sm outline-none border-0 focus:ring-0"
           type="text"
@@ -389,7 +388,7 @@ function SearchBox({ value }) {
               <a
                 href="#"
                 aria-label="search all"
-                className="w-full inline px-2 text-sm md:text-[0.9rem] text-primary_900"
+                className="w-full inline px-2 text-sm md:text-[0.9rem] text-900"
                 onMouseDown={searchAll}
               >
                 <p className="px-2 line-clamp-6">

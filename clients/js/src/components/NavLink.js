@@ -7,7 +7,7 @@ function NavLink({ children, to, className, ...props }) {
   return (
     <button
       className={
-        match ? `navbar-button border-b-2 border-primary_900` : 'navbar-button'
+        match ? `navbar-button border-b-2 border-900` : 'navbar-button'
       }
       type="button"
     >

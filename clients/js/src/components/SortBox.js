@@ -37,7 +37,7 @@ function SortBox({
   return (
     <Listbox value={selected} onChange={handleChange}>
       <div className={`${className} relative`}>
-        <Listbox.Button className="relative flex items-center w-full shadow shadow-primary_100 cursor-default focus:outline-none focus:bg-white">
+        <Listbox.Button className="relative flex items-center w-full shadow shadow-100 cursor-default focus:outline-none focus:bg-white">
           <span className="block px-2 text-left truncate">
             {selected ? selected[displayField] : 'Sort by ...'}
           </span>
@@ -64,14 +64,14 @@ function SortBox({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute w-full mt-6 border-[1px] border-primary_100 overflow-auto rounded-sm shadow-lg bg-white">
+          <Listbox.Options className="absolute w-full mt-6 border-[1px] border-100 overflow-auto rounded-sm shadow-lg bg-white">
             {items.map((item, i) => (
               <Listbox.Option
                 key={`sortinfo_${i}`}
                 value={item}
                 className={({ active }) =>
                   `${
-                    active ? 'text-primary_900 bg-primary_100' : 'text-gray-900'
+                    active ? 'text-900 bg-100' : 'text-gray-900'
                   } cursor-default select-none relative py-1 pl-4 md:pl-6`
                 }
               >
@@ -81,7 +81,7 @@ function SortBox({
                       {item[displayField]}
                     </span>
                     {selected ? (
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-1 text-primary_900">
+                      <span className="absolute inset-y-0 left-0 flex items-center pl-1 text-900">
                         <CheckIcon
                           className="w-4 h-4 md:w-5 md:h-5"
                           aria-hidden="true"
