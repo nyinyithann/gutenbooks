@@ -8,15 +8,12 @@ import React, {
   useState,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-import resolveConfig from 'tailwindcss/resolveConfig';
 
-import tailwindConfig from '../../tailwind.config';
 import useDebounce from '../hooks/UseDebounce';
 import useQueryParams from '../hooks/UseQueryParams';
 import { BookContext } from '../providers/ContextProvider';
 import spinner from '../resources/spinner.gif';
 
-const fullConfig = resolveConfig(tailwindConfig);
 const searchboxDropDownId = 'searchbox_dropdown';
 
 function SearchBox({ searchTerm }) {
@@ -225,11 +222,7 @@ function SearchBox({ searchTerm }) {
   }`;
 
   const getActiveItemStyle = (indexId) =>
-    `searchitem_${indexId}` === activeItemId
-      ? {
-          backgroundColor: fullConfig.theme.backgroundColor['100'],
-        }
-      : null;
+    `searchitem_${indexId}` === activeItemId ? 'bg-300/40' : '';
 
   const searchFilterRadioClass =
     'h-5 w-5 md:h-4 md:w-4 hover:cursor form-radio text-600 focus:ring-1 focus:ring-300';
@@ -361,8 +354,9 @@ function SearchBox({ searchTerm }) {
                     key={indexId}
                     role="menuitem"
                     data-order={i}
-                    className="inline-block w-full focus:outline-none"
-                    style={getActiveItemStyle(indexId)}
+                    className={`inline-block w-full focus:outline-none ${getActiveItemStyle(
+                      indexId
+                    )}`}
                     onMouseOver={hoverDropdown}
                     onFocus={hoverDropdown}
                     onMouseDown={mouseDownSearchItem}
@@ -373,11 +367,15 @@ function SearchBox({ searchTerm }) {
                       className="inline-block w-full focus:outline-none"
                     >
                       <div className="flex pb-1 pt-2 border-b-[1px] border-b-[#cccccc]">
-                        <img
-                          src={imageSrc.small}
-                          alt="small book cover"
-                          className="flex-shrink-0 h-[50px] w-[35px] ml-2 my-1 shadow"
-                        />
+                        {imageSrc.small && imageSrc.small.length > 0 ? (
+                          <img
+                            src={imageSrc.small}
+                            alt="book"
+                            className="flex-shrink-0 h-[50px] w-[35px] ml-2 my-1 shadow"
+                          />
+                        ) : (
+                          <div className="flex-shrink-0 h-[50px] w-[35px] ml-2 my-1 bg-slate-100 shadow-500 border-slate-100 border-[1px]" />
+                        )}
                         <div className="flex flex-col flex-grow pl-2 items-start">
                           <p className="flex-none pr-1 pb-1 text-[0.9rem] md:text-[0.8rem] text-left font-semibold font-booktitle line-clamp-1 md:line-clamp-3">
                             {title}

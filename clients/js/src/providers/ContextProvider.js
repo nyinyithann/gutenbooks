@@ -300,14 +300,14 @@ function BookContextProvider({ children }) {
         books: bookListState.books,
       },
       bookSearch: {
-        searchBooks: getBooksForAutocomplete(bookSearchDispatch),
+        searchBooks: sb,
         loading: bookSearchState.loading,
         error: bookSearchState.error,
         books: bookSearchState.books,
         searchInfo: bookSearchState.searchInfo,
       },
     }),
-    [bookListState, bookSearchState, gb, sb, bookSearchDispatch]
+    [bookListState, bookSearchState, gb, sb]
   );
 
   return (

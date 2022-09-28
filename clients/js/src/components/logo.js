@@ -9,15 +9,12 @@ function Logo({ fill }) {
       height="24px"
       viewBox="0 0 256.000000 256.000000"
       preserveAspectRatio="xMidYMid meet"
+      className={fill}
     >
       <metadata>
         Created by potrace 1.16, written by Peter Selinger 2001-2019
       </metadata>
-      <g
-        transform="translate(0.000000,256.000000) scale(0.100000,-0.100000)"
-        fill={fill}
-        stroke=""
-      >
+      <g transform="translate(0.000000,256.000000) scale(0.100000,-0.100000)">
         <path
           d="M1110 2525 c-123 -43 -253 -129 -304 -204 l-27 -38 7 -201 7 -202
 -42 17 c-35 14 -48 14 -84 4 -70 -21 -160 -77 -211 -131 l-48 -51 3 -189 c2
