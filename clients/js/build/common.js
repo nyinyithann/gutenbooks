@@ -55,8 +55,8 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/i,
-        exclude: /node_modules/,
-        use: ['swc-loader'],
+        exclude: /(node_modules)/,
+        use: { loader: 'swc-loader', options: { parseMap: true } },
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
@@ -111,9 +111,9 @@ module.exports = {
       favicon: path.resolve(__dirname, '..', './public/favicon.ico'),
       template: path.resolve(__dirname, '..', './public/index.html'),
       hash: true,
-      scriptLoading: 'defer',
-      inject: 'head', // head better for extension
-      excludeChunks: ['manifest', 'background'],
+      // scriptLoading: 'defer',
+      // inject: 'head', // head better for extension
+      // excludeChunks: ['manifest', 'background'],
     }),
     new MiniCssExtractPlugin({
       filename: isProductionMode ? '[name].[contenthash].css' : '[name].css',

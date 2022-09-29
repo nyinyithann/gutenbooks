@@ -26,6 +26,3 @@ if (container) {
   div.appendChild(text);
   document.body.appendChild(div);
 }
-
-/* eslint-disable no-undef */
-module.hot.accept();
