@@ -167,7 +167,10 @@ function SearchBox({ searchTerm }) {
   const mouseDownSearchItem = (e) => {
     e.preventDefault();
     if (activeItemId) {
-      navigate(`/book/${activeItemId.split('_')[1]}`);
+      navigate({
+        pathname: '/book',
+        search: `?id=${activeItemId.split('_')[1]}`,
+      });
     }
   };
 

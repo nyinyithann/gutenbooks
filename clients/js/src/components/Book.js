@@ -69,7 +69,9 @@ function Book(props) {
       </div>
       {!links || links.length === 0 ? null : (
         <div className="flex flex-col pt-4">
-          <span className="flex-none text-sm text-900 font-bookinfo">download as:</span>
+          <span className="flex-none text-sm text-900 font-bookinfo">
+            download as:
+          </span>
           <div className="flex flex-wrap flex-none pt-1">
             {links.map(({ type, link }) => (
               <div

@@ -21,8 +21,8 @@ function App() {
             <div className="py-12 md:py-14 h-screen">
               <Routes>
                 <Route index path="/" element={<Home />} />
-                <Route path="/book/:id" element={<Book />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/book" element={<Book />} />
                 <Route path="*" element={<NoMatch />} />
               </Routes>
             </div>
