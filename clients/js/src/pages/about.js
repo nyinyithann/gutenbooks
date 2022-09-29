@@ -27,7 +27,7 @@ function About() {
             className="text-800 underline text-base md:text:xl text-center inline"
             href="https://github.com/nyinyithann/gutenbooks"
           >
-            Gutenbook GitHub Repository
+            Gutenbook GitHub Repo
           </a>
         </div>
         <div className="pt-2 font-sans text-sm md:text-base">

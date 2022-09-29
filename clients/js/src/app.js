@@ -3,10 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/NavBar';
 import useTheme from './hooks/useTheme';
-import About from './pages/about';
-import Book from './pages/book';
-import Home from './pages/home';
-import NoMatch from './pages/nomatch';
+import About from './pages/About';
+import Book from './pages/Book';
+import Home from './pages/Home';
+import NoMatch from './pages/Nomatch';
 import BookContextProvider from './providers/ContextProvider';
 import ThemeSwitchProvider from './providers/ThemeSwitchProvider';
 

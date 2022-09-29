@@ -1,0 +1,58 @@
+@import './_theme.css';
+@import './_fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .navbar-button {
+    @apply focus:outline-none h-8 rounded-sm hover:bg-400/60 mx-1;
+  }
+
+  .navbar-menu-text {
+    @apply py-5 px-3 text-900;
+  }
+
+  .theme-btn {
+    @apply p-1 rounded-full h-8 w-8 md:h-6 md:w-6 flex items-center justify-center
+              shadow shadow-500 hover:ring-2 hover:ring-slate-300 focus:shadow-600 focus:outline-none;
+  }
+
+  .theme-menu-opener {
+    @apply h-9 w-9 md:h-10 md:w-10 p-1 self-end
+                    bg-transparent rounded-full border-transparent
+                    hover:bg-400 active:bg-400 active:text-500
+                    text-600 focus:outline-none hover:text-700
+                    flex justify-evenly items-center;
+  }
+
+  .theme-menu-internal-div {
+    @apply p-2 flex flex-1 flex-row flex-wrap gap-3
+                    justify-start;
+  }
+
+  .theme-menu-dropdown {
+    @apply flex flex-col origin-top-right absolute mt-4 w-[12rem] md:w-40 p-1
+                    border-[1px] border-200 bg-100 rounded focus:outline-none
+                    right-1 top-6 shadow-lg;
+  }
+
+  .icon {
+    @apply w-6 h-6 text-500;
+  }
+
+  .icon-panel-container {
+    @apply flex-1 flex flex-col gap-1;
+  }
+
+  .icon-panel {
+    @apply rounded flex flex-row flex-wrap
+                    items-center justify-center flex-1 h-screen p-2 gap-2;
+  }
+
+  .icon-panel-header {
+    @apply border-b-[1px] border-200 block text-base
+                    font-normal text-600 mx-8 md:mx-12;
+  }
+}

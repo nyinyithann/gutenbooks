@@ -49,7 +49,7 @@ export default function Book() {
         <div className="flex-[4_1_0%] border-[1px] border-900">
           book de detail
         </div>
-        <div>y</div>
+        <div>f</div>
         <div>flix</div>
       </div>
     </div>

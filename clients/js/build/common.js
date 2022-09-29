@@ -11,52 +11,33 @@ module.exports = {
     main: path.resolve(__dirname, '..', './src/index.js'),
   },
   output: {
-    filename: '[name].[contenthash].bundle.js',
-    chunkFilename: '[name].[contenthash].bundle.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, '..', './dist'),
+    // clean: true,
+    // filename: isProductionMode ? '[name].[contenthash].bundle.js' : '[name].js',
+    // chunkFilename: '[name].[contenthash].bundle.js',
+    // path: path.resolve(__dirname, '..', './dist'),
+    // assetModuleFilename: isProductionMode
+    //   ? 'asset/[name].[ext]?[hash]'
+    //   : '[name].[ext]',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    roots: [path.resolve(__dirname), '..', './src'],
-    alias: {
-      '@': path.resolve(__dirname, '..', './src/'),
-      '@Components': path.resolve(__dirname, '..', './src/components/'),
-      '@Hooks': path.resolve(__dirname, '..', './src/hooks/'),
-      '@Pages': path.resolve(__dirname, '..', './src/pages/'),
-      '@Providers': path.resolve(__dirname, '..', './src/providers/'),
-    },
+    // roots: [path.resolve(__dirname), '..', './src'],
+    // alias: {
+    //   '@': path.resolve(__dirname, '..', './src/'),
+    //   '@Components': path.resolve(__dirname, '..', './src/components/'),
+    //   '@Hooks': path.resolve(__dirname, '..', './src/hooks/'),
+    //   '@Pages': path.resolve(__dirname, '..', './src/pages/'),
+    //   '@Providers': path.resolve(__dirname, '..', './src/providers/'),
+    // },
   },
-  optimization: {
-    moduleIds: 'deterministic',
-    runtimeChunk: 'single',
-    splitChunks: {
-      chunks: 'all',
-      maxInitialRequests: Infinity,
-      minSize: 0,
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name(module) {
-            // get the name. E.g. node_modules/packageName/not/this/part.js
-            // or node_modules/packageName
-            const packageName = module.context.match(
-              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-            )[1];
-
-            // npm package names are URL-safe, but some servers don't like @ symbols
-            return `npm.${packageName.replace('@', '')}`;
-          },
-        },
-      },
-    },
-  },
-
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/i,
-        exclude: /(node_modules)/,
-        use: { loader: 'swc-loader', options: { parseMap: true } },
+        exclude: /node_modules/,
+        use: ['babel-loader'],
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
@@ -111,9 +92,9 @@ module.exports = {
       favicon: path.resolve(__dirname, '..', './public/favicon.ico'),
       template: path.resolve(__dirname, '..', './public/index.html'),
       hash: true,
-      // scriptLoading: 'defer',
-      // inject: 'head', // head better for extension
-      // excludeChunks: ['manifest', 'background'],
+      scriptLoading: 'defer',
+      inject: 'head', // head better for extension
+      excludeChunks: ['manifest', 'background'],
     }),
     new MiniCssExtractPlugin({
       filename: isProductionMode ? '[name].[contenthash].css' : '[name].css',

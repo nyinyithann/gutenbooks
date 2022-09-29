@@ -1,28 +1,16 @@
-import '../styles/main.css';
-
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-
+import '../styles/main.css';
 import App from './app';
 
-const containerId = 'react-root';
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('react-root')
+);
 
-const container = document.getElementById(containerId);
-if (container) {
-  const root = createRoot(container);
-  root.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </React.StrictMode>
-  );
-} else {
-  const div = document.createElement('div');
-  const text = document.createTextNode(
-    `Element wiht id '${containerId}' not found at 'index.js'.`
-  );
-  div.appendChild(text);
-  document.body.appendChild(div);
-}
+module.hot.accept();
