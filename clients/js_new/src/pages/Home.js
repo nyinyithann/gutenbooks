@@ -88,6 +88,7 @@ export default function Home() {
       </div>
     );
   }
+
   return (
     <div className="flex w-full h-screen">
       <div className="fixed w-full mt-[-0.7rem] md:mt-[-1.2rem] h-auto">
@@ -128,7 +129,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-col pt-2 w-full h-screen">
-        <div className="flex w-full mt-[5rem] md:mt-[4rem]">
+        <div className="flex w-full mt-[5rem] md:mt-[4.5rem]">
           <BookList books={books} />
         </div>
         {hasMore ? (

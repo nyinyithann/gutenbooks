@@ -34,7 +34,7 @@ module.exports = {
         nav: ['Oswald'],
         brand: ['Pacifico'],
         booktitle: ['Merriweather'],
-        bookinfo: ['Source Sans Pro'],
+        bookinfo: ['Lato'],
       },
       textColor: {
         transparent: 'var(--color-primary-transparent)',
