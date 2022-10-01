@@ -21,7 +21,7 @@ function Bloke({ detail, count }) {
   const Name = ({ name, link }) => {
     return (
       <div className="flex gap-3">
-        <span className="w-[6rem] text-900/70 bg-100 rounded-r-full pl-1">
+        <span className="flex flex-shrink-0 items-center justify-start w-[6rem] text-900 bg-100 rounded-r-full pl-1">
           Name
         </span>
         {link ? (
@@ -31,7 +31,7 @@ function Bloke({ detail, count }) {
             rel="noreferrer"
             className="flex-none inline text-center underline text-700"
           >
-            {name}
+            <p className='text-left w-[12rem] md:w-full'>{name}</p>
           </a>
         ) : (
           <span>{name}</span>
@@ -44,7 +44,7 @@ function Bloke({ detail, count }) {
     if (!value) return null;
     return (
       <div className="flex gap-3">
-        <span className="w-[6rem] text-900/70 bg-100 rounded-r-full pl-1">{`${label}`}</span>
+        <span className="w-[6rem] flex-shrink-0 text-900 bg-100 rounded-r-full pl-1">{`${label}`}</span>
         <span className="max-w-[20rem]">{value}</span>
       </div>
     );
@@ -54,7 +54,7 @@ function Bloke({ detail, count }) {
     if (!names || names.length === 0) return null;
     return (
       <div className="flex gap-3">
-        <div className="flex flex-grow-1 flex-shrink-0 w-[6rem] items-center justify-start pl-1 text-900/70 bg-100 rounded-r-full ">
+        <div className="flex flex-shrink-0 w-[6rem] items-center justify-start pl-1 text-900 bg-100 rounded-r-full">
           <span>Alias</span>
         </div>
         <div>
@@ -102,10 +102,10 @@ const Many = ({ title, values, minlen }) => {
   if (!values || values.length === 0) return null;
   return (
     <div className="flex justify-start gap-3 w-full rounded-lg border-[1px] border-200 shadow p-2">
-      <div className="flex w-[6rem] flex-shrink-0 font-[450] font-sans justify-start items-center">
+      <div className="flex w-[7rem] flex-shrink-0 font-[450] font-sans justify-start px-1 items-center text-900 bg-100 rounded-r-full">
         {title}
       </div>
-      <div className="flex flex-col flex-auto">
+      <div className="grid grid-cols-1 divide-y divide-100 gap-1 md:flex flex-col flex-auto">
         {values.map((v) =>
           v.length > minlen ? (
             <div key={v} className="flex min-h-[1.3rem]">
@@ -122,7 +122,8 @@ const DownloadCount = ({ count }) => {
   if (!count) return null;
   return (
     <div className="flex justify-start gap-3 w-full rounded-lg border-[1px] border-200 shadow p-2">
-      <span className="w-[8rem] flex-shrink-0 font-[450] font-sans">
+      <span className="w-[9rem] flex-shrink-0 font-[450] font-sans items-center justify-start pl-1 text-900 bg-100 rounded-r-full
+">
         Download Count
       </span>
       <span className="text-[0.9rem] font-sans">{count}</span>
@@ -164,7 +165,7 @@ const LinkButtons = ({ formats }) => {
             {dlinks.map(({ short, link }) => (
               <div
                 key={link}
-                className="flex items-center justify-center flex-none h-8 w-[8rem] md:w-[6rem] rounded-sm shadow text-900 bg-300"
+                className="flex items-center justify-center flex-none h-8 w-[7rem] md:w-[6rem] rounded-sm shadow text-900 bg-300"
               >
                 <a
                   href={link}
@@ -199,7 +200,7 @@ const LinkButtons = ({ formats }) => {
             {rlinks.map(({ short, link }) => (
               <div
                 key={link}
-                className="flex items-center justify-center flex-none h-8 w-[8rem] md:w-[6rem] rounded-sm shadow text-900 bg-300"
+                className="flex items-center justify-center flex-none h-8 w-[7rem] md:w-[6rem] rounded-sm shadow text-900 bg-300"
               >
                 <a
                   href={link}

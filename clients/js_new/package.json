@@ -73,8 +73,8 @@
   "scripts": {
     "dashboard": "webpack-dashboard -- webpack serve --config build/webpack.js --env env=dev addon=dashboard",
     "eslint": "npx eslint --config .eslintrc.json --fix 'build/*.js' 'build/**/*.js' 'src/*.{js,jsx}' 'src/**/*.{js,jsx}'",
-    "stylelint": "npx stylelint --config .stylelintrc.json --fix 'style/*.css' 'src/*.css' 'src/**/*.css' ",
-    "prettier": "npx prettier --config .prettierrc.json --fix 'build/*.js' 'build/**/*.js' 'src/*.{js,jsx}' 'src/**/*.{js,jsx}' --check",
+    "stylelint": "npx stylelint --config .stylelintrc.json --fix 'styles/*.css' 'src/*.css' 'src/**/*.css' ",
+    "prettier": "npx prettier --config .prettierrc --fix 'build/*.js' 'build/**/*.js' 'src/*.{js,jsx}' 'src/**/*.{js,jsx}' --check",
     "build:prod": "TAILWIND_MODE=build cross-env NODE_ENV=production && webpack --config build/webpack.js --env env=prod",
     "build:dev": "TAILWIND_MODE=build NODE_ENV=development && webpack --config build/webpack.js --env env=dev",
     "start": "TAILWIND_MODE=watch NODE_ENV=development webpack serve --config build/webpack.js --env env=dev"
