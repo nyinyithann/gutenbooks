@@ -21,14 +21,14 @@ function AuthorList({ authors }) {
   const len = authors ? authors.length : 0;
   if (len > 0) {
     return (
-      <div className="flex flex-wrap flex-none font-booktitle pt-2">
-        <span className="flex-none px-[0.4rem] py-1 mr-1 bg-100 text-700 rounded-full text-[0.7rem]">
+      <div className="flex flex-wrap flex-none font-booktitle">
+        <span className="flex-none py-[0.2rem] pl-1 pr-2 text-700 text-[0.7rem] rounded-r-full bg-200">
           by
         </span>
         {authors.map(({ name, webpage }, i) => (
           <div
             key={name}
-            className="flex flex-wrap flex-none pt-[2px] pl-2 md:text-[0.8rem] font-bookinfo md:font-booktitle"
+            className="flex flex-wrap flex-none pl-2 md:text-[0.8rem] font-bookinfo md:font-booktitle"
           >
             <Author name={name} webpage={webpage} />
             {authors.length !== i + 1 ? (
@@ -61,7 +61,10 @@ function Book(props) {
             target="_blank"
             rel="noreferrer"
             className="flex-none mt-1 h-[99px] w-[66px] shadow-md bg-slate-100 border-[1px] border-slate-100 flex justify-center items-center"
-          > 👓</a>
+          >
+            {' '}
+            👓
+          </a>
         )}
         <div className="flex flex-col flex-grow pl-4">
           <a
@@ -73,9 +76,12 @@ function Book(props) {
             {title}
           </a>
           <AuthorList authors={authors} />
-          <span className="flex-none pt-6 text-[0.8rem] text-900 font-sans">
-            {`Download Count: ${downloadCount}`}
-          </span>
+          <div className="flex gap-4 pt-1 justify-start items-center">
+            <span className="flex-none text-[0.7rem] text-700 font-booktitle py-[0.2rem] pl-1 pr-2 rounded-r-full bg-200">
+              Download Count
+            </span>
+            <span className="font-nav text-[0.9rem]">{downloadCount}</span>
+          </div>
         </div>
       </div>
       <div className="flex flex-wrap gap-4 pt-4">
