@@ -6,7 +6,11 @@ import { BookContext } from '../providers/ContextProvider';
 import { getImageLinks, getContentLinks } from '../providers/common';
 
 function Title({ text }) {
-  return text ? <p className="font-booktitle text-[1.4rem] mt-[-0.5rem]">{text}</p> : null;
+  return text ? (
+    <p className="font-booktitle text-[1.1rem] md:text-[1.4rem] mt-[-0.5rem]">
+      {text}
+    </p>
+  ) : null;
 }
 
 function Bloke({ detail, count }) {
@@ -17,7 +21,9 @@ function Bloke({ detail, count }) {
   const Name = ({ name, link }) => {
     return (
       <div className="flex gap-3">
-        <span className="w-[6rem] text-900/70 bg-100 rounded-r-full pl-1">Name</span>
+        <span className="w-[6rem] text-900/70 bg-100 rounded-r-full pl-1">
+          Name
+        </span>
         {link ? (
           <a
             href={link}
@@ -132,7 +138,7 @@ const BookImage = ({ link }) => {
           <img src={link} className="shadow-lg" />
         </div>
       ) : (
-        <div className="w-[200px] h-[300px] shadow bg-slate-100 flex justify-center items-center">
+        <div className="w-[160px] h-[140px] md:w-[200px] md:h-[300px] shadow bg-slate-100 flex justify-center items-center">
           {' '}
           👓{' '}
         </div>
@@ -148,17 +154,17 @@ const LinkButtons = ({ formats }) => {
   const dlinks = links.filter((x) => x.download && x.onlist);
   const rlinks = links.filter((x) => !x.download && x.onlist);
   return (
-    <div className="flex flex-wrap gap-4 pt-4">
+    <div className="flex flex-wrap gap-4 mt-[-0.4rem] md:mt-0 md:pt-4">
       {dlinks.length === 0 ? null : (
         <div className="flex flex-col">
-          <span className="flex-none text-[0.9rem] text-800 bg-400/90 font-sans rounded-t-md w-[12.5rem] text-center">
-            download as
+          <span className="flex-none text-xs font-sans md:p-[0.1rem] md:text-[0.9rem] md:text-800 md:bg-400/90 md:rounded-t-md md:w-[12.5rem] md:text-center">
+            download as<span className="md:hidden">:</span>
           </span>
           <div className="flex flex-wrap flex-none pt-[0.5rem] gap-2">
             {dlinks.map(({ short, link }) => (
               <div
                 key={link}
-                className="flex items-center justify-center flex-none h-8 w-[6rem] rounded-sm shadow text-900 bg-300"
+                className="flex items-center justify-center flex-none h-8 w-[8rem] md:w-[6rem] rounded-sm shadow text-900 bg-300"
               >
                 <a
                   href={link}
@@ -186,14 +192,14 @@ const LinkButtons = ({ formats }) => {
       )}
       {rlinks.length === 0 ? null : (
         <div className="flex flex-col pt-0">
-          <span className="flex-none text-[0.9rem] text-800 bg-400/90 font-sans rounded-t-md pl-[1px] w-[12.5rem] text-center">
-            read as
+          <span className="flex-none text-xs font-sans md:p-[0.1rem] md:text-[0.9rem] md:text-800 md:bg-400/90 md:rounded-t-md md:w-[12.5rem] md:text-center">
+            read as<span className="md:hidden">:</span>
           </span>
           <div className="flex flex-wrap flex-none pt-[0.5rem] gap-2">
             {rlinks.map(({ short, link }) => (
               <div
                 key={link}
-                className="flex items-center justify-center flex-none h-8 w-[6rem] rounded-sm shadow text-900 bg-300"
+                className="flex items-center justify-center flex-none h-8 w-[8rem] md:w-[6rem] rounded-sm shadow text-900 bg-300"
               >
                 <a
                   href={link}
@@ -267,7 +273,57 @@ export default function Book() {
 
   return (
     <main className="p-4 text-900">
-      <div className="flex flex-row gap-1">
+      <div className="md:hidden flex flex-wrap gap-1">
+        <Title text={book ? book.title : null} />
+        <div className="flex gap-4 pt-2 pb-2">
+          <BookImage
+            link={
+              book && book.formats && book.formats.length > 0
+                ? getImageLinks(book.formats)[1]
+                : ''
+            }
+          />
+          <LinkButtons
+            formats={
+              book && book.formats && book.formats.length > 0
+                ? book.formats
+                : []
+            }
+          />
+        </div>
+        <div className="flex flex-col flex-[3_1_0%] gap-4">
+          <Blokes
+            title={'Authors'}
+            blokes={book && book.authors ? book.authors : []}
+          />
+          <Blokes
+            title={'Contributers'}
+            blokes={book && book.contributers ? book.contributers : []}
+          />
+          <Blokes
+            title={'Editors'}
+            blokes={book && book.editors ? book.editors : []}
+          />
+          <Many
+            title={'Subjects'}
+            values={book ? book.subjects : []}
+            minlen={5}
+          />
+          <Many
+            title={'Bookshelves'}
+            values={book ? book.bookshelves : []}
+            minlen={5}
+          />
+          <Many
+            title={'Languages'}
+            values={book ? book.languages : []}
+            minlen={0}
+          />
+          <DownloadCount count={book ? book.download_count : null} />
+        </div>
+      </div>
+
+      <div className="hidden md:flex flex-row gap-1">
         <div className="flex-[0_0_0%] flex-col min-w-[250px]">
           <BookImage
             link={
