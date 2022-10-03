@@ -4,11 +4,11 @@ import { ACTIONS, API_SERVER_STATUS, dispatchError } from './common';
 const bookshelvesInitialState = {
   loading: false,
   error: '',
-  bookshelves: [],
+  shelves: [],
 };
 
 function bookshelvesReducer(state, action) {
-  const { loading, error, bookshelves } = action.payload;
+  const { loading, error, shelves } = action.payload;
   switch (action.type) {
     case ACTIONS.ERROR:
     case ACTIONS.LOADING:
@@ -22,7 +22,7 @@ function bookshelvesReducer(state, action) {
       return {
         loading,
         error,
-        bookshelves,
+        shelves,
       };
     default:
       return state;
@@ -42,13 +42,21 @@ const getAllBookshelves = (dispatch) => async () => {
       const response = await getBookshelves();
       const responseData = response.data;
       if (responseData._status === API_SERVER_STATUS.SUCCESS) {
-        const bookshelves = responseData._result;
+        const result = responseData._result;
         dispatch({
           type: ACTIONS.LOADED,
           payload: {
             loading: false,
             error: '',
-            bookshelves,
+            shelves: result.bookshelves.sort((x, y) => {
+              if (x.key > y.key) {
+                return 1;
+              } else if (x.key < y.key) {
+                return -1;
+              } else {
+                return 0;
+              }
+            }),
           },
         });
       } else {

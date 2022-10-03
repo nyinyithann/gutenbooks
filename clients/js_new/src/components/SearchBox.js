@@ -367,8 +367,7 @@ function SearchBox({ searchTerm }) {
                     onFocus={hoverDropdown}
                     onMouseDown={mouseDownSearchItem}
                   >
-                    <a
-                      href={`/books/${indexId}`}
+                    <div
                       tabIndex="-1"
                       className="inline-block w-full focus:outline-none"
                     >
@@ -395,7 +394,7 @@ function SearchBox({ searchTerm }) {
                           </div>
                         </div>
                       </div>
-                    </a>
+                    </div>
                   </li>
                 ))}
               </ul>

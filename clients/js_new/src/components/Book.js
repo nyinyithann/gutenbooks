@@ -1,41 +1,38 @@
 import React from 'react';
 
 function Author({ name, webpage }) {
-  const authName = name ? <span className="truncate">{name}</span> : null;
-  if (webpage) {
-    return (
-      <a
-        href={webpage}
-        target="_blank"
-        rel="noreferrer"
-        className="flex-none inline text-center underline text-700"
-      >
-        {authName}
-      </a>
-    );
-  }
-  return authName;
+  return (
+    <a
+      href={webpage ? webpage : '#'}
+      target="_blank"
+      rel="noreferrer"
+      className="flex flex-wrap flex-none text-left underline text-700 justify-start"
+    >
+      <span className="flex-auto flex-wrap pr-[0.1rem]"> {name}</span>
+    </a>
+  );
 }
 
 function AuthorList({ authors }) {
   const len = authors ? authors.length : 0;
   if (len > 0) {
     return (
-      <div className="flex flex-wrap flex-none font-booktitle">
-        <span className="flex-none py-[0.2rem] pl-1 pr-2 text-700 text-[0.7rem] rounded-r-full bg-200">
+      <div className="flex flex-none font-booktitle">
+        <span className="flex justify-start items-center flex-shrink-0 w-[1.4rem] py-[0.2rem] pl-1 pr-2 text-700 text-[0.7rem] rounded-r-full bg-200">
           by
         </span>
-        {authors.map(({ name, webpage }, i) => (
-          <div
-            key={name}
-            className="flex flex-wrap flex-none pl-2 md:text-[0.8rem] font-bookinfo md:font-booktitle"
-          >
-            <Author name={name} webpage={webpage} />
-            {authors.length !== i + 1 ? (
-              <span className="pr-1 text-300"> ⃓</span>
-            ) : null}
-          </div>
-        ))}
+        <div className="flex flex-col flex-wrap">
+          {authors.map(({ name, webpage }) => (
+            <div
+              key={name}
+              className="flex flex-wrap flex-col pl-2 md:text-[0.8rem] font-bookinfo md:font-booktitle"
+            >
+              <span className="flex flex-wrap flex-auto line-clamp-6">
+                <Author name={name} webpage={webpage} />
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
@@ -51,7 +48,7 @@ function Book(props) {
       <div className="flex flex-auto">
         {imageSrc.medium && imageSrc.medium.length > 0 ? (
           <div className="flex-none mt-1 h-[99px] w-[70px] shadow border-[1px] border-slate-100">
-            <a href={`/book?id=${id}`} target="_blank" rel="noreferrer">
+            <a href={`/book?id=${id}`} rel="noreferrer">
               <img src={imageSrc.small} className="w-full h-full" alt="book" />
             </a>
           </div>
@@ -65,13 +62,13 @@ function Book(props) {
             👓
           </a>
         )}
-        <div className="flex flex-col flex-wrap flex-grow-0 pl-4">
+        <div className="flex flex-col pl-4">
           <a
             href={`/book?id=${id}`}
             rel="noreferrer"
-            className="flex flex-wrap flex-auto pb-1 pr-1 text-base font-semibold font-booktitle text-900"
+            className="flex flex-wrap text-base font-semibold font-booktitle text-900 pb-1 pr-1"
           >
-            <span className='break-before-all pr-1'>{title}</span>
+            <span className="break-before-all pr-1">{title}</span>
           </a>
           <AuthorList authors={authors} />
           <div className="flex gap-4 pt-1 justify-start items-center">

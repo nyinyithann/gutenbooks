@@ -92,7 +92,7 @@ function BookContextProvider({ children }) {
         getBookshelves,
         loading: bookshelvesState.loading,
         error: bookshelvesState.error,
-        bookshelves: bookshelvesState.bookshelves,
+        shelves: bookshelvesState.shelves,
       },
       bookSearch: {
         searchBooks,

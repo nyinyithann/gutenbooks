@@ -2,6 +2,7 @@ import isEqual from 'lodash.isequal';
 import React, { useContext, useEffect } from 'react';
 
 import { BookList } from '../components/Book';
+import Bookshelves from '../components/Bookshelves';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import SearchBox from '../components/SearchBox';
 import SortBox from '../components/SortBox';
@@ -11,7 +12,7 @@ import { BookContext } from '../providers/ContextProvider';
 import spinner from '../resources/spinner.gif';
 
 export default function Home() {
-  const { bookList } = useContext(BookContext);
+  const { bookList, bookshelves } = useContext(BookContext);
   const [urlQueryParam, setUrlQueryParam] = useQueryParams('books');
   const previousUrlQueryParam = usePrevious(urlQueryParam);
 
@@ -24,6 +25,8 @@ export default function Home() {
     error,
     books,
   } = bookList;
+
+  const { getBookshelves, _loading, _error, shelves } = bookshelves;
 
   const searchTerm = urlQueryParam.query || '';
   const { sortIndex } = urlQueryParam;
@@ -73,6 +76,8 @@ export default function Home() {
     }
   });
 
+  useEffect(() => getBookshelves(), []);
+
   if (error) {
     return (
       <div className="flex flex-col items-center m-6 p-6 border-[1px] rounded-sm shadow">
@@ -91,7 +96,7 @@ export default function Home() {
 
   return (
     <div className="flex w-full h-screen">
-      <div className="fixed w-full mt-[-0.7rem] md:mt-[-1.2rem] h-auto">
+      <div className="fixed w-full mt-[-0.7rem] md:mt-[-1.2rem] h-auto z-40">
         <div className="flex flex-col w-full">
           <div className="px-2 pt-3 pb-3 md:pt-2 bg-200">
             <SearchBox searchTerm={searchTerm} />
@@ -128,9 +133,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col pt-2 w-full h-screen">
+      <div className="flex flex-col pt-2 w-full h-screen relative">
         <div className="flex w-full mt-[6rem] md:mt-[5.5rem]">
-          <BookList books={books} />
+          <div className="flex flex-[3_0_0%] w-full">
+            <BookList books={books} />
+          </div>
+          <div className="hidden md:flex h-[82vh] 2xl:h-[82vh] md:h-[78vh] pl-8 pr-4 sticky right-0 top-[10rem] bottom-0 rounded w-[24rem]">
+            <Bookshelves shelves={shelves} />
+          </div>
         </div>
         {hasMore ? (
           <div className="flex items-stretch flex-none min-h-12">
@@ -155,7 +165,7 @@ export default function Home() {
         ) : null}
 
         <div className="flex flex-none shrink-0 justify-center items-center md:bottom-14 bottom-[1.25rem] right-4 fixed focus:outline-none focus:ring-0 rounded-full">
-          <ScrollToTopButton className="bg-white md:bg-transparent shadow h-10 w-10 md:h-10 md:w-10 text-400 rounded-full cursor-pointer focus:outline-none focus:ring-0" />
+          <ScrollToTopButton className="bg-400 md:bg-400 shadow h-10 w-10 md:h-10 md:w-10 text-white rounded-full cursor-pointer focus:outline-none focus:ring-0" />
         </div>
       </div>
     </div>
