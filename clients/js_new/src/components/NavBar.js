@@ -15,10 +15,10 @@ function Navbar() {
             </div>
             <div className="md:flex hidden items-center">
               <span className="text-center font-brand text-lg text-900 drop-shadow-2xl">
-                Gutenboks
+                Gutenbooks
               </span>
             </div>
-            <div className="flex items-center font-nav text-lg font-black">
+            <div className="flex items-center font-nav text-xl md:text-lg font-black">
               <NavLink className="navbar-menu-text" to="/">
                 Home
               </NavLink>

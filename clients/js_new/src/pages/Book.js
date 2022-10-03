@@ -21,7 +21,7 @@ function Bloke({ detail, count }) {
   const Name = ({ name, link }) => {
     return (
       <div className="flex gap-3">
-        <span className="flex flex-shrink-0 items-center justify-start w-[6rem] text-900 bg-100 rounded-r-full pl-1">
+        <span className="flex flex-shrink-0 items-center justify-start w-[6rem] text-900 bg-50/70 rounded-r-full pl-1">
           Name
         </span>
         {link ? (
@@ -31,7 +31,7 @@ function Bloke({ detail, count }) {
             rel="noreferrer"
             className="flex-none inline text-center underline text-700"
           >
-            <p className='text-left w-[12rem] md:w-full'>{name}</p>
+            <p className="text-left w-[12rem] md:w-full">{name}</p>
           </a>
         ) : (
           <span>{name}</span>
@@ -44,7 +44,7 @@ function Bloke({ detail, count }) {
     if (!value) return null;
     return (
       <div className="flex gap-3">
-        <span className="w-[6rem] flex-shrink-0 text-900 bg-100 rounded-r-full pl-1">{`${label}`}</span>
+        <span className="w-[6rem] flex-shrink-0 text-900 bg-50/70 rounded-r-full pl-1">{`${label}`}</span>
         <span className="max-w-[20rem]">{value}</span>
       </div>
     );
@@ -54,7 +54,7 @@ function Bloke({ detail, count }) {
     if (!names || names.length === 0) return null;
     return (
       <div className="flex gap-3">
-        <div className="flex flex-shrink-0 w-[6rem] items-center justify-start pl-1 text-900 bg-100 rounded-r-full">
+        <div className="flex flex-shrink-0 w-[6rem] items-center justify-start pl-1 text-900 bg-50/70 rounded-r-full">
           <span>Alias</span>
         </div>
         <div>
@@ -85,8 +85,8 @@ function Bloke({ detail, count }) {
 const Blokes = ({ title, blokes }) => {
   if (!blokes || blokes.length === 0) return null;
   return (
-    <div className="flex flex-col gap-[0.35rem] rounded-lg border-[1px] border-200  p-2">
-      <div className="flex pb-[1px] border-b-[1px] border-b-200 font-[450] font-sans">
+    <div className="flex flex-col gap-[0.35rem] rounded-lg border-[1px] border-200 p-2 shadow">
+      <div className="flex pb-[1px] border-b-[1px] border-b-200 font-[450] font-sans pl-1 text-900 bg-100 rounded-t-md">
         {title}
       </div>
       <div className="flex flex-row flex-wrap justify-self-stretch gap-[0.3rem]">
@@ -101,11 +101,11 @@ const Blokes = ({ title, blokes }) => {
 const Many = ({ title, values, minlen }) => {
   if (!values || values.length === 0) return null;
   return (
-    <div className="flex justify-start gap-3 w-full rounded-lg border-[1px] border-200 shadow p-2">
-      <div className="flex w-[7rem] flex-shrink-0 font-[450] font-sans justify-start px-1 items-center text-900 bg-100 rounded-r-full">
+    <div className="flex flex-col justify-start gap-3 w-full rounded-lg border-[1px] border-200 shadow p-2">
+      <div className="flex font-[450] font-sans justify-start w-full px-1 items-center text-900 bg-100 rounded-t-md">
         {title}
       </div>
-      <div className="grid grid-cols-1 divide-y divide-100 gap-1 md:flex flex-col flex-auto">
+      <div className="grid grid-cols-1 divide-y divide-100 gap-1 md:flex flex-col flex-auto pl-1">
         {values.map((v) =>
           v.length > minlen ? (
             <div key={v} className="flex min-h-[1.3rem]">
@@ -121,30 +121,28 @@ const Many = ({ title, values, minlen }) => {
 const DownloadCount = ({ count }) => {
   if (!count) return null;
   return (
-    <div className="flex justify-start gap-3 w-full rounded-lg border-[1px] border-200 shadow p-2">
-      <span className="w-[9rem] flex-shrink-0 font-[450] font-sans items-center justify-start pl-1 text-900 bg-100 rounded-r-full
-">
+    <div className="flex flex-col justify-start gap-3 w-full rounded-lg border-[1px] border-200 shadow p-2">
+      <span className="w-full flex-shrink-0 font-[450] font-sans items-center justify-start pl-1 text-900 bg-100 rounded-t-md">
         Download Count
       </span>
-      <span className="text-[0.9rem] font-sans">{count}</span>
+      <span className="text-[0.9rem] font-sans pl-1">{count}</span>
     </div>
   );
 };
 
 const BookImage = ({ link }) => {
   return (
-    <>
+    <div className='flex-shrink-0'>
       {link ? (
         <div>
           <img src={link} className="shadow-lg" />
         </div>
       ) : (
-        <div className="w-[160px] h-[140px] md:w-[200px] md:h-[300px] shadow bg-slate-100 flex justify-center items-center">
-          {' '}
-          👓{' '}
+        <div className="w-[150px] h-[180px] md:w-[200px] md:h-[300px] shadow bg-slate-100 flex justify-center items-center">
+          👓
         </div>
       )}
-    </>
+    </div>
   );
 };
 
@@ -158,8 +156,8 @@ const LinkButtons = ({ formats }) => {
     <div className="flex flex-wrap gap-4 mt-[-0.4rem] md:mt-0 md:pt-4">
       {dlinks.length === 0 ? null : (
         <div className="flex flex-col">
-          <span className="flex-none text-xs font-sans md:p-[0.1rem] md:text-[0.9rem] md:text-800 md:bg-400/90 md:rounded-t-md md:w-[12.5rem] md:text-center">
-            download as<span className="md:hidden">:</span>
+          <span className="flex-none font-sans text-[0.9rem] md:text-800 md:rounded-t-md md:w-[12.5rem]">
+            download as:
           </span>
           <div className="flex flex-wrap flex-none pt-[0.5rem] gap-2">
             {dlinks.map(({ short, link }) => (
@@ -193,11 +191,11 @@ const LinkButtons = ({ formats }) => {
       )}
       {rlinks.length === 0 ? null : (
         <div className="flex flex-col pt-0">
-          <span className="flex-none text-xs font-sans md:p-[0.1rem] md:text-[0.9rem] md:text-800 md:bg-400/90 md:rounded-t-md md:w-[12.5rem] md:text-center">
-            read as<span className="md:hidden">:</span>
+          <span className="flex-none font-sans text-[0.9rem] md:text-800 md:rounded-t-md md:w-[12.5rem]">
+            read as:
           </span>
           <div className="flex flex-wrap flex-none pt-[0.5rem] gap-2">
-            {rlinks.map(({ short, link }) => (
+            {rlinks.map(({ long, link }) => (
               <div
                 key={link}
                 className="flex items-center justify-center flex-none h-8 w-[7rem] md:w-[6rem] rounded-sm shadow text-900 bg-300"
@@ -206,7 +204,7 @@ const LinkButtons = ({ formats }) => {
                   href={link}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex justify-center gap-2"
+                  className="flex justify-center gap-[0.2rem]"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -222,7 +220,7 @@ const LinkButtons = ({ formats }) => {
                       d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
                     />
                   </svg>
-                  <span className="text-sm text-center">{short}</span>
+                  <span className="text-sm text-center">{long}</span>
                 </a>
               </div>
             ))}
@@ -276,7 +274,7 @@ export default function Book() {
     <main className="p-4 text-900">
       <div className="md:hidden flex flex-wrap gap-1">
         <Title text={book ? book.title : null} />
-        <div className="flex gap-4 pt-2 pb-2">
+        <div className="flex gap-4 pt-2 pb-2 items-center justify-start">
           <BookImage
             link={
               book && book.formats && book.formats.length > 0

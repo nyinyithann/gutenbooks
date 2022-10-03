@@ -121,7 +121,7 @@ export default function Home() {
                   selectedIndex={sortIndex}
                   displayField="desc"
                   onSelected={handleSortItemSelected}
-                  className="flex w-[8.5rem] md:w-40 text-left text-[0.8rem] md:text-[0.85rem] rounded-sm text-900 bg-white border-[1px] border-100 hover:shadow-lg hover:border-200 focus:border-200"
+                  className="flex w-[8.5rem] md:w-40 text-left text-[0.8rem] md:text-[0.85rem] rounded text-900 bg-white border-[1px] border-300 hover:shadow-lg hover:border-200 focus:border-200 p-1"
                 />
               </div>
             </div>
@@ -129,7 +129,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-col pt-2 w-full h-screen">
-        <div className="flex w-full mt-[5rem] md:mt-[4.5rem]">
+        <div className="flex w-full mt-[6rem] md:mt-[5.5rem]">
           <BookList books={books} />
         </div>
         {hasMore ? (

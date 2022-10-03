@@ -65,7 +65,7 @@ function SortBox({ selectedIndex, displayField, className, onSelected }) {
   return (
     <Listbox value={selected} onChange={handleChange}>
       <div className={`${className} relative`}>
-        <Listbox.Button className="relative flex items-center w-full shadow shadow-100 cursor-default focus:outline-none focus:bg-white">
+        <Listbox.Button className="relative flex w-full cursor-default focus:outline-none focus:bg-white">
           <span className="block px-2 text-left truncate">
             {selected ? selected[displayField] : 'Sort by ...'}
           </span>
@@ -92,7 +92,7 @@ function SortBox({ selectedIndex, displayField, className, onSelected }) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute w-full mt-6 border-[1px] border-100 overflow-auto rounded-sm shadow-lg bg-white">
+          <Listbox.Options className="absolute w-full mt-[1.7rem] border-[1px] border-100 overflow-auto rounded-sm shadow-lg bg-200 ml-[-0.2rem]">
             {items.map((item) => (
               <Listbox.Option
                 key={item.id}

@@ -60,11 +60,15 @@ function About() {
                 title="@JazzTuyat"
                 site="Twitter"
               />
-
               <AuthorLink
                 link="https://nyinyithan.com"
                 title="https://nyinyithan.com"
                 site="Blog"
+              />
+              <AuthorLink
+                link="mailto:nyinyithann@gmail.com"
+                title="nyinyithann@gmail.com"
+                site="Email"
               />
             </div>
           </div>

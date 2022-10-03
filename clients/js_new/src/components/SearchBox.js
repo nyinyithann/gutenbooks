@@ -98,7 +98,10 @@ function SearchBox({ searchTerm }) {
       };
       if (dropdownOpen) {
         if (activeItemId) {
-          navigate(`/book/${activeItemId.split('_')[1]}`);
+          navigate({
+            pathname: '/book',
+            search: `?id=${activeItemId.split('_')[1]}`,
+          });
         } else {
           fn();
         }
@@ -232,7 +235,7 @@ function SearchBox({ searchTerm }) {
   const searchFilterRadioLabelClass = 'block text-sm ml-2 cursor text-900';
 
   return (
-    <div className="relative flex flex-col w-full mx-auto z-100">
+    <div className="relative flex flex-col w-full mx-auto z-100 pt-1">
       <div className="flex w-full border-[1px] border-300 rounded-md bg-white focus:outline-none hover:border-500">
         <input
           className="md:font-normal flex-auto h-9 md:h-8 w-[80%] px-2 rounded-md text-medium md:text-sm outline-none border-0 focus:ring-0"

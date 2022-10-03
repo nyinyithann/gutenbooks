@@ -34,4 +34,7 @@ const getBooks = async (payload) =>
 
 const getBookById = async (id) => client.get(`${process.env.API_PATH}/${id}`);
 
-export { getBookById, getBooks, searchBooks };
+const getBookshelves = async () =>
+  client.get(`${process.env.API_PATH}/bookshelves`);
+
+export { getBookById, getBooks, searchBooks, getBookshelves };

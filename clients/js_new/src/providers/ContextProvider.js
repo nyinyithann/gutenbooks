@@ -15,6 +15,11 @@ import {
   bookSearchReducer,
   getBooksForAutocomplete,
 } from './bookSearchReducer';
+import {
+  bookshelvesInitialState,
+  bookshelvesReducer,
+  getAllBookshelves,
+} from './bookshelvesReducer';
 
 export const BookContext = createContext(undefined);
 
@@ -52,6 +57,17 @@ function BookContextProvider({ children }) {
     [bookSearchDispatch]
   );
 
+  const [bookshelvesState, bookshelvesDispatch] = useReducer(
+    bookshelvesReducer,
+    bookshelvesInitialState,
+    (x) => x
+  );
+
+  const getBookshelves = useMemo(
+    () => getAllBookshelves(bookshelvesDispatch),
+    [bookshelvesDispatch]
+  );
+
   const contextValue = useMemo(
     () => ({
       bookList: {
@@ -72,6 +88,12 @@ function BookContextProvider({ children }) {
         error: bookDetailState.error,
         book: bookDetailState.book,
       },
+      bookshelves: {
+        getBookshelves,
+        loading: bookshelvesState.loading,
+        error: bookshelvesState.error,
+        bookshelves: bookshelvesState.bookshelves,
+      },
       bookSearch: {
         searchBooks,
         loading: bookSearchState.loading,
@@ -84,9 +106,11 @@ function BookContextProvider({ children }) {
       bookListState,
       bookSearchState,
       bookDetailState,
+      bookshelvesState,
       getBookDetail,
       getBookList,
       searchBooks,
+      getBookshelves,
     ]
   );
 

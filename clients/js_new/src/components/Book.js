@@ -47,7 +47,7 @@ function Book(props) {
   const dlinks = links.filter((x) => x.download);
   const rlinks = links.filter((x) => !x.download);
   return (
-    <div className="flex flex-col min-h-[200px] max-h-full w-full p-4 border-b-[1px] border-200">
+    <div className="flex flex-col min-h-[200px] max-h-full w-full py-2 px-4 border-b-[1px] border-200">
       <div className="flex flex-auto">
         {imageSrc.medium && imageSrc.medium.length > 0 ? (
           <div className="flex-none mt-1 h-[99px] w-[70px] shadow border-[1px] border-slate-100">
@@ -58,7 +58,6 @@ function Book(props) {
         ) : (
           <a
             href={`/book?id=${id}`}
-            target="_blank"
             rel="noreferrer"
             className="flex-none mt-1 h-[99px] w-[66px] shadow-md bg-slate-100 border-[1px] border-slate-100 flex justify-center items-center"
           >
@@ -66,14 +65,13 @@ function Book(props) {
             👓
           </a>
         )}
-        <div className="flex flex-col flex-grow pl-4">
+        <div className="flex flex-col flex-wrap flex-grow-0 pl-4">
           <a
             href={`/book?id=${id}`}
-            target="_blank"
             rel="noreferrer"
-            className="flex-none pb-1 text-base font-semibold font-booktitle text-900"
+            className="flex flex-wrap flex-auto pb-1 pr-1 text-base font-semibold font-booktitle text-900"
           >
-            {title}
+            <span className='break-before-all pr-1'>{title}</span>
           </a>
           <AuthorList authors={authors} />
           <div className="flex gap-4 pt-1 justify-start items-center">
@@ -84,7 +82,7 @@ function Book(props) {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap gap-4 pt-4">
+      <div className="flex flex-wrap gap-2 pt-4">
         {dlinks.length === 0 ? null : (
           <div className="flex flex-col pt-0">
             <span className="flex-none text-[0.75rem] text-900 font-sans">
@@ -126,10 +124,10 @@ function Book(props) {
               read as:
             </span>
             <div className="flex flex-wrap flex-none pt-1 gap-2">
-              {rlinks.map(({ short, link }) => (
+              {rlinks.map(({ long, link }) => (
                 <div
                   key={link}
-                  className="flex items-center justify-center flex-none h-8 rounded-sm shadow w-20 text-900 bg-300"
+                  className="flex items-center justify-center flex-none h-8 rounded-sm shadow w-28 text-900 bg-300"
                 >
                   <a
                     href={link}
@@ -151,7 +149,7 @@ function Book(props) {
                         d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
                       />
                     </svg>
-                    <span className="text-sm text-center">{short}</span>
+                    <span className="text-sm text-center">{long}</span>
                   </a>
                 </div>
               ))}
