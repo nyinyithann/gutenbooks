@@ -22,11 +22,11 @@ function Bookshelves({ shelves }) {
   };
 
   return (
-    <div className="flex flex-col border-[1px] shadow shadow-slate-200 rounded p-2">
-      <div className="font-snas font-bold text-900 border-b-[1px] border-b-200">
+    <div className="flex flex-col border-[1px] shadow shadow-slate-200 rounded p-2 dark:shadow-slate-500 dark-border">
+      <div className="font-snas font-bold text-900 border-b-[1px] border-b-200 dark:border-slate-400 dark-text-light">
         Bookshelves
       </div>
-      <div className="grid grid-cols-1 divide-y divide-slate-100 overflow-y-scroll scroll-smooth bs-scrollbar mt-2">
+      <div className="grid grid-cols-1 divide-y divide-slate-100 overflow-y-scroll scroll-smooth bs-scrollbar mt-2 dark:dark-scrollbar dark:divide-slate-500 dark:text-slate-300">
         {shelves.map(({ key }) => {
           return (
             <div

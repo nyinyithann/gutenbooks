@@ -149,11 +149,10 @@ export default function Home() {
                   selectedIndex={sortIndex}
                   displayField="desc"
                   onSelected={handleSortItemSelected}
-                  className="flex w-[8.5rem] md:w-40 text-left text-[0.8rem] md:text-[0.85rem] rounded text-900 bg-white border-[1px] border-300 hover:shadow-lg hover:border-200 focus:border-200 p-1"
+                  className="flex w-[8.5rem] md:w-40 text-left text-[0.8rem] md:text-[0.85rem] rounded text-900 bg-white border-[1px] border-300 hover:shadow-lg hover:border-200 focus:border-200 p-1 dark:hover:border-slate-500 dark:focus:border-slate-500 dark-text dark-border dark-bg-light dark:text-slate-900"
                 />
               </div>
             </div>
-                            
           </div>
         </div>
       </div>
@@ -162,14 +161,14 @@ export default function Home() {
           <div className="flex flex-[3_0_0%] w-full dark-bg-md">
             <BookList books={books} />
           </div>
-          <div className="hidden md:flex h-[82vh] md:h-[77.5vh] pl-8 pr-4 sticky right-0 top-[10.5rem] bottom-0 rounded w-[20rem]">
+          <div className="hidden md:flex h-[82vh] md:h-[77vh] pl-8 pr-4 sticky right-0 top-[10.5rem] bottom-1 rounded w-[20rem]">
             <Bookshelves shelves={shelves} />
           </div>
         </div>
         {hasMore ? (
-          <div className="flex items-stretch flex-none min-h-12">
+          <div className="flex items-stretch flex-none min-h-12 dark-bg">
             <button
-              className="flex grow h-12 m-4 rounded shadow md:h-8 bg-400 md:hover:border-[1px] md:hover:border-500 text-white justify-center"
+              className="flex grow h-12 m-4 rounded shadow md:h-8 bg-400 md:hover:border-[1px] md:hover:border-500 text-white justify-center dark-bg-md dark-text dark:hover:border-slate-500"
               type="button"
               onClick={loadMore}
             >
@@ -188,8 +187,8 @@ export default function Home() {
           </div>
         ) : null}
 
-        <div className="flex flex-none shrink-0 justify-center items-center md:bottom-14 bottom-[1rem] right-[18.5rem] fixed hover:cursor-pointer hover:outline-none hover:ring-0 rounded-full">
-          <ScrollToTopButton className="bg-400 md:bg-400 shadow h-10 w-10 md:h-10 md:w-10 text-white rounded-full hover:cursor-pointer hover:outline-none hover:ring-0 z-50" />
+        <div className="flex flex-none shrink-0 justify-center items-center md:bottom-[4.3rem] bottom-[1rem] right-[18.5rem] fixed hover:cursor-pointer hover:outline-none hover:ring-0 rounded-full">
+          <ScrollToTopButton className="bg-400 md:bg-400 shadow h-10 w-10 md:h-10 md:w-10 text-white rounded-full hover:cursor-pointer hover:outline-none hover:ring-0 z-50 dark:border-[1px] dark:border-slate-500" />
         </div>
       </div>
     </div>
