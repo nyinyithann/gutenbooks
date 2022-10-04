@@ -1,18 +1,18 @@
 {
-  "name": "gutenbooks_js_client",
-  "version": "0.0.1",
-  "private": true,
+  "name": "gutenboks",
+  "version": "1.0.0",
   "main": "./src/index.js",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
     "@svgr/webpack": "^5.5.0",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/line-clamp": "^0.2.2",
     "@webpack-cli/generators": "^2.4.1",
-    "autoprefixer": "^10.4.0",
+    "autoprefixer": "10.4.5",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
@@ -29,7 +29,8 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-hooks": "^5.0.0-next-20a257c25-20220929",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.4",
     "node-sass": "^6.0.1",
@@ -49,8 +50,7 @@
     "webpack-dashboard": "^3.3.6",
     "webpack-dev-server": "^4.4.0",
     "webpack-merge": "^5.8.0",
-    "yarn-upgrade-all": "^0.7.1",
-    "eslint-plugin-simple-import-sort": "^8.0.0"
+    "yarn-upgrade-all": "^0.5.4"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.2",
@@ -60,10 +60,12 @@
     "jsurl": "^0.1.5",
     "localforage": "^1.10.0",
     "lodash.isequal": "^4.5.0",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^6.0.1",
-    "react-router-dom": "^6.0.1"
+    "react-router-dom": "^6.0.1",
+    "styled-components": "^5"
   },
   "resolutions": {
     "styled-components": "^5"
@@ -71,8 +73,8 @@
   "scripts": {
     "dashboard": "webpack-dashboard -- webpack serve --config build/webpack.js --env env=dev addon=dashboard",
     "eslint": "npx eslint --config .eslintrc.json --fix 'build/*.js' 'build/**/*.js' 'src/*.{js,jsx}' 'src/**/*.{js,jsx}'",
-    "stylelint": "npx stylelint --config .stylelintrc.json --fix 'style/*.css' 'src/*.css' 'src/**/*.css' ",
-    "prettier": "npx prettier --config .prettierrc.json --fix 'build/*.js' 'build/**/*.js' 'src/*.{js,jsx}' 'src/**/*.{js,jsx}' --check",
+    "stylelint": "npx stylelint --config .stylelintrc.json --fix 'styles/*.css' 'src/*.css' 'src/**/*.css' ",
+    "prettier": "npx prettier --config .prettierrc --fix 'build/*.js' 'build/**/*.js' 'src/*.{js,jsx}' 'src/**/*.{js,jsx}' --check",
     "build:prod": "TAILWIND_MODE=build cross-env NODE_ENV=production && webpack --config build/webpack.js --env env=prod",
     "build:dev": "TAILWIND_MODE=build NODE_ENV=development && webpack --config build/webpack.js --env env=dev",
     "start": "TAILWIND_MODE=watch NODE_ENV=development webpack serve --config build/webpack.js --env env=dev"

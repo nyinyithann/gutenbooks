@@ -6,7 +6,7 @@ import ThemeMenu from './ThemeMenu';
 
 function Navbar() {
   return (
-    <nav className="bg-300 py-1 md:pt-1 fixed inset-x-0 flex-1 z-50 shadow shadow-200">
+    <nav className="bg-300 pb-[0.3rem] md:pt-1 fixed inset-x-0 flex-1 z-50 shadow shadow-200">
       <div className="px-2">
         <div className="flex justify-between items-center">
           <div className="flex space-x-2">
@@ -15,10 +15,10 @@ function Navbar() {
             </div>
             <div className="md:flex hidden items-center">
               <span className="text-center font-brand text-lg text-900 drop-shadow-2xl">
-                Gutenboks
+                Gutenbooks
               </span>
             </div>
-            <div className="flex items-center font-nav text-lg font-black">
+            <div className="flex items-center font-nav text-xl md:text-lg font-black">
               <NavLink className="navbar-menu-text" to="/">
                 Home
               </NavLink>

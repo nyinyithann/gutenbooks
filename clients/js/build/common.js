@@ -7,31 +7,17 @@ const CopyPlugin = require('copy-webpack-plugin');
 const isProductionMode = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  entry: {
-    main: path.resolve(__dirname, '..', './src/index.js'),
-  },
+  entry: path.resolve(__dirname, '..', './src/index.js'),
   output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, '..', './dist'),
-    // clean: true,
-    // filename: isProductionMode ? '[name].[contenthash].bundle.js' : '[name].js',
-    // chunkFilename: '[name].[contenthash].bundle.js',
-    // path: path.resolve(__dirname, '..', './dist'),
-    // assetModuleFilename: isProductionMode
-    //   ? 'asset/[name].[ext]?[hash]'
-    //   : '[name].[ext]',
+    clean: true,
+    filename: isProductionMode ? '[name].[contenthash].bundle.js' : '[name].js',
+    chunkFilename: '[name].[contenthash].bundle.js',
+    assetModuleFilename: isProductionMode
+      ? 'asset/[name].[ext]?[hash]'
+      : '[name].[ext]',
   },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-    // roots: [path.resolve(__dirname), '..', './src'],
-    // alias: {
-    //   '@': path.resolve(__dirname, '..', './src/'),
-    //   '@Components': path.resolve(__dirname, '..', './src/components/'),
-    //   '@Hooks': path.resolve(__dirname, '..', './src/hooks/'),
-    //   '@Pages': path.resolve(__dirname, '..', './src/pages/'),
-    //   '@Providers': path.resolve(__dirname, '..', './src/providers/'),
-    // },
-  },
+
   module: {
     rules: [
       {
@@ -55,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        exclude: /node_modules\/?!(modern-normalize\)\/).*/,
+        exclude: /node_modules/,
         use: [
           {
             loader: isProductionMode
@@ -85,10 +71,14 @@ module.exports = {
     ],
   },
 
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({
-      title: 'Free eBooks from Project Gutenberg',
+      title: 'Gutenbooks',
       favicon: path.resolve(__dirname, '..', './public/favicon.ico'),
       template: path.resolve(__dirname, '..', './public/index.html'),
       hash: true,

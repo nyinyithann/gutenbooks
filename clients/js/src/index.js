@@ -10,7 +10,7 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('react-root')
+  document.getElementById('root')
 );
 
 module.hot.accept();
