@@ -405,7 +405,6 @@ function SearchBox({ searchTerm }) {
             >
               <button
                 type="button"
-                href="#"
                 aria-label="search all"
                 className="w-full inline px-2 text-sm md:text-[0.9rem] text-900"
                 onMouseDown={searchAll}

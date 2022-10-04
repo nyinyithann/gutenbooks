@@ -12,7 +12,8 @@ function ScrollToTopButton({ className }) {
     }
   };
 
-  const scrollToTop = () => {
+  const scrollToTop = (e) => {
+    e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -21,12 +22,14 @@ function ScrollToTopButton({ className }) {
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  const cn = isVisible ? `${className} opacity-100` : `${className} opacity-0`;
+  const cn = isVisible
+    ? `${className} opacity-100 hover:cursor-pointer`
+    : `${className} opacity-0 hover:cursor-pointer`;
 
   return (
-    <button type="button" className={cn} onClick={scrollToTop}>
-      <ChevronUpIcon />
-    </button>
+    <span className={cn} onClick={scrollToTop} onTouchStart={scrollToTop}>
+      <ChevronUpIcon className="hover:cursor-pointer" />
+    </span>
   );
 }
 

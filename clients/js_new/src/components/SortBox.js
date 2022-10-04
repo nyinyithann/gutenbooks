@@ -69,7 +69,7 @@ function SortBox({ selectedIndex, displayField, className, onSelected }) {
           <span className="block px-2 text-left truncate">
             {selected ? selected[displayField] : 'Sort by ...'}
           </span>
-          <span className="right-0 inline-block pr-1 ml-auto">
+          <span className="right-0 inline-block pr-1 ml-auto my-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-4 h-4 text-slate-600"
