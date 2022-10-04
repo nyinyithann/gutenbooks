@@ -17,7 +17,7 @@ function AuthorList({ authors }) {
   const len = authors ? authors.length : 0;
   if (len > 0) {
     return (
-      <div className="flex flex-none font-booktitle">
+      <div className="flex flex-none font-booktitle dark:font-normal dark:text-gray-300">
         <span className="flex justify-start items-center flex-shrink-0 w-[1.4rem] py-[0.2rem] pl-1 pr-2 text-700 text-[0.7rem] rounded-r-full bg-200">
           by
         </span>
@@ -44,7 +44,7 @@ function Book(props) {
   const dlinks = links.filter((x) => x.download);
   const rlinks = links.filter((x) => !x.download);
   return (
-    <div className="flex flex-col min-h-[200px] max-h-full w-full py-2 px-4 border-b-[1px] border-200">
+    <div className="flex flex-col min-h-[200px] max-h-full w-full py-2 px-4 border-b-[1px] border-200 dark:border-slate-500">
       <div className="flex flex-auto">
         {imageSrc.medium && imageSrc.medium.length > 0 ? (
           <div className="flex-none mt-1 h-[99px] w-[70px] shadow border-[1px] border-slate-100">
@@ -68,14 +68,18 @@ function Book(props) {
             rel="noreferrer"
             className="flex flex-wrap text-base font-semibold font-booktitle text-900 pb-1 pr-1"
           >
-            <span className="break-before-all pr-1">{title}</span>
+            <span className="break-before-all pr-1 dark:font-sans dark:text-slate-200">
+              {title}
+            </span>
           </a>
           <AuthorList authors={authors} />
           <div className="flex gap-4 pt-1 justify-start items-center">
-            <span className="flex-none text-[0.7rem] text-700 font-booktitle py-[0.2rem] pl-1 pr-2 rounded-r-full bg-200">
+            <span className="flex-none text-[0.7rem] text-700 font-booktitle py-[0.2rem] pl-1 pr-2 rounded-r-full bg-200 dark:text-gray-300">
               Download Count
             </span>
-            <span className="font-nav text-[0.9rem]">{downloadCount}</span>
+            <span className="font-nav text-[0.9rem] dark:text-gray-300">
+              {downloadCount}
+            </span>
           </div>
         </div>
       </div>

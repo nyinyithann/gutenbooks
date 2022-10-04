@@ -62,6 +62,37 @@
 }
 
 @layer components {
+  .dark-bg {
+    @apply dark:bg-gray-800;
+  }
+  .dark-bg-md {
+    @apply dark:bg-gray-600;
+  }
+  .dark-bg-light {
+    @apply dark:bg-gray-200;
+  }
+  .dark-bg-mask {
+    @apply dark:bg-gray-300/40;
+  }
+  .dark-bg-mask-md {
+    @apply dark:bg-gray-500/60;
+  }
+  .dark-text {
+    @apply dark:text-gray-200;
+  }
+  .dark-text-md {
+    @apply dark:text-gray-400;
+  }
+  .dark-bg-text {
+    @apply dark:bg-gray-800 dark:text-gray-200;
+  }
+  .dark-border {
+    @apply dark:border-slate-600;
+  }
+  .dark-border-light {
+    @apply dark:border-slate-500;
+  }
+
   .navbar-button {
     @apply focus:outline-none h-8 rounded-sm hover:bg-400/60 mx-1;
   }
@@ -72,7 +103,7 @@
 
   .theme-btn {
     @apply p-1 rounded-full h-8 w-8 md:h-6 md:w-6 flex items-center justify-center
-              shadow shadow-500 hover:ring-2 hover:ring-slate-300 focus:shadow-600 focus:outline-none;
+              shadow shadow-500 hover:ring-2 hover:ring-slate-300 focus:shadow-600 focus:outline-none dark:shadow-xl dark:shadow-gray-800;
   }
 
   .theme-menu-opener {

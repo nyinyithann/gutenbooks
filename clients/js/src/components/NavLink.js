@@ -6,7 +6,9 @@ function NavLink({ children, to, className }) {
   const match = useMatch({ path: resolved.pathname, end: true });
   return (
     <button
-      className={match ? `navbar-button bg-400/60` : 'navbar-button'}
+      className={
+        match ? `navbar-button bg-400/60 dark-bg-mask` : 'navbar-button'
+      }
       type="button"
     >
       <Link to={to} className={className}>

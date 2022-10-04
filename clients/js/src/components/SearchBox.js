@@ -228,17 +228,17 @@ function SearchBox({ searchTerm }) {
   }`;
 
   const getActiveItemStyle = (indexId) =>
-    `searchitem_${indexId}` === activeItemId ? 'bg-300/40' : '';
+    `searchitem_${indexId}` === activeItemId ? 'bg-300/40 dark-bg-mask-md' : '';
 
   const searchFilterRadioClass =
-    'h-5 w-5 md:h-4 md:w-4 hover:cursor form-radio text-600 focus:ring-1 focus:ring-300';
+    'h-5 w-5 md:h-4 md:w-4 hover:cursor form-radio text-600 focus:ring-1 focus:ring-300 dark-bg-mask';
   const searchFilterRadioLabelClass = 'block text-sm ml-2 cursor text-900';
 
   return (
     <div className="relative flex flex-col w-full mx-auto z-100 pt-1">
-      <div className="flex w-full border-[1px] border-300 rounded-md bg-white focus:outline-none hover:border-500">
+      <div className="flex w-full border-[1px] border-300 rounded-md bg-white focus:outline-none hover:border-500 dark-bg-mask dark-border">
         <input
-          className="md:font-normal flex-auto h-9 md:h-8 w-[80%] px-2 rounded-md text-medium md:text-sm outline-none border-0 focus:ring-0"
+          className="md:font-normal flex-auto h-9 md:h-8 w-[80%] px-2 rounded-l-md text-medium md:text-sm outline-none border-0 focus:ring-0 dark-bg-light"
           type="text"
           name="search"
           maxLength="64"
@@ -252,7 +252,7 @@ function SearchBox({ searchTerm }) {
           onFocus={focusSearchInput}
           onKeyUp={keyUpSearchInput}
         />
-        <div className="flex top-[-2px] md:top-0 right-0 items-center">
+        <div className="flex top-[-2px] md:top-0 right-0 items-center rounded-r-md dark-bg-light">
           <span
             className={`text-[0.7rem] pl-1 pr-2 text-red-400 w-36 ${
               error ? 'block' : 'hidden'
@@ -286,7 +286,7 @@ function SearchBox({ searchTerm }) {
         </div>
       </div>
       <div className="flex flex-col pt-1 pl-2">
-        <div className="flex space-x-6">
+        <div className="flex space-x-6 dark-text">
           <div className="flex items-center">
             <input
               id="search_filter_all"
@@ -350,7 +350,7 @@ function SearchBox({ searchTerm }) {
         >
           <ul
             role="menu"
-            className="absolute flex flex-col shadow-lg w-full list-none bg-slate-50 border-[1px] border-[#ededed] rounded"
+            className="absolute flex flex-col shadow-lg w-full list-none bg-slate-50 border-[1px] border-[#ededed] rounded dark-bg-md dark-text dark-border"
           >
             <li>
               <ul id={searchboxDropDownId} tabIndex="0">
@@ -371,7 +371,7 @@ function SearchBox({ searchTerm }) {
                       tabIndex="-1"
                       className="inline-block w-full focus:outline-none"
                     >
-                      <div className="flex pb-1 pt-2 border-b-[1px] border-b-[#cccccc]">
+                      <div className="flex pb-1 pt-2 border-b-[1px] border-b-[#cccccc] dark-border-light">
                         {imageSrc.small && imageSrc.small.length > 0 ? (
                           <img
                             src={imageSrc.small}
@@ -385,7 +385,7 @@ function SearchBox({ searchTerm }) {
                           <p className="flex-none pr-1 pb-1 text-[0.9rem] md:text-[0.8rem] text-left font-semibold font-booktitle line-clamp-1 md:line-clamp-3">
                             {title}
                           </p>
-                          <div className="text-left text-[0.9rem] md:text-[0.7rem] font-booktitle text-[#606060]">
+                          <div className="text-left text-[0.9rem] md:text-[0.7rem] font-booktitle text-[#606060] dark-text-md">
                             <span key="by">
                               {`by ${authors
                                 .reduceRight((px, x) => `${x.name} | ${px}`, '')

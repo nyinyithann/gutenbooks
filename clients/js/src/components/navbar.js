@@ -6,11 +6,11 @@ import ThemeMenu from './ThemeMenu';
 
 function Navbar() {
   return (
-    <nav className="bg-300 pb-[0.3rem] md:pt-1 fixed inset-x-0 flex-1 z-50 shadow shadow-200">
+    <nav className="bg-300 pb-[0.3rem] md:pt-1 fixed inset-x-0 flex-1 z-50 shadow shadow-200 dark-bg-text">
       <div className="px-2">
         <div className="flex justify-between items-center">
           <div className="flex space-x-2">
-            <div className="px-1 pt-1 shadow-md shadow-700 rounded-full">
+            <div className="px-1 pt-1 shadow-md shadow-700 rounded-full dark-bg-light">
               <Logo fill="fill-klor-900/80" />
             </div>
             <div className="md:flex hidden items-center">

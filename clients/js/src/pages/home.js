@@ -93,7 +93,7 @@ export default function Home() {
     setUrlQueryParam(info);
   };
 
-  if (error) {
+  if (error || _error) {
     return (
       <div className="flex flex-col items-center m-6 p-6 border-[1px] rounded-sm shadow">
         <div>
@@ -113,11 +113,11 @@ export default function Home() {
     <div className="flex w-full h-screen">
       <div className="fixed w-full mt-[-0.7rem] md:mt-[-1.2rem] h-auto z-40">
         <div className="flex flex-col w-full">
-          <div className="px-2 pt-3 pb-3 md:pt-2 bg-200">
+          <div className="px-2 pt-3 pb-3 md:pt-2 bg-200 dark-bg-md">
             <SearchBox searchTerm={searchTerm} />
           </div>
-          <div className="flex-auto w-full mt-[-0.5rem] px-3 pt-1 pb-1 text-[0.9rem] md:text-[0.85rem] bg-white">
-            <div className="flex pb-1 border-b-[2px] items-center border-300">
+          <div className="flex-auto w-full mt-[-0.5rem] px-3 pt-1 pb-1 text-[0.9rem] md:text-[0.85rem] bg-white dark-bg">
+            <div className="flex pb-1 border-b-[2px] items-center border-300 dark-text dark:border-0 dark:pb-0">
               <p className="inline-block pr-1">
                 {`${books.length} of ${totalHits} results`}
                 {searchTerm || bookshelveKey ? (
@@ -153,12 +153,13 @@ export default function Home() {
                 />
               </div>
             </div>
+                            
           </div>
         </div>
       </div>
-      <div className="flex flex-col pt-2 w-full h-screen relative">
-        <div className="flex w-full mt-[6rem] md:mt-[5.5rem]">
-          <div className="flex flex-[3_0_0%] w-full">
+      <div className="flex flex-col pt-2 w-full h-screen relative dark-bg-md">
+        <div className="flex w-full mt-[6rem] md:mt-[5.5rem] dark-bg-md">
+          <div className="flex flex-[3_0_0%] w-full dark-bg-md">
             <BookList books={books} />
           </div>
           <div className="hidden md:flex h-[82vh] md:h-[77.5vh] pl-8 pr-4 sticky right-0 top-[10.5rem] bottom-0 rounded w-[20rem]">
@@ -172,7 +173,7 @@ export default function Home() {
               type="button"
               onClick={loadMore}
             >
-              {loading ? (
+              {loading || _loading ? (
                 <img
                   src={spinner}
                   alt="spinner"
@@ -187,9 +188,7 @@ export default function Home() {
           </div>
         ) : null}
 
-        <div
-          className="flex flex-none shrink-0 justify-center items-center md:bottom-14 bottom-[1rem] right-[18.5rem] fixed hover:cursor-pointer hover:outline-none hover:ring-0 rounded-full"
-        >
+        <div className="flex flex-none shrink-0 justify-center items-center md:bottom-14 bottom-[1rem] right-[18.5rem] fixed hover:cursor-pointer hover:outline-none hover:ring-0 rounded-full">
           <ScrollToTopButton className="bg-400 md:bg-400 shadow h-10 w-10 md:h-10 md:w-10 text-white rounded-full hover:cursor-pointer hover:outline-none hover:ring-0 z-50" />
         </div>
       </div>
