@@ -350,7 +350,7 @@ function SearchBox({ searchTerm }) {
         >
           <ul
             role="menu"
-            className="absolute flex flex-col shadow-lg w-full list-none bg-slate-50 border-[1px] border-[#ededed] rounded dark-bg-md dark-text dark-border"
+            className="absolute flex flex-col shadow-lg w-full list-none bg-slate-50 border-[1px] border-[#ededed] rounded dark:bg-slate-600 dark:text-slate-200 dark:border-slate-500"
           >
             <li>
               <ul id={searchboxDropDownId} tabIndex="0">

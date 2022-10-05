@@ -113,10 +113,10 @@ export default function Home() {
     <div className="flex w-full h-screen">
       <div className="fixed w-full mt-[-0.7rem] md:mt-[-1.2rem] h-auto z-40">
         <div className="flex flex-col w-full">
-          <div className="px-2 pt-3 pb-3 md:pt-2 bg-200 dark-bg-md">
+          <div className="px-2 pt-3 pb-3 md:pt-3 bg-200 dark-bg-md">
             <SearchBox searchTerm={searchTerm} />
           </div>
-          <div className="flex-auto w-full mt-[-0.5rem] px-3 pt-1 pb-1 text-[0.9rem] md:text-[0.85rem] bg-white dark-bg">
+          <div className="flex-auto w-full mt-[-0.5rem] px-3 pt-1 pb-1 text-[0.9rem] md:text-[0.85rem] bg-white dark-bg dark:border-b-[1px] dark:border-b-slate-500/80">
             <div className="flex pb-1 border-b-[2px] items-center border-300 dark-text dark:border-0 dark:pb-0">
               <p className="inline-block pr-1">
                 {`${books.length} of ${totalHits} results`}
@@ -187,7 +187,7 @@ export default function Home() {
           </div>
         ) : null}
 
-        <div className="flex flex-none shrink-0 justify-center items-center md:bottom-[4.3rem] bottom-[1rem] right-[18.5rem] fixed hover:cursor-pointer hover:outline-none hover:ring-0 rounded-full">
+        <div className="flex flex-none shrink-0 justify-center items-center md:bottom-[4.3rem] bottom-[1rem] right-[1rem] m:right-[18.5rem] fixed hover:cursor-pointer hover:outline-none hover:ring-0 rounded-full">
           <ScrollToTopButton className="bg-400 md:bg-400 shadow h-10 w-10 md:h-10 md:w-10 text-white rounded-full hover:cursor-pointer hover:outline-none hover:ring-0 z-50 dark:border-[1px] dark:border-slate-500" />
         </div>
       </div>

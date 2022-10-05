@@ -72,16 +72,16 @@
     @apply dark:bg-slate-400;
   }
   .dark-bg-mask {
-    @apply dark:bg-gray-300/40;
+    @apply dark:bg-slate-300/40;
   }
   .dark-bg-mask-md {
-    @apply dark:bg-gray-500/60;
+    @apply dark:bg-slate-500/60;
   }
   .dark-text {
-    @apply dark:text-gray-200;
+    @apply dark:text-slate-200;
   }
   .dark-text-md {
-    @apply dark:text-gray-400;
+    @apply dark:text-slate-400;
   }
   .dark-text-light {
     @apply dark:text-slate-300;
@@ -97,7 +97,7 @@
   }
 
   .navbar-button {
-    @apply focus:outline-none h-8 rounded-sm hover:bg-400/60 mx-1;
+    @apply focus:outline-none h-8 rounded-sm hover:bg-400/60 dark:hover:bg-slate-300/40 mx-1;
   }
 
   .navbar-menu-text {
@@ -106,7 +106,8 @@
 
   .theme-btn {
     @apply p-1 rounded-full h-8 w-8 md:h-6 md:w-6 flex items-center justify-center
-              shadow shadow-500 hover:ring-2 hover:ring-slate-300 focus:shadow-600 focus:outline-none dark:shadow-xl dark:shadow-gray-800;
+              shadow shadow-500 hover:ring-2 hover:ring-slate-300 focus:shadow-600
+              focus:outline-none dark:shadow-xl dark:shadow-gray-800;
   }
 
   .theme-menu-opener {

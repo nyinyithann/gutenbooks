@@ -44,7 +44,7 @@ function Book(props) {
   const dlinks = links.filter((x) => x.download);
   const rlinks = links.filter((x) => !x.download);
   return (
-    <div className="flex flex-col min-h-[200px] max-h-full w-full py-2 ml-4 border-b-[1px] border-200 dark:border-slate-500">
+    <div className="flex flex-col min-h-[200px] max-h-full w-full py-2 pl-4 md:pl-0 md:ml-4 border-b-[1px] border-200 dark:border-slate-500">
       <div className="flex flex-auto">
         {imageSrc.medium && imageSrc.medium.length > 0 ? (
           <div className="flex-none mt-1 h-[99px] w-[70px] shadow border-[1px] border-slate-100">

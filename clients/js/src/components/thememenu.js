@@ -67,7 +67,7 @@ function ThemeMenu() {
 
   return (
     <Menu as="div" className="relative flex items-center text-left z-50">
-      <Menu.Button className="flex h-8 w-8 items-center justify-center rounded-full outline-none ring-0 border-transparent bg-200 saturate-150 text-700 hover:bg-400 hover:text-white dark:bg-gray-400">
+      <Menu.Button className="flex h-8 w-8 items-center justify-center rounded-full outline-none ring-0 border-transparent bg-200 saturate-150 text-700 hover:bg-400 hover:text-white dark:bg-gray-700 dark:border-[1px] dark-border">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 pl-1 pt-1 flex-1"
@@ -84,7 +84,7 @@ function ThemeMenu() {
       <Menu.Items
         as="div"
         className="shadow-md absolute right-1 top-6 mt-4 flex rounded
-            w-[12rem] origin-top-right flex-col bg-500 focus:outline-none md:w-40 dark:bg-gray-600 dark:border-gray-700"
+            w-[12rem] origin-top-right flex-col bg-500 focus:outline-none md:w-40 dark:bg-gray-600 dark:border-slate-500  dark:border-[1px]"
       >
         <Menu.Item>
           <div className="z-10 flex flex-col bg-300/80 p-1 rounded">

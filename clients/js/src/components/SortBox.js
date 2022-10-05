@@ -72,7 +72,7 @@ function SortBox({ selectedIndex, displayField, className, onSelected }) {
           <span className="right-0 inline-block pr-1 ml-auto my-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 text-slate-600"
+              className="w-4 h-4 text-slate-600 dark:text-slate-700"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -92,7 +92,7 @@ function SortBox({ selectedIndex, displayField, className, onSelected }) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute w-full mt-[1.7rem] border-[1px] border-100 overflow-auto rounded-sm shadow-lg bg-200 ml-[-0.2rem] dark-text dark-border dark-bg-md">
+          <Listbox.Options className="absolute w-full mt-[1.7rem] border-[1px] border-100 overflow-auto rounded-sm shadow-lg bg-200 ml-[-0.2rem] dark:border-slate-500 dark:bg-slate-600 dark:text-slate-200">
             {items.map((item) => (
               <Listbox.Option
                 key={item.id}
@@ -100,8 +100,8 @@ function SortBox({ selectedIndex, displayField, className, onSelected }) {
                 className={({ active }) =>
                   `${
                     active
-                      ? 'text-900 bg-100 dark-text-md'
-                      : 'text-gray-900 dark-text'
+                      ? 'text-900 bg-100 dark-bg-mask-md dark:text-slate-200'
+                      : 'text-gray-900 dark:text-slate-400'
                   } cursor-default select-none relative py-1 pl-4 md:pl-6`
                 }
               >
