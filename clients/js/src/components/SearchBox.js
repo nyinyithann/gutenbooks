@@ -235,10 +235,10 @@ function SearchBox({ searchTerm }) {
   const searchFilterRadioLabelClass = 'block text-sm ml-2 cursor text-900';
 
   return (
-    <div className="relative flex flex-col w-full mx-auto z-100 pt-1">
-      <div className="flex w-full border-[1px] border-300 rounded-md bg-white focus:outline-none hover:border-500 dark-bg-mask dark-border dark:hover:border-slate-500">
+    <div className="z-100 relative mx-auto flex w-full flex-col pt-1">
+      <div className="dark-bg-mask dark-border flex w-full rounded-md border-[1px] border-300 bg-white hover:border-500 focus:outline-none dark:hover:border-slate-500">
         <input
-          className="md:font-normal flex-auto h-9 md:h-8 w-[80%] px-2 rounded-l-md text-medium md:text-sm outline-none border-0 focus:ring-0 dark-bg-light"
+          className="text-medium dark-bg-light h-9 w-[80%] flex-auto rounded-l-md border-0 px-2 outline-none focus:ring-0 md:h-8 md:text-sm md:font-normal"
           type="text"
           name="search"
           maxLength="64"
@@ -252,9 +252,9 @@ function SearchBox({ searchTerm }) {
           onFocus={focusSearchInput}
           onKeyUp={keyUpSearchInput}
         />
-        <div className="flex top-[-2px] md:top-0 right-0 items-center rounded-r-md dark-bg-light">
+        <div className="dark-bg-light top-[-2px] right-0 flex items-center rounded-r-md md:top-0">
           <span
-            className={`text-[0.7rem] pl-1 pr-2 text-red-400 w-36 ${
+            className={`w-36 pl-1 pr-2 text-[0.7rem] text-red-400 ${
               error ? 'block' : 'hidden'
             }`}
           >
@@ -266,7 +266,7 @@ function SearchBox({ searchTerm }) {
             disabled={!query}
             onClick={clickDeleteBtn}
           >
-            <XCircleIcon className="w-6 h-6 text-slate-500" />
+            <XCircleIcon className="h-6 w-6 text-slate-500" />
           </button>
           <button
             type="button"
@@ -274,19 +274,19 @@ function SearchBox({ searchTerm }) {
             onClick={searchAll}
             disabled={!query}
           >
-            <MagnifyingGlassIcon className="w-6 h-6 text-slate-500" />
+            <MagnifyingGlassIcon className="h-6 w-6 text-slate-500" />
           </button>
           <div className={spinnerClass}>
             <img
               src={spinner}
               alt="spinner_gif"
-              className="flex-auto w-6 h-6"
+              className="h-6 w-6 flex-auto"
             />
           </div>
         </div>
       </div>
       <div className="flex flex-col pt-1 pl-2">
-        <div className="flex space-x-6 dark-text">
+        <div className="dark-text flex space-x-6">
           <div className="flex items-center">
             <input
               id="search_filter_all"
@@ -350,7 +350,7 @@ function SearchBox({ searchTerm }) {
         >
           <ul
             role="menu"
-            className="absolute flex flex-col shadow-lg w-full list-none bg-slate-50 border-[1px] border-[#ededed] rounded dark:bg-slate-600 dark:text-slate-200 dark:border-slate-500"
+            className="absolute flex w-full list-none flex-col rounded border-[1px] border-[#ededed] bg-slate-50 shadow-lg dark:border-slate-500 dark:bg-slate-600 dark:text-slate-200"
           >
             <li>
               <ul id={searchboxDropDownId} tabIndex="0">
@@ -371,21 +371,21 @@ function SearchBox({ searchTerm }) {
                       tabIndex="-1"
                       className="inline-block w-full focus:outline-none"
                     >
-                      <div className="flex pb-1 pt-2 border-b-[1px] border-b-[#cccccc] dark-border-light">
+                      <div className="dark-border-light flex border-b-[1px] border-b-[#cccccc] pb-1 pt-2">
                         {imageSrc.small && imageSrc.small.length > 0 ? (
                           <img
                             src={imageSrc.small}
                             alt="book"
-                            className="flex-shrink-0 h-[50px] w-[35px] ml-2 my-1 shadow"
+                            className="my-1 ml-2 h-[50px] w-[35px] flex-shrink-0 shadow"
                           />
                         ) : (
-                          <div className="flex-shrink-0 h-[50px] w-[35px] ml-2 my-1 bg-slate-100 shadow-500 border-slate-100 border-[1px]" />
+                          <div className="my-1 ml-2 h-[50px] w-[35px] flex-shrink-0 border-[1px] border-slate-100 bg-slate-100 shadow-500" />
                         )}
-                        <div className="flex flex-col flex-grow pl-2 items-start">
-                          <p className="flex-none pr-1 pb-1 text-[0.9rem] md:text-[0.8rem] text-left font-semibold font-booktitle line-clamp-1 md:line-clamp-3">
+                        <div className="flex flex-grow flex-col items-start pl-2">
+                          <p className="flex-none pr-1 pb-1 text-left font-booktitle text-[0.9rem] font-semibold line-clamp-1 md:text-[0.8rem] md:line-clamp-3">
                             {title}
                           </p>
-                          <div className="text-left text-[0.9rem] md:text-[0.7rem] font-booktitle text-[#606060] dark-text-md">
+                          <div className="dark-text-md text-left font-booktitle text-[0.9rem] text-[#606060] md:text-[0.7rem]">
                             <span key="by">
                               {`by ${authors
                                 .reduceRight((px, x) => `${x.name} | ${px}`, '')
@@ -406,7 +406,7 @@ function SearchBox({ searchTerm }) {
               <button
                 type="button"
                 aria-label="search all"
-                className="w-full inline px-2 text-sm md:text-[0.9rem] text-900"
+                className="inline w-full px-2 text-sm text-900 md:text-[0.9rem]"
                 onMouseDown={searchAll}
               >
                 <p className="px-2 line-clamp-6">

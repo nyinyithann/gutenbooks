@@ -6,7 +6,7 @@ function Author({ name, webpage }) {
       href={webpage || '#'}
       target="_blank"
       rel="noreferrer"
-      className="flex flex-wrap flex-none text-left underline text-700 justify-start"
+      className="flex flex-none flex-wrap justify-start text-left text-700 underline"
     >
       <span className="flex-auto flex-wrap pr-[0.1rem]"> {name}</span>
     </a>
@@ -18,16 +18,16 @@ function AuthorList({ authors }) {
   if (len > 0) {
     return (
       <div className="flex flex-none font-booktitle dark:font-normal dark:text-gray-300">
-        <span className="flex justify-start items-center flex-shrink-0 w-[1.4rem] py-[0.2rem] pl-1 pr-2 text-700 text-[0.7rem] rounded-r-full bg-200 dark:bg-slate-700">
+        <span className="flex w-[1.4rem] flex-shrink-0 items-center justify-start rounded-r-full bg-200 py-[0.2rem] pl-1 pr-2 text-[0.7rem] text-700 dark:bg-slate-700">
           by
         </span>
         <div className="flex flex-col flex-wrap">
           {authors.map(({ name, webpage }) => (
             <div
               key={name}
-              className="flex flex-wrap flex-col pl-2 md:text-[0.8rem] font-bookinfo md:font-booktitle"
+              className="flex flex-col flex-wrap pl-2 font-bookinfo md:font-booktitle md:text-[0.8rem]"
             >
-              <span className="flex flex-wrap flex-auto line-clamp-6">
+              <span className="flex flex-auto flex-wrap line-clamp-6">
                 <Author name={name} webpage={webpage} />
               </span>
             </div>
@@ -44,19 +44,19 @@ function Book(props) {
   const dlinks = links.filter((x) => x.download);
   const rlinks = links.filter((x) => !x.download);
   return (
-    <div className="flex flex-col min-h-[200px] max-h-full w-full py-2 pl-4 md:pl-0 md:ml-4 border-b-[1px] border-200 dark:border-slate-500">
+    <div className="flex max-h-full min-h-[200px] w-full flex-col border-b-[1px] border-200 py-2 pl-4 dark:border-slate-500 md:ml-4 md:pl-0">
       <div className="flex flex-auto">
         {imageSrc.medium && imageSrc.medium.length > 0 ? (
-          <div className="flex-none mt-1 h-[99px] w-[70px] shadow border-[1px] border-slate-100">
+          <div className="mt-1 h-[99px] w-[70px] flex-none border-[1px] border-slate-100 shadow">
             <a href={`/book?id=${id}`} rel="noreferrer">
-              <img src={imageSrc.small} className="w-full h-full" alt="book" />
+              <img src={imageSrc.small} className="h-full w-full" alt="book" />
             </a>
           </div>
         ) : (
           <a
             href={`/book?id=${id}`}
             rel="noreferrer"
-            className="flex-none mt-1 h-[99px] w-[74px] shadow-md bg-slate-100 border-[1px] border-slate-100 flex justify-center items-center dark:border-slate-600 dark:bg-slate-700"
+            className="mt-1 flex h-[99px] w-[74px] flex-none items-center justify-center border-[1px] border-slate-100 bg-slate-100 shadow-md dark:border-slate-600 dark:bg-slate-700"
           >
             {' '}
             👓
@@ -66,15 +66,15 @@ function Book(props) {
           <a
             href={`/book?id=${id}`}
             rel="noreferrer"
-            className="flex flex-wrap text-base font-semibold font-booktitle text-900 pb-1 pr-1"
+            className="flex flex-wrap pb-1 pr-1 font-booktitle text-base font-semibold text-900"
           >
             <span className="break-before-all pr-1 dark:text-slate-200">
               {title}
             </span>
           </a>
           <AuthorList authors={authors} />
-          <div className="flex gap-4 pt-1 justify-start items-center">
-            <span className="flex-none text-[0.7rem] text-700 font-booktitle py-[0.2rem] pl-1 pr-2 rounded-r-full bg-200 dark:text-gray-300 dark:bg-slate-700">
+          <div className="flex items-center justify-start gap-4 pt-1">
+            <span className="flex-none rounded-r-full bg-200 py-[0.2rem] pl-1 pr-2 font-booktitle text-[0.7rem] text-700 dark:bg-slate-700 dark:text-gray-300">
               Download Count
             </span>
             <span className="font-nav text-[0.9rem] dark:text-gray-300">
@@ -86,14 +86,14 @@ function Book(props) {
       <div className="flex flex-wrap gap-2 pt-4">
         {dlinks.length === 0 ? null : (
           <div className="flex flex-col pt-0">
-            <span className="flex-none text-[0.75rem] text-900 font-sans dark-text-light">
+            <span className="dark-text-light flex-none font-sans text-[0.75rem] text-900">
               download as:
             </span>
-            <div className="flex flex-wrap flex-none pt-1 gap-2">
+            <div className="flex flex-none flex-wrap gap-2 pt-1">
               {dlinks.map(({ short, link }) => (
                 <div
                   key={link}
-                  className="flex items-center justify-center flex-none h-8 rounded-sm shadow w-20 text-900 bg-300 dark:border-[1px] dark:border-slate-500 dark:shadow-sm dark:shadow-slate-700 dark:text-slate-300 hover:bg-400 dark:hover:bg-slate-700"
+                  className="flex h-8 w-20 flex-none items-center justify-center rounded-sm bg-300 text-900 shadow hover:bg-400 dark:border-[1px] dark:border-slate-500 dark:text-slate-300 dark:shadow-sm dark:shadow-slate-700 dark:hover:bg-slate-700"
                 >
                   <a
                     href={link}
@@ -112,7 +112,7 @@ function Book(props) {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span className="text-sm text-center">{short}</span>
+                    <span className="text-center text-sm">{short}</span>
                   </a>
                 </div>
               ))}
@@ -121,14 +121,14 @@ function Book(props) {
         )}
         {rlinks.length === 0 ? null : (
           <div className="flex flex-col pt-0">
-            <span className="flex-none text-[0.75rem] text-900 font-sans dark-text-light">
+            <span className="dark-text-light flex-none font-sans text-[0.75rem] text-900">
               read as:
             </span>
-            <div className="flex flex-wrap flex-none pt-1 gap-2">
+            <div className="flex flex-none flex-wrap gap-2 pt-1">
               {rlinks.map(({ long, link }) => (
                 <div
                   key={link}
-                  className="flex items-center justify-center flex-none h-8 rounded-sm shadow w-28 text-900 bg-300 dark:border-[1px] dark:border-slate-500 dark:shadow-sm dark:shadow-slate-700 dark:text-slate-300 hover:bg-400 dark:hover:bg-slate-700"
+                  className="flex h-8 w-28 flex-none items-center justify-center rounded-sm bg-300 text-900 shadow hover:bg-400 dark:border-[1px] dark:border-slate-500 dark:text-slate-300 dark:shadow-sm dark:shadow-slate-700 dark:hover:bg-slate-700"
                 >
                   <a
                     href={link}
@@ -142,7 +142,7 @@ function Book(props) {
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-4 h-4 pt-[4px] fill-klor-400/80 dark:fill-slate-400"
+                      className="h-4 w-4 fill-klor-400/80 pt-[4px] dark:fill-slate-400"
                     >
                       <path
                         strokeLinecap="round"
@@ -150,7 +150,7 @@ function Book(props) {
                         d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
                       />
                     </svg>
-                    <span className="text-sm text-center">{long}</span>
+                    <span className="text-center text-sm">{long}</span>
                   </a>
                 </div>
               ))}

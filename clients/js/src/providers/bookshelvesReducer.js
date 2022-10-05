@@ -51,11 +51,11 @@ const getAllBookshelves = (dispatch) => async () => {
             shelves: result.bookshelves.sort((x, y) => {
               if (x.key > y.key) {
                 return 1;
-              } if (x.key < y.key) {
+              }
+              if (x.key < y.key) {
                 return -1;
-              } 
-                return 0;
-              
+              }
+              return 0;
             }),
           },
         });

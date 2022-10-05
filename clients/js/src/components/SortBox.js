@@ -65,14 +65,14 @@ function SortBox({ selectedIndex, displayField, className, onSelected }) {
   return (
     <Listbox value={selected} onChange={handleChange}>
       <div className={`${className} relative`}>
-        <Listbox.Button className="relative flex w-full cursor-default focus:outline-none focus:bg-white dark:focus:bg-slate-400">
-          <span className="block px-2 text-left truncate">
+        <Listbox.Button className="relative flex w-full cursor-default focus:bg-white focus:outline-none dark:focus:bg-slate-400">
+          <span className="block truncate px-2 text-left">
             {selected ? selected[displayField] : 'Sort by ...'}
           </span>
-          <span className="right-0 inline-block pr-1 ml-auto my-auto">
+          <span className="right-0 my-auto ml-auto inline-block pr-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 text-slate-600 dark:text-slate-700"
+              className="h-4 w-4 text-slate-600 dark:text-slate-700"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -92,7 +92,7 @@ function SortBox({ selectedIndex, displayField, className, onSelected }) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute w-full mt-[1.7rem] border-[1px] border-100 overflow-auto rounded-sm shadow-lg bg-200 ml-[-0.2rem] dark:border-slate-500 dark:bg-slate-600 dark:text-slate-200">
+          <Listbox.Options className="absolute mt-[1.7rem] ml-[-0.2rem] w-full overflow-auto rounded-sm border-[1px] border-100 bg-200 shadow-lg dark:border-slate-500 dark:bg-slate-600 dark:text-slate-200">
             {items.map((item) => (
               <Listbox.Option
                 key={item.id}
@@ -100,20 +100,20 @@ function SortBox({ selectedIndex, displayField, className, onSelected }) {
                 className={({ active }) =>
                   `${
                     active
-                      ? 'text-900 bg-100 dark-bg-mask-md dark:text-slate-200'
+                      ? 'dark-bg-mask-md bg-100 text-900 dark:text-slate-200'
                       : 'text-gray-900 dark:text-slate-400'
-                  } cursor-default select-none relative py-1 pl-4 md:pl-6`
+                  } relative cursor-default select-none py-1 pl-4 md:pl-6`
                 }
               >
                 {({ isSelected }) => (
                   <>
-                    <span className="p-1 pl-2 block truncate">
+                    <span className="block truncate p-1 pl-2">
                       {item[displayField]}
                     </span>
                     {isSelected ? (
                       <span className="absolute inset-y-0 left-0 flex items-center pl-1 text-900">
                         <CheckIcon
-                          className="w-4 h-4 md:w-5 md:h-5"
+                          className="h-4 w-4 md:h-5 md:w-5"
                           aria-hidden="true"
                         />
                       </span>

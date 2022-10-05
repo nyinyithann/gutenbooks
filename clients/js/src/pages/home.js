@@ -182,7 +182,7 @@ export default function Home() {
         ) : null}
 
         <div className="m:right-[18.5rem] fixed bottom-[1rem] right-[1rem] flex flex-none shrink-0 items-center justify-center rounded-full hover:cursor-pointer hover:outline-none hover:ring-0 md:bottom-[1.3rem]">
-          <ScrollToTopButton className="z-50 h-10 w-10 rounded-full bg-400 text-white shadow hover:cursor-pointer hover:outline-none hover:ring-0 dark:text-slate-200 dark:border-[1px] dark:border-slate-500 dark:bg-slate-600 md:h-10 md:w-10 md:bg-400 hover:bg-500 dark:hover:bg-slate-700"/>
+          <ScrollToTopButton className="z-50 h-10 w-10 rounded-full bg-400 text-white shadow hover:cursor-pointer hover:bg-500 hover:outline-none hover:ring-0 dark:border-[1px] dark:border-slate-500 dark:bg-slate-600 dark:text-slate-200 dark:hover:bg-slate-700 md:h-10 md:w-10 md:bg-400" />
         </div>
       </div>
     </div>

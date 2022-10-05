@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 function NoMatch() {
   return (
-    <div className="flex flex-col items-center pt-20 text-lg font-medium text-center text-slate-600">
-      <div className="w-full h-0 pb-40 relative">
+    <div className="flex flex-col items-center pt-20 text-center text-lg font-medium text-slate-600">
+      <div className="relative h-0 w-full pb-40">
         <iframe
           title="nomatch"
           src="https://giphy.com/embed/0s4qt8wXIkI2S6nqqp"
@@ -22,7 +22,7 @@ function NoMatch() {
         {`Hmm... this page doesn't exist. Please go to the home page by clicking
         on the link below.`}
       </span>
-      <p className="font-nav font-medium text-900 underline cursor hover:text-700">
+      <p className="cursor font-nav font-medium text-900 underline hover:text-700">
         <Link to="/">HOME</Link>
       </p>
     </div>
