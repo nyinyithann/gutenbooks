@@ -7,7 +7,7 @@ function NavLink({ children, to, className }) {
   return (
     <button
       className={
-        match ? `navbar-button bg-400/60 dark-bg-mask` : 'navbar-button'
+        match ? `navbar-button bg-400/60 dark:bg-slate-600` : 'navbar-button'
       }
       type="button"
     >

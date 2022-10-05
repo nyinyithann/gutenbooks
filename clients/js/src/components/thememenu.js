@@ -84,7 +84,7 @@ function ThemeMenu() {
       <Menu.Items
         as="div"
         className="shadow-md absolute right-1 top-6 mt-4 flex rounded
-            w-[12rem] origin-top-right flex-col bg-500 focus:outline-none md:w-40 dark:bg-gray-600 dark:border-slate-500  dark:border-[1px]"
+            w-[12rem] origin-top-right flex-col bg-500 focus:outline-none md:w-40 dark:bg-slate-600 dark:border-slate-500  dark:border-[1px]"
       >
         <Menu.Item>
           <div className="z-10 flex flex-col bg-300/80 p-1 rounded">

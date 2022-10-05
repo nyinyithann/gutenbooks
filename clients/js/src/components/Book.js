@@ -56,7 +56,7 @@ function Book(props) {
           <a
             href={`/book?id=${id}`}
             rel="noreferrer"
-            className="flex-none mt-1 h-[99px] w-[66px] shadow-md bg-slate-100 border-[1px] border-slate-100 flex justify-center items-center"
+            className="flex-none mt-1 h-[99px] w-[74px] shadow-md bg-slate-100 border-[1px] border-slate-100 flex justify-center items-center dark:border-slate-600 dark:bg-slate-700"
           >
             {' '}
             👓

@@ -63,10 +63,10 @@
 
 @layer components {
   .dark-bg {
-    @apply dark:bg-gray-800;
+    @apply dark:bg-slate-700;
   }
   .dark-bg-md {
-    @apply dark:bg-gray-600;
+    @apply dark:bg-slate-600;
   }
   .dark-bg-light {
     @apply dark:bg-slate-400;
@@ -97,7 +97,7 @@
   }
 
   .navbar-button {
-    @apply focus:outline-none h-8 rounded-sm hover:bg-400/60 dark:hover:bg-slate-300/40 mx-1;
+    @apply focus:outline-none h-8 rounded-sm hover:bg-400/60 dark:hover:bg-slate-600 mx-1;
   }
 
   .navbar-menu-text {

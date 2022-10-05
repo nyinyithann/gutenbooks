@@ -18,7 +18,7 @@ function App() {
         <div>
           <div className={`${theme} flex flex-col bg-white`}>
             <Navbar setTheme={setTheme} />
-            <div className="py-12 md:py-14 h-screen">
+            <div className="py-12 md:py-14 h-screen dark:bg-slate-600">
               <Routes>
                 <Route index path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />

@@ -6,7 +6,7 @@ import ThemeMenu from './ThemeMenu';
 
 function Navbar() {
   return (
-    <nav className="py-2 bg-300 fixed inset-x-0 flex-1 z-50 shadow shadow-200 dark-bg-text">
+    <nav className="py-2 bg-300 fixed inset-x-0 flex-1 z-50 shadow shadow-200 dark-bg dark-text">
       <div className="px-2">
         <div className="flex justify-between items-center">
           <div className="flex space-x-2">
