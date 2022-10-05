@@ -14,7 +14,7 @@ function ScrollToTopButton({ className }) {
 
   const scrollToTop = (e) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, left: 0});
   };
 
   useEffect(() => {
@@ -27,9 +27,14 @@ function ScrollToTopButton({ className }) {
     : `${className} opacity-0 hover:cursor-pointer`;
 
   return (
-    <span className={cn} onClick={scrollToTop} onTouchStart={scrollToTop}>
+    <button
+      type="button"
+      className={cn}
+      onClick={scrollToTop}
+      onTouchStart={scrollToTop}
+    >
       <ChevronUpIcon className="hover:cursor-pointer" />
-    </span>
+    </button>
   );
 }
 

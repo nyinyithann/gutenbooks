@@ -68,16 +68,16 @@ function ThemeMenu() {
   );
 
   return (
-    <Menu as="div" className="relative flex items-center text-left z-50">
+    <Menu as="div" className="relative z-50 flex items-center text-left">
       {({ open }) => (
         <>
           <Menu.Button
-            className="flex h-8 w-8 items-center justify-center rounded-full outline-none ring-0 border-transparent bg-200 saturate-150 text-700 hover:bg-400 hover:text-white dark:bg-gray-700 dark:border-[1px] dark-border"
+            className="dark-border flex h-8 w-8 items-center justify-center rounded-full border-transparent bg-200 text-700 outline-none ring-0 saturate-150 hover:bg-400 hover:text-white dark:border-[1px] dark:bg-gray-700"
             onMouseOver={() => setIsOpen(true)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 pl-1 pt-1 flex-1"
+              className="h-6 w-6 flex-1 pl-1 pt-1"
               viewBox="0 0 24 24"
               fill="currentColor"
             >
@@ -90,13 +90,12 @@ function ThemeMenu() {
           </Menu.Button>
           {open && isOpen && (
             <Menu.Items
-              static
               as="div"
-              className="shadow-md absolute right-1 top-6 mt-4 flex rounded
-            w-[12rem] origin-top-right flex-col bg-500 focus:outline-none md:w-40 dark:bg-slate-600 dark:border-slate-500  dark:border-[1px]"
+              className="absolute right-1 top-6 mt-4 flex w-[12rem] origin-top-right
+            flex-col rounded bg-500 shadow-md focus:outline-none dark:border-[1px] dark:border-slate-500 dark:bg-slate-600  md:w-40"
             >
               <Menu.Item as={Fragment}>
-                <div className="z-10 flex flex-col bg-300/80 p-1 rounded">
+                <div className="z-10 flex flex-col rounded bg-300/80 p-1">
                   {themeList.map((x, i) => (
                     /* eslint-disable react/no-array-index-key */
                     <div

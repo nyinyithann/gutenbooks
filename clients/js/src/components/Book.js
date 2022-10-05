@@ -3,7 +3,7 @@ import React from 'react';
 function Author({ name, webpage }) {
   return (
     <a
-      href={webpage ? webpage : '#'}
+      href={webpage || '#'}
       target="_blank"
       rel="noreferrer"
       className="flex flex-wrap flex-none text-left underline text-700 justify-start"

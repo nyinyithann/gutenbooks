@@ -95,7 +95,7 @@ export default function Home() {
 
   if (error || _error) {
     return (
-      <div className="flex flex-col items-center m-6 p-6 border-[1px] rounded-sm shadow">
+      <div className="m-6 flex flex-col items-center rounded-sm border-[1px] p-6 shadow">
         <div>
           <span>
             There was an error in loading the book list.{' '}
@@ -110,14 +110,14 @@ export default function Home() {
   }
 
   return (
-    <div className="flex w-full h-screen">
-      <div className="fixed w-full mt-[-0.7rem] md:mt-[-1.2rem] h-auto z-40">
-        <div className="flex flex-col w-full">
-          <div className="px-2 pt-3 pb-3 md:pt-3 bg-200 dark-bg-md">
+    <div className="flex h-screen w-full dark:bg-slate-600">
+      <div className="fixed z-40 mt-[-0.7rem] h-auto w-full md:mt-[-1.2rem]">
+        <div className="flex w-full flex-col">
+          <div className="dark-bg-md bg-200 px-2 pt-3 pb-3 md:pt-3">
             <SearchBox searchTerm={searchTerm} />
           </div>
-          <div className="flex-auto w-full mt-[-0.5rem] px-3 pt-1 pb-1 text-[0.9rem] md:text-[0.85rem] bg-white dark-bg dark:border-b-[1px] dark:border-b-slate-500/80">
-            <div className="flex pb-1 border-b-[2px] items-center border-300 dark-text dark:border-0 dark:pb-0">
+          <div className="dark-bg mt-[-0.5rem] w-full flex-auto bg-white px-3 pt-1 pb-1 text-[0.9rem] dark:border-b-[1px] dark:border-b-slate-500/80 md:text-[0.85rem]">
+            <div className="dark-text flex items-center border-b-[2px] border-300 pb-1 dark:border-0 dark:pb-0">
               <p className="inline-block pr-1">
                 {`${books.length} of ${totalHits} results`}
                 {searchTerm || bookshelveKey ? (
@@ -129,46 +129,40 @@ export default function Home() {
               {searchTerm || bookshelveKey ? (
                 <>
                   <span className="inline text-rose-500">{`"`}</span>
-                  <p className="inline max-w-[96px] md:max-w-[384px] lg:max-w-[768px] text-rose-500 text-ellipsis overflow-hidden line-clamp-1">
-                    {`${
-                      searchTerm
-                        ? searchTerm
-                        : bookshelveKey
-                        ? bookshelveKey
-                        : ''
-                    }`}
+                  <p className="inline max-w-[96px] overflow-hidden text-ellipsis text-rose-500 line-clamp-1 md:max-w-[384px] lg:max-w-[768px]">
+                    {`${searchTerm || bookshelveKey || ''}`}
                   </p>
                   <span className="text-rose-500">{`"`}</span>
                 </>
               ) : null}
               <div
                 name="sort_box"
-                className="flex flex-nowrap mt-[-1px] py-[1px] ml-auto"
+                className="mt-[-1px] ml-auto flex flex-nowrap py-[1px]"
               >
                 <SortBox
                   selectedIndex={sortIndex}
                   displayField="desc"
                   onSelected={handleSortItemSelected}
-                  className="flex w-[8.5rem] md:w-40 text-left text-[0.8rem] md:text-[0.85rem] rounded text-900 bg-white border-[1px] border-300 hover:shadow-lg hover:border-200 focus:border-200 p-1 dark:hover:border-slate-500 dark:focus:border-slate-500 dark-text dark-border dark-bg-light dark:text-slate-900"
+                  className="dark-text dark-border dark-bg-light flex w-[8.5rem] rounded border-[1px] border-300 bg-white p-1 text-left text-[0.8rem] text-900 hover:border-200 hover:shadow-lg focus:border-200 dark:text-slate-900 dark:hover:border-slate-500 dark:focus:border-slate-500 md:w-40 md:text-[0.85rem]"
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-col pt-2 w-full h-screen relative dark-bg-md">
-        <div className="flex w-full mt-[6rem] md:mt-[5.5rem] dark-bg-md">
-          <div className="flex flex-[3_0_0%] w-full dark-bg-md">
+      <div className="dark-bg-md relative flex h-screen w-full flex-col pt-2">
+        <div className="dark-bg-md mt-[6rem] flex w-full md:mt-[5.5rem]">
+          <div className="dark-bg-md flex w-full flex-[3_0_0%]">
             <BookList books={books} />
           </div>
-          <div className="hidden md:flex h-[82vh] md:h-[77vh] pl-8 pr-4 sticky right-0 top-[10.5rem] bottom-1 rounded w-[20rem]">
+          <div className="sticky right-0 top-[10.5rem] bottom-1 hidden h-[82vh] w-[20rem] rounded pl-8 pr-4 md:flex md:h-[77vh]">
             <Bookshelves shelves={shelves} />
           </div>
         </div>
         {hasMore ? (
-          <div className="flex items-stretch flex-none min-h-12 dark-bg">
+          <div className="min-h-12 dark-bg flex flex-none items-stretch">
             <button
-              className="flex grow h-12 m-4 rounded shadow md:h-8 bg-400 md:hover:border-[1px] md:hover:border-500 text-white justify-center dark-bg-md dark-text dark:hover:border-slate-500"
+              className="dark-bg-md dark-text m-4 flex h-12 grow justify-center rounded bg-400 text-white shadow dark:hover:border-slate-500 md:h-8 md:hover:border-[1px] md:hover:border-500"
               type="button"
               onClick={loadMore}
             >
@@ -176,10 +170,10 @@ export default function Home() {
                 <img
                   src={spinner}
                   alt="spinner"
-                  className="self-center flex-none w-12 h-12 p-3"
+                  className="h-12 w-12 flex-none self-center p-3"
                 />
               ) : (
-                <span className="self-center flex-none text-lg md:text-base">
+                <span className="flex-none self-center text-lg md:text-base">
                   Load more
                 </span>
               )}
@@ -187,8 +181,8 @@ export default function Home() {
           </div>
         ) : null}
 
-        <div className="flex flex-none shrink-0 justify-center items-center md:bottom-[4.3rem] bottom-[1rem] right-[1rem] m:right-[18.5rem] fixed hover:cursor-pointer hover:outline-none hover:ring-0 rounded-full">
-          <ScrollToTopButton className="bg-400 md:bg-400 shadow h-10 w-10 md:h-10 md:w-10 text-white rounded-full hover:cursor-pointer hover:outline-none hover:ring-0 z-50 dark:border-[1px] dark:border-slate-500" />
+        <div className="m:right-[18.5rem] fixed bottom-[1rem] right-[1rem] flex flex-none shrink-0 items-center justify-center rounded-full hover:cursor-pointer hover:outline-none hover:ring-0 md:bottom-[1.3rem]">
+          <ScrollToTopButton className="z-50 h-10 w-10 rounded-full bg-400 text-white shadow hover:cursor-pointer hover:outline-none hover:ring-0 dark:text-slate-200 dark:border-[1px] dark:border-slate-500 dark:bg-slate-600 md:h-10 md:w-10 md:bg-400 hover:bg-500 dark:hover:bg-slate-700"/>
         </div>
       </div>
     </div>

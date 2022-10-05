@@ -265,6 +265,6 @@ export {
   API_SERVER_STATUS,
   convertToBookViewModelList,
   dispatchError,
-  getImageLinks,
   getContentLinks,
+  getImageLinks,
 };
