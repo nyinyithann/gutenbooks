@@ -93,7 +93,7 @@ function Book(props) {
               {dlinks.map(({ short, link }) => (
                 <div
                   key={link}
-                  className="flex items-center justify-center flex-none h-8 rounded-sm shadow w-20 text-900 bg-300 dark:border-[1px] dark:border-slate-500 dark:shadow-sm dark:shadow-slate-700 dark:text-slate-300"
+                  className="flex items-center justify-center flex-none h-8 rounded-sm shadow w-20 text-900 bg-300 dark:border-[1px] dark:border-slate-500 dark:shadow-sm dark:shadow-slate-700 dark:text-slate-300 hover:bg-400 dark:hover:bg-slate-700"
                 >
                   <a
                     href={link}
@@ -128,7 +128,7 @@ function Book(props) {
               {rlinks.map(({ long, link }) => (
                 <div
                   key={link}
-                  className="flex items-center justify-center flex-none h-8 rounded-sm shadow w-28 text-900 bg-300 dark:border-[1px] dark:border-slate-500 dark:shadow-sm dark:shadow-slate-700 dark:text-slate-300"
+                  className="flex items-center justify-center flex-none h-8 rounded-sm shadow w-28 text-900 bg-300 dark:border-[1px] dark:border-slate-500 dark:shadow-sm dark:shadow-slate-700 dark:text-slate-300 hover:bg-400 dark:hover:bg-slate-700"
                 >
                   <a
                     href={link}

@@ -1,20 +1,7 @@
 import { Menu } from '@headlessui/react';
-import React, { useCallback } from 'react';
+import React, { Fragment, useCallback } from 'react';
 
 import { ThemeSwitchContext } from '../providers/ThemeSwitchProvider';
-
-function ColorButton({ color, theme, onClick }) {
-  return (
-    <button
-      type="button"
-      aria-label="color"
-      className="theme-btn"
-      data-theme={theme}
-      style={{ backgroundColor: color }}
-      onClick={onClick}
-    />
-  );
-}
 
 const themeList = [
   [
@@ -55,58 +42,83 @@ const themeList = [
   ],
 ];
 
+function ColorButton({ color, theme, onClick }) {
+  return (
+    <button
+      type="button"
+      aria-label="color"
+      className="theme-btn"
+      data-theme={theme}
+      style={{ backgroundColor: color }}
+      onClick={onClick}
+    />
+  );
+}
+
 function ThemeMenu() {
   const { setTheme } = React.useContext(ThemeSwitchContext);
+  const [isOpen, setIsOpen] = React.useState(true);
   const clickHandler = useCallback(
     (e) => {
       e.preventDefault();
       setTheme(e.target.getAttribute('data-theme'));
+      setIsOpen(false);
     },
     [setTheme]
   );
 
   return (
     <Menu as="div" className="relative flex items-center text-left z-50">
-      <Menu.Button className="flex h-8 w-8 items-center justify-center rounded-full outline-none ring-0 border-transparent bg-200 saturate-150 text-700 hover:bg-400 hover:text-white dark:bg-gray-700 dark:border-[1px] dark-border">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 pl-1 pt-1 flex-1"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </Menu.Button>
-      <Menu.Items
-        as="div"
-        className="shadow-md absolute right-1 top-6 mt-4 flex rounded
+      {({ open }) => (
+        <>
+          <Menu.Button
+            className="flex h-8 w-8 items-center justify-center rounded-full outline-none ring-0 border-transparent bg-200 saturate-150 text-700 hover:bg-400 hover:text-white dark:bg-gray-700 dark:border-[1px] dark-border"
+            onMouseOver={() => setIsOpen(true)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 pl-1 pt-1 flex-1"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Menu.Button>
+          {open && isOpen && (
+            <Menu.Items
+              static
+              as="div"
+              className="shadow-md absolute right-1 top-6 mt-4 flex rounded
             w-[12rem] origin-top-right flex-col bg-500 focus:outline-none md:w-40 dark:bg-slate-600 dark:border-slate-500  dark:border-[1px]"
-      >
-        <Menu.Item>
-          <div className="z-10 flex flex-col bg-300/80 p-1 rounded">
-            {themeList.map((x, i) => (
-              /* eslint-disable react/no-array-index-key */
-              <div
-                key={`${x.theme}_${i}`}
-                className="flex flex-1 flex-row flex-wrap justify-start gap-3 p-2"
-              >
-                {x.map(({ color, theme }) => (
-                  <ColorButton
-                    key={color}
-                    color={color}
-                    theme={theme}
-                    onClick={clickHandler}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-        </Menu.Item>
-      </Menu.Items>
+            >
+              <Menu.Item as={Fragment}>
+                <div className="z-10 flex flex-col bg-300/80 p-1 rounded">
+                  {themeList.map((x, i) => (
+                    /* eslint-disable react/no-array-index-key */
+                    <div
+                      key={`${x.theme}_${i}`}
+                      className="flex flex-1 flex-row flex-wrap justify-start gap-3 p-2"
+                    >
+                      {x.map(({ color, theme }) => (
+                        <ColorButton
+                          key={color}
+                          color={color}
+                          theme={theme}
+                          onClick={clickHandler}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </Menu.Item>
+            </Menu.Items>
+          )}
+        </>
+      )}
     </Menu>
   );
 }
