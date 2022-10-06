@@ -10,8 +10,8 @@ import React, {
 import ReactLoading from 'react-loading';
 import { useNavigate } from 'react-router-dom';
 
-import useDebounce from '../hooks/UseDebounce';
-import useQueryParams from '../hooks/UseQueryParams';
+import useDebounce from '../hooks/useDebounce';
+import useQueryParams from '../hooks/useQueryParams';
 import { BookContext } from '../providers/ContextProvider';
 
 const searchboxDropDownId = 'searchbox_dropdown';

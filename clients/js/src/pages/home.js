@@ -7,8 +7,8 @@ import Bookshelves from '../components/Bookshelves';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import SearchBox from '../components/SearchBox';
 import SortBox from '../components/SortBox';
-import usePrevious from '../hooks/UsePrevious';
-import useQueryParams from '../hooks/UseQueryParams';
+import usePrevious from '../hooks/usePrevious';
+import useQueryParams from '../hooks/useQueryParams';
 import { BookContext } from '../providers/ContextProvider';
 
 export default function Home() {

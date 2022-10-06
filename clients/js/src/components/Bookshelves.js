@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useQueryParams from '../hooks/UseQueryParams';
+import useQueryParams from '../hooks/useQueryParams';
 
 function Bookshelves({ shelves }) {
   const [_, setUrlQueryParam] = useQueryParams('books');

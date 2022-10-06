@@ -22,7 +22,7 @@ const client = axios.create({
   headers: {
     baseURL: process.env.API_BASE,
     'Content-type': 'application/json',
-    'Cache-Control': 'max-age=432000',
+    'Cache-Control': 'max-age=172800', // 2 days
   },
 });
 
