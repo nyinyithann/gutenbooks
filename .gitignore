@@ -33,3 +33,7 @@ dist/*
 /.idea/modules.xml
 /.idea/vcs.xml
 *.log
+
+/dist
+dist
+**/dist
