@@ -1,5 +1,6 @@
 import isEqual from 'lodash.isequal';
 import React, { useContext, useEffect } from 'react';
+import ReactLoading from 'react-loading';
 
 import { BookList } from '../components/Book';
 import Bookshelves from '../components/Bookshelves';
@@ -23,12 +24,13 @@ export default function Home() {
     totalHits,
     currentPage,
     hasMore,
-    loading,
-    error,
+    bookListLoading,
+    bookListError,
     books,
   } = bookList;
 
-  const { getBookshelves, _loading, _error, shelves } = bookshelves;
+  const { getBookshelves, bookshelvesLoading, bookshelvesError, shelves } =
+    bookshelves;
   const { sortIndex } = urlQueryParam;
 
   React.useEffect(() => {
@@ -93,16 +95,16 @@ export default function Home() {
     setUrlQueryParam(info);
   };
 
-  if (error || _error) {
+  if (bookListError || bookshelvesError) {
     return (
-      <div className="m-6 flex flex-col items-center rounded-sm border-[1px] p-6 shadow">
+      <div className="m-6 flex flex-col items-center rounded-sm border-[1px] p-6 shadow dark:text-slate-200">
         <div>
           <span>
             There was an error in loading the book list.{' '}
             <span>Reload this page.</span>
           </span>
           <details className="pt-2 text-sm text-red-200">
-            {error.message}
+            {`${bookListError || ''} ${bookshelvesError}`}
           </details>
         </div>
       </div>
@@ -152,12 +154,18 @@ export default function Home() {
       </div>
       <div className="dark-bg-md relative flex h-screen w-full flex-col pt-2">
         <div className="dark-bg-md mt-[6rem] flex w-full md:mt-[5.5rem]">
-          <div className="dark-bg-md flex w-full flex-[3_0_0%]">
-            <BookList books={books} />
-          </div>
-          <div className="sticky right-0 top-[10.5rem] bottom-1 hidden h-[82vh] w-[20rem] rounded pl-8 pr-4 md:flex md:h-[77vh]">
+          <main className="dark-bg-md flex w-full flex-[3_0_0%]">
+            {bookListLoading || bookshelvesLoading ? (
+              <div className="m-auto flex">
+                <ReactLoading type="bubbles" color="#cbd5e1" />
+              </div>
+            ) : (
+              <BookList books={books} />
+            )}
+          </main>
+          <nav className="sticky right-0 top-[11rem] bottom-1 hidden h-[82vh] w-[20rem] rounded pl-8 pr-4 md:flex md:h-[77vh]">
             <Bookshelves shelves={shelves} />
-          </div>
+          </nav>
         </div>
         {hasMore ? (
           <div className="min-h-12 dark-bg flex flex-none items-stretch">
@@ -166,7 +174,7 @@ export default function Home() {
               type="button"
               onClick={loadMore}
             >
-              {loading || _loading ? (
+              {bookListLoading || bookshelvesLoading ? (
                 <img
                   src={spinner}
                   alt="spinner"

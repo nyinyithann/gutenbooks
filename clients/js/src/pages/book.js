@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import ReactLoading from 'react-loading';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { getContentLinks, getImageLinks } from '../providers/common';
@@ -232,7 +233,8 @@ export default function Book() {
   const { bookDetail } = useContext(BookContext);
   const [searchParams] = useSearchParams();
   const id = searchParams.get('id');
-  const { getBookDetail, error, book } = bookDetail;
+  const { getBookDetail, bookDetailLoading, bookDetailError, book } =
+    bookDetail;
 
   useEffect(() => {
     getBookDetail(id);
@@ -251,16 +253,16 @@ export default function Book() {
     );
   }
 
-  if (error) {
+  if (bookDetailError) {
     return (
-      <div className="m-6 flex flex-col items-center rounded-sm border-[1px] p-6 shadow">
+      <div className="m-6 flex flex-col items-center rounded-sm border-[1px] p-6 shadow dark:text-slate-200">
         <div>
           <span>
-            There was an error in loading the book list.{' '}
+            There was an error in loading book info.{' '}
             <span>Reload this page.</span>
           </span>
           <details className="pt-2 text-sm text-red-200">
-            {error.message}
+            {bookDetailError}
           </details>
         </div>
       </div>
@@ -268,106 +270,114 @@ export default function Book() {
   }
 
   return (
-    <main className="p-4 text-900 dark:bg-slate-600">
-      <div className="flex flex-wrap gap-1 md:hidden">
-        <Title text={book ? book.title : null} />
-        <div className="flex items-center justify-start gap-4 pt-2 pb-2">
-          <BookImage
-            link={
-              book && book.formats && book.formats.length > 0
-                ? getImageLinks(book.formats)[1]
-                : ''
-            }
-          />
-          <LinkButtons
-            formats={
-              book && book.formats && book.formats.length > 0
-                ? book.formats
-                : []
-            }
-          />
+    <>
+      {bookDetailLoading ? (
+        <div className="flex w-full items-center justify-center">
+          <ReactLoading type="bubbles" color="#cbd5e1" />
         </div>
-        <div className="flex flex-[3_1_0%] flex-col gap-4">
-          <Blokes
-            title="Authors"
-            blokes={book && book.authors ? book.authors : []}
-          />
-          <Blokes
-            title="Contributers"
-            blokes={book && book.contributers ? book.contributers : []}
-          />
-          <Blokes
-            title="Editors"
-            blokes={book && book.editors ? book.editors : []}
-          />
-          <Many
-            title="Subjects"
-            values={book ? book.subjects : []}
-            minlen={5}
-          />
-          <Many
-            title="Bookshelves"
-            values={book ? book.bookshelves : []}
-            minlen={5}
-          />
-          <Many
-            title="Languages"
-            values={book ? book.languages : []}
-            minlen={0}
-          />
-          <DownloadCount count={book ? book.download_count : null} />
-        </div>
-      </div>
+      ) : (
+        <div className="p-4 text-900 dark:bg-slate-600">
+          <div className="flex flex-wrap gap-1 md:hidden">
+            <Title text={book ? book.title : null} />
+            <div className="flex items-center justify-start gap-4 pt-2 pb-2">
+              <BookImage
+                link={
+                  book && book.formats && book.formats.length > 0
+                    ? getImageLinks(book.formats)[1]
+                    : ''
+                }
+              />
+              <LinkButtons
+                formats={
+                  book && book.formats && book.formats.length > 0
+                    ? book.formats
+                    : []
+                }
+              />
+            </div>
+            <div className="flex flex-[3_1_0%] flex-col gap-4">
+              <Blokes
+                title="Authors"
+                blokes={book && book.authors ? book.authors : []}
+              />
+              <Blokes
+                title="Contributers"
+                blokes={book && book.contributers ? book.contributers : []}
+              />
+              <Blokes
+                title="Editors"
+                blokes={book && book.editors ? book.editors : []}
+              />
+              <Many
+                title="Subjects"
+                values={book ? book.subjects : []}
+                minlen={5}
+              />
+              <Many
+                title="Bookshelves"
+                values={book ? book.bookshelves : []}
+                minlen={5}
+              />
+              <Many
+                title="Languages"
+                values={book ? book.languages : []}
+                minlen={0}
+              />
+              <DownloadCount count={book ? book.download_count : null} />
+            </div>
+          </div>
 
-      <div className="hidden flex-row gap-1 md:flex">
-        <div className="min-w-[250px] flex-[0_0_0%] flex-col">
-          <BookImage
-            link={
-              book && book.formats && book.formats.length > 0
-                ? getImageLinks(book.formats)[1]
-                : ''
-            }
-          />
-          <LinkButtons
-            formats={
-              book && book.formats && book.formats.length > 0
-                ? book.formats
-                : []
-            }
-          />
+          <div className="hidden flex-row gap-1 md:flex">
+            <div className="min-w-[250px] flex-[0_0_0%] flex-col">
+              <BookImage
+                link={
+                  book && book.formats && book.formats.length > 0
+                    ? getImageLinks(book.formats)[1]
+                    : ''
+                }
+              />
+              <LinkButtons
+                formats={
+                  book && book.formats && book.formats.length > 0
+                    ? book.formats
+                    : []
+                }
+              />
+            </div>
+            <div className="flex flex-[3_1_0%] flex-col gap-4">
+              <Title text={book ? book.title : null} />
+              <Blokes
+                title="Authors"
+                blokes={book && book.authors ? book.authors : []}
+              />
+              <Blokes
+                title="Contributers"
+                blokes={book && book.contributers ? book.contributers : []}
+              />
+              <Blokes
+                title="Editors"
+                blokes={book && book.editors ? book.editors : []}
+              />
+              <Many
+                title="Subjects"
+                values={book ? book.subjects : []}
+                minlen={5}
+              />
+              <Many
+                title="Bookshelves"
+                values={book ? book.bookshelves : []}
+                minlen={5}
+              />
+              <Many
+                title="Languages"
+                values={book ? book.languages : []}
+                minlen={0}
+              />
+              <DownloadCount count={book ? book.download_count : null} />
+            </div>
+          </div>
         </div>
-        <div className="flex flex-[3_1_0%] flex-col gap-4">
-          <Title text={book ? book.title : null} />
-          <Blokes
-            title="Authors"
-            blokes={book && book.authors ? book.authors : []}
-          />
-          <Blokes
-            title="Contributers"
-            blokes={book && book.contributers ? book.contributers : []}
-          />
-          <Blokes
-            title="Editors"
-            blokes={book && book.editors ? book.editors : []}
-          />
-          <Many
-            title="Subjects"
-            values={book ? book.subjects : []}
-            minlen={5}
-          />
-          <Many
-            title="Bookshelves"
-            values={book ? book.bookshelves : []}
-            minlen={5}
-          />
-          <Many
-            title="Languages"
-            values={book ? book.languages : []}
-            minlen={0}
-          />
-          <DownloadCount count={book ? book.download_count : null} />
-        </div>
-      </div>
-    </main>
+      )}
+    </>
   );
 }

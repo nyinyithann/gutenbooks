@@ -75,10 +75,10 @@ const getBooksForAutocomplete = (dispatch) => async (searchInfo) => {
             },
           });
         } else {
-          dispatchError(responseData._message, dispatch);
+          dispatchError(responseData.toString(), dispatch);
         }
       } catch (e) {
-        dispatchError(e, dispatch);
+        dispatchError(e.toString(), dispatch);
       }
     };
     await fetch();

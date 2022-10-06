@@ -11,8 +11,8 @@ const bookListInitialState = {
   perPageItems: 20,
   totalHits: 0,
   totalPages: 1,
-  loading: false,
-  error: '',
+  bookListLoading: false,
+  bookListError: '',
   books: [],
 };
 
@@ -89,10 +89,10 @@ const getBooksByPage = (dispatch) => async (queryInfo, options) => {
           },
         });
       } else {
-        dispatchError(responseData._message, dispatch);
+        dispatchError(responseData.toString(), dispatch);
       }
     } catch (e) {
-      dispatchError(e, dispatch);
+      dispatchError(e.toString(), dispatch);
     }
   };
 

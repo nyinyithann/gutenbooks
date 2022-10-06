@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom';
 
 function NoMatch() {
   return (
-    <div className="flex flex-col items-center pt-20 text-center text-lg font-medium text-slate-600">
-      <div className="relative h-0 w-full pb-40">
+    <div className="flex flex-col items-center pt-20 text-center text-lg font-medium text-slate-600 dark:text-slate-100">
+      <div className="relative h-[50vh] w-full pb-40">
         <iframe
           title="nomatch"
-          src="https://giphy.com/embed/0s4qt8wXIkI2S6nqqp"
+          src="https://giphy.com/embed/9sDNyvlqFxO09Ax5jO"
           width="100%"
           height="100%"
           frameBorder="0"
-          className="absolute"
-          allowFullScreen
+          className="absolute md:px-[20rem]"
         />
+        <p>OOPs...</p>
       </div>
       <p>
         <a href="https://giphy.com/gifs/thismorning-itv-this-morning-0s4qt8wXIkI2S6nqqp" />

@@ -22,7 +22,7 @@ function Bookshelves({ shelves }) {
   return (
     <>
       {shelves ? (
-        <div className="dark-border flex flex-col rounded border-[1px] p-2 shadow shadow-slate-200 dark:shadow-slate-500">
+        <div className="dark-border flex flex-col rounded border-[1px] p-2 mt-4 shadow shadow-slate-200 dark:shadow-slate-500">
           <div className="font-snas dark-text-light border-b-[1px] border-b-200 font-bold text-900 dark:border-slate-400">
             Bookshelves
           </div>

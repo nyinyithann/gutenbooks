@@ -52,10 +52,10 @@ const getBookDetailById = (dispatch) => async (book_index_id) => {
           },
         });
       } else {
-        dispatchError(responseData._message, dispatch);
+        dispatchError(responseData.toString(), dispatch);
       }
     } catch (e) {
-      dispatchError(e, dispatch);
+      dispatchError(e.toString(), dispatch);
     }
   };
 

@@ -18,7 +18,7 @@ const searchboxDropDownId = 'searchbox_dropdown';
 
 function SearchBox({ searchTerm }) {
   const { bookSearch } = useContext(BookContext);
-  const { searchBooks, loading, error, books } = bookSearch;
+  const { searchBooks, bookSearchLoading, bookSearchError, books } = bookSearch;
   const [delayedQuery, setDelayedQuery] = useDebounce(500, '');
   const [query, setQuery] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -217,10 +217,10 @@ function SearchBox({ searchTerm }) {
 
   const btnSearchClass = `flex-auto mr-3 ${
     query ? 'cursor-pointer' : 'cursor-not-allowed'
-  } ${loading ? 'hidden' : 'block'}`;
+  } ${bookSearchLoading ? 'hidden' : 'block'}`;
 
   const spinnerClass = `flex-auto items-center mr-3 w-6 h-6 ${
-    loading ? 'flex' : 'hidden'
+    bookSearchLoading ? 'flex' : 'hidden'
   }`;
 
   const removeSearchBtnClass = `flex-auto top-0 right-0 mr-3 disabled ${
@@ -255,7 +255,7 @@ function SearchBox({ searchTerm }) {
         <div className="dark-bg-light top-[-2px] right-0 flex items-center rounded-r-md md:top-0">
           <span
             className={`w-36 pl-1 pr-2 text-[0.7rem] text-red-400 ${
-              error ? 'block' : 'hidden'
+              bookSearchError ? 'block' : 'hidden'
             }`}
           >
             Error. Please try again.
