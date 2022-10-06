@@ -10,7 +10,6 @@ import SortBox from '../components/SortBox';
 import usePrevious from '../hooks/UsePrevious';
 import useQueryParams from '../hooks/UseQueryParams';
 import { BookContext } from '../providers/ContextProvider';
-import spinner from '../resources/spinner.gif';
 
 export default function Home() {
   const { bookList, bookshelves } = useContext(BookContext);
@@ -155,7 +154,7 @@ export default function Home() {
       <div className="dark-bg-md relative flex h-screen w-full flex-col pt-2">
         <div className="dark-bg-md mt-[6rem] flex w-full md:mt-[5.5rem]">
           <main className="dark-bg-md flex w-full flex-[3_0_0%]">
-            {bookListLoading || bookshelvesLoading ? (
+            {(bookListLoading && books.lenth > 0) || bookshelvesLoading ? (
               <div className="m-auto flex">
                 <ReactLoading type="bubbles" color="#cbd5e1" />
               </div>
@@ -174,12 +173,15 @@ export default function Home() {
               type="button"
               onClick={loadMore}
             >
-              {bookListLoading || bookshelvesLoading ? (
-                <img
-                  src={spinner}
-                  alt="spinner"
-                  className="h-12 w-12 flex-none self-center p-3"
-                />
+              {bookListLoading ? (
+                <div className="flex flex-none flex-col items-center justify-center pt-4 md:pt-2">
+                  <ReactLoading
+                    type="spin"
+                    color="#fff"
+                    height={16}
+                    width={16}
+                  />
+                </div>
               ) : (
                 <span className="flex-none self-center text-lg md:text-base">
                   Load more

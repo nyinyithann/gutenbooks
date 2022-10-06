@@ -7,12 +7,12 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import ReactLoading from 'react-loading';
 import { useNavigate } from 'react-router-dom';
 
 import useDebounce from '../hooks/UseDebounce';
 import useQueryParams from '../hooks/UseQueryParams';
 import { BookContext } from '../providers/ContextProvider';
-import spinner from '../resources/spinner.gif';
 
 const searchboxDropDownId = 'searchbox_dropdown';
 
@@ -276,11 +276,14 @@ function SearchBox({ searchTerm }) {
           >
             <MagnifyingGlassIcon className="h-6 w-6 text-slate-500" />
           </button>
+
           <div className={spinnerClass}>
-            <img
-              src={spinner}
-              alt="spinner_gif"
-              className="h-6 w-6 flex-auto"
+            <ReactLoading
+              type="spin"
+              color="#475569"
+              height={16}
+              width={16}
+              className="self-center"
             />
           </div>
         </div>
