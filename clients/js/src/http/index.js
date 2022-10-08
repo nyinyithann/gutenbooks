@@ -26,14 +26,14 @@ const client = axios.create({
 });
 
 const searchBooks = async (payload) =>
-  client.post('http://54.255.67.106/api/books/search', payload);
+  client.post(`${process.env.API_PATH}/search`, payload);
 
 const getBooks = async (payload) =>
-  client.post('http://54.255.67.106/api/books', payload);
+  client.post(`${process.env.API_PATH}`, payload);
 
-const getBookById = async (id) => client.get(`http://54.255.67.106/api/books/${id}`);
+const getBookById = async (id) => client.get(`${process.env.API_PATH}/${id}`);
 
 const getBookshelves = async () =>
-  client.get(`http://54.255.67.106/api/books/bookshelves`);
+  client.get(`${process.env.API_PATH}/bookshelves`);
 
 export { getBookById, getBooks, getBookshelves, searchBooks };

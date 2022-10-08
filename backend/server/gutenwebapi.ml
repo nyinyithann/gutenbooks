@@ -1,7 +1,5 @@
 open Lwt.Syntax
 
-let sleep2s () = Unix.sleepf 0.5
-
 let get_page_size () =
   let setting = Common.Setting.get_settings () in
   setting.page_size
@@ -47,7 +45,6 @@ let check_es_error es_json =
   else ""
 
 let get_bookshelves _ =
-  sleep2s ();
   let open Yojson.Basic.Util in
   try%lwt
     let* response = Elastic.get_bookshelves () in
@@ -65,7 +62,6 @@ let get_bookshelves _ =
     response_err (Printf.sprintf "%s%s\n" msg stack)
 
 let get_book request =
-  sleep2s ();
   let id = Dream.param request "id" |> int_of_string_opt in
   match id with
   | Some n -> begin
@@ -87,7 +83,6 @@ let get_book request =
   | None -> response_err "positive number book id is required."
 
 let get_books_by_page request =
-  sleep2s ();
   let pageNum = Dream.param request "page" |> int_of_string_opt in
   match pageNum with
   | Some n -> begin
@@ -134,7 +129,6 @@ let get_books_by_page request =
   | None -> response_err "positive page number is required."
 
 let get_books request =
-  sleep2s ();
   let open Msg in
   try%lwt
     let* body = Dream.body request in
@@ -234,7 +228,6 @@ let get_books request =
     response_err (Printf.sprintf "%s%s\n" msg stack)
 
 let search_books request =
-  sleep2s ();
   let open Yojson.Basic.Util in
   try%lwt
     let* body = Dream.body request in

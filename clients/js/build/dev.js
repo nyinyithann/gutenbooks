@@ -17,7 +17,7 @@ module.exports = {
     proxy: {
       '/dev': {
         target: {
-          host: '54.255.67.106',
+          host: '188.166.217.54',
           protocol: 'http:',
           port: 80,
         },
