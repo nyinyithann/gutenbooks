@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,4 +16,11 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-module.hot.accept();
+if (module.hot) {
+  module.hot.accept();
+}
+
+if (process.env.NODE_ENV === 'development') {
+   // eslint-disable-next-line no-console
+    reportWebVitals(console.log);
+}
