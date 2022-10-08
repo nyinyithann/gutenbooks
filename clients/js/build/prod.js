@@ -1,5 +1,6 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -31,5 +32,23 @@ module.exports = {
         },
       },
     },
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          mangle: true,
+          keep_fnames: false,
+          sourceMap: false,
+          output: {
+            comments: false,
+          },
+          compress: {
+            drop_console: true,
+            drop_debugger: true,
+            pure_funcs: ['console.log', 'console.info'],
+          },
+        },
+        extractComments: false,
+      }),
+    ],
   },
 };

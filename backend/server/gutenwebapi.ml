@@ -26,7 +26,7 @@ let to_result yj =
        ~headers:
          [
            ("Access-Control-Allow-Origin", "*");
-           ("Cache-Control", "public, max-age=432000");
+           ("Cache-Control", "public, max-age=172800") (* 2 days *);
          ]
 
 let empty_response = to_result (`List [])
