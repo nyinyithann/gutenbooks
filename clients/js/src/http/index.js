@@ -19,7 +19,9 @@ const cache = setupCache({
 
 const client = axios.create({
   adapter: cache.adapter,
+  withCredentials: false,
   headers: {
+    'Access-Control-Allow-Origin': '*',
     'Content-type': 'application/json',
     'Cache-Control': 'max-age=172800', // 2 days
   },
