@@ -22,6 +22,7 @@ const client = axios.create({
   withCredentials: false,
   headers: {
     'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,POST,HEAD,OPTIONS,DELETE,PUT',
     'Content-type': 'application/json',
     'Cache-Control': 'max-age=172800', // 2 days
   },
