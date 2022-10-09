@@ -64,7 +64,7 @@ const getContentLinks = (formats) => {
 
     if (
       type.toLowerCase().includes('application/x-mobipocket-ebook') &&
-      link.toLowerCase().endsWith('.images')
+      link.toLowerCase().endsWith('.kindle.images')
     ) {
       links.push({
         sorthint: 3,
@@ -78,7 +78,7 @@ const getContentLinks = (formats) => {
     }
     if (
       type.toLowerCase().includes('application/x-mobipocket-ebook') &&
-      link.toLowerCase().endsWith('.noimages')
+      link.toLowerCase().endsWith('.kindle.noimages')
     ) {
       links.push({
         sorthint: 4,
