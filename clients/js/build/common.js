@@ -95,6 +95,10 @@ module.exports = {
           from: path.resolve(__dirname, '..', './public/manifest.json'),
           to: path.resolve(__dirname, '..', './dist/manifest.json'),
         },
+        {
+          from: path.resolve(__dirname, '..', './public/robots.txt'),
+          to: path.resolve(__dirname, '..', './dist/robots.txt'),
+        },
       ],
     }),
   ],
