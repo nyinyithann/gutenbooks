@@ -47,7 +47,7 @@ function Book(props) {
     <div className="flex max-h-full min-h-[200px] w-full flex-col border-b-[1px] border-200 py-2 pl-4 dark:border-slate-500 md:ml-4 md:pl-0">
       <div className="flex flex-auto">
         {imageSrc.medium && imageSrc.medium.length > 0 ? (
-          <div className="mt-1 h-[99px] w-[70px] flex-none border-[1px] border-slate-100 shadow">
+          <div className="mt-1 h-[99px] w-[70px] flex-none border-[1px] border-slate-100 shadow-md shadow-slate-500 dark:shadow-lg dark:shadow-slate-700">
             <a href={`/book?id=${id}`} rel="noreferrer">
               <img src={imageSrc.small} className="h-full w-full" alt="book" />
             </a>
@@ -86,7 +86,7 @@ function Book(props) {
       <div className="flex flex-wrap gap-2 pt-4">
         {dlinks.length === 0 ? null : (
           <div className="flex flex-col pt-0">
-            <span className="dark-text-light flex-none font-sans text-[0.75rem] text-900">
+            <span className="dark-text-light flex-none font-sans text-[0.85rem] text-900">
               download as:
             </span>
             <div className="flex flex-none flex-wrap gap-2 pt-1">
@@ -121,14 +121,14 @@ function Book(props) {
         )}
         {rlinks.length === 0 ? null : (
           <div className="flex flex-col pt-0">
-            <span className="dark-text-light flex-none font-sans text-[0.75rem] text-900">
+            <span className="dark-text-light flex-none font-sans text-[0.85rem] text-900">
               read as:
             </span>
             <div className="flex flex-none flex-wrap gap-2 pt-1">
               {rlinks.map(({ long, link }) => (
                 <div
                   key={link}
-                  className="flex h-8 w-28 flex-none items-center justify-center rounded-sm bg-300 text-900 shadow hover:bg-400 dark:border-[1px] dark:border-slate-500 dark:text-slate-300 dark:shadow-sm dark:shadow-slate-700 dark:hover:bg-slate-700"
+                  className="flex h-8 w-20 flex-none items-center justify-center rounded-sm bg-300 text-900 shadow hover:bg-400 dark:border-[1px] dark:border-slate-500 dark:text-slate-300 dark:shadow-sm dark:shadow-slate-700 dark:hover:bg-slate-700"
                 >
                   <a
                     href={link}

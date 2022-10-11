@@ -7,7 +7,7 @@
 
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
   }
 
   .scrollbar::-webkit-scrollbar-track {
@@ -25,7 +25,7 @@
   }
 
   .bs-scrollbar::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
   }
 
   .bs-scrollbar::-webkit-scrollbar-track {
@@ -43,7 +43,7 @@
   }
 
   .dark-scrollbar::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
   }
 
   .dark-scrollbar::-webkit-scrollbar-track {

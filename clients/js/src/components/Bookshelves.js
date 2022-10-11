@@ -16,20 +16,21 @@ function Bookshelves({ shelves }) {
         sort: [{ field: '_score', order: 'desc' }],
       };
       setUrlQueryParam(info);
+      window.scrollTo(0, 0);
     }
   };
 
   return (
     <>
       {shelves ? (
-        <div className="dark-border mt-4 flex flex-col rounded border-[1px] p-2 shadow shadow-slate-200 dark:shadow-slate-500">
-          <div className="font-snas dark-text-light border-b-[1px] border-b-200 font-bold text-900 dark:border-slate-400">
+        <div className="dark-border mt-4 flex flex-col rounded-l border-l-[1px] border-l-50 p-2 dark:border-l-[1px] dark:border-l-slate-500 dark:shadow-slate-400">
+          <div className="font-snas dark-text-light border-b-[1px] border-b-100 font-bold text-900 dark:border-b-[1px] dark:border-slate-400">
             Bookshelves
           </div>
-          <div className="bs-scrollbar dark:dark-scrollbar mt-2 grid grid-cols-1 divide-y divide-slate-100 overflow-y-scroll scroll-smooth dark:divide-slate-500 dark:text-slate-300">
+          <div className="bs-scrollbar dark:dark-scrollbar mt-2 overflow-y-hidden scroll-smooth pr-4  hover:overflow-y-scroll dark:text-slate-300">
             {shelves.map(({ key }) => (
               <div
-                className="mr-2 p-1 font-sans text-[0.85rem] text-800"
+                className="mr-2 px-1 font-sans text-[0.85rem] text-800"
                 key={key}
               >
                 <button

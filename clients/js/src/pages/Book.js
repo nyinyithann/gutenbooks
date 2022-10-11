@@ -7,9 +7,9 @@ import { BookContext } from '../providers/ContextProvider';
 
 function Title({ text }) {
   return text ? (
-    <p className="mt-[-0.5rem] font-booktitle text-[1.1rem] dark:text-slate-300 md:text-[1.4rem]">
-      {text}
-    </p>
+    <div className="mt-[-0.5rem] font-booktitle text-[1.1rem] dark:text-slate-300  md:text-[1.4rem]">
+      <p>{text}</p>
+    </div>
   ) : null;
 }
 
@@ -116,13 +116,34 @@ const Many = ({ title, values, minlen }) => {
   );
 };
 
+const GutenbergLink = ({ title, bookId }) => {
+  if (!bookId) return null;
+  return (
+    <div className="flex w-full flex-col justify-start gap-3 rounded-lg border-[1px] border-200 p-2 shadow dark:border-slate-500">
+      <div className="flex w-full items-center justify-start rounded-t-md bg-100 px-1 font-sans font-[450] text-900 dark:border-b-[2px] dark:border-b-slate-400/60 dark:text-slate-300">
+        {title}
+      </div>
+      <a
+        href={`https://www.gutenberg.org/ebooks/${bookId}`}
+        target="_blank"
+        rel="noreferrer"
+        className="inline flex-none text-center text-700 underline dark:decoration-slate-400"
+      >
+        <p className="w-[12rem] text-left dark:text-slate-300 md:w-full">
+          {`https://www.gutenberg.org/ebooks/${bookId}`}
+        </p>
+      </a>
+    </div>
+  );
+};
+
 const DownloadCount = ({ count }) => {
   if (!count) return null;
   return (
     <div className="flex w-full flex-col justify-start gap-3 rounded-lg border-[1px] border-200 p-2 shadow dark:border-slate-500">
-      <span className="w-full flex-shrink-0 items-center justify-start rounded-t-md bg-100 pl-1 font-sans font-[450] text-900 dark:border-b-[2px] dark:border-b-slate-400/60 dark:text-slate-300">
+      <div className="w-full flex-shrink-0 items-center justify-start rounded-t-md bg-100 pl-1 font-sans font-[450] text-900 dark:border-b-[2px] dark:border-b-slate-400/60 dark:text-slate-300">
         Download Count
-      </span>
+      </div>
       <span className="pl-1 font-sans text-[0.9rem] dark:text-slate-300">
         {count}
       </span>
@@ -134,7 +155,11 @@ const BookImage = ({ link }) => (
   <div className="flex-shrink-0">
     {link ? (
       <div>
-        <img src={link} alt="book" className="shadow-lg" />
+        <img
+          src={link}
+          alt="book"
+          className="shadow-md shadow-slate-500 dark:shadow-lg dark:shadow-slate-700"
+        />
       </div>
     ) : (
       <div className="flex h-[180px] w-[150px] items-center justify-center bg-slate-100 shadow dark:bg-slate-700 md:h-[300px] md:w-[200px]">
@@ -276,7 +301,7 @@ export default function Book() {
           <ReactLoading type="bubbles" color="#cbd5e1" />
         </div>
       ) : (
-        <div className="p-4 text-900 dark:bg-slate-600">
+        <div className="p-4 pt-8 text-900 dark:bg-slate-600 lg:px-[11.5rem]">
           <div className="flex flex-wrap gap-1 md:hidden">
             <Title text={book ? book.title : null} />
             <div className="flex items-center justify-start gap-4 pt-2 pb-2">
@@ -324,56 +349,66 @@ export default function Book() {
                 minlen={0}
               />
               <DownloadCount count={book ? book.download_count : null} />
+              <GutenbergLink
+                title="Project Gutenberg Link"
+                bookId={book ? book.id : null}
+              />
             </div>
           </div>
 
           <div className="hidden flex-row gap-1 md:flex">
-            <div className="min-w-[250px] flex-[0_0_0%] flex-col">
-              <BookImage
-                link={
-                  book && book.formats && book.formats.length > 0
-                    ? getImageLinks(book.formats)[1]
-                    : ''
-                }
-              />
-              <LinkButtons
-                formats={
-                  book && book.formats && book.formats.length > 0
-                    ? book.formats
-                    : []
-                }
-              />
-            </div>
-            <div className="flex flex-[3_1_0%] flex-col gap-4">
-              <Title text={book ? book.title : null} />
-              <Blokes
-                title="Authors"
-                blokes={book && book.authors ? book.authors : []}
-              />
-              <Blokes
-                title="Contributers"
-                blokes={book && book.contributers ? book.contributers : []}
-              />
-              <Blokes
-                title="Editors"
-                blokes={book && book.editors ? book.editors : []}
-              />
-              <Many
-                title="Subjects"
-                values={book ? book.subjects : []}
-                minlen={5}
-              />
-              <Many
-                title="Bookshelves"
-                values={book ? book.bookshelves : []}
-                minlen={5}
-              />
-              <Many
-                title="Languages"
-                values={book ? book.languages : []}
-                minlen={0}
-              />
-              <DownloadCount count={book ? book.download_count : null} />
+            <div className="mx-auto flex">
+              <div className="min-w-[250px] flex-[0_0_0%] flex-col">
+                <BookImage
+                  link={
+                    book && book.formats && book.formats.length > 0
+                      ? getImageLinks(book.formats)[1]
+                      : ''
+                  }
+                />
+                <LinkButtons
+                  formats={
+                    book && book.formats && book.formats.length > 0
+                      ? book.formats
+                      : []
+                  }
+                />
+              </div>
+              <div className="flex flex-[3_1_0%] flex-col gap-4">
+                <Title text={book ? book.title : null} />
+                <Blokes
+                  title="Authors"
+                  blokes={book && book.authors ? book.authors : []}
+                />
+                <Blokes
+                  title="Contributers"
+                  blokes={book && book.contributers ? book.contributers : []}
+                />
+                <Blokes
+                  title="Editors"
+                  blokes={book && book.editors ? book.editors : []}
+                />
+                <Many
+                  title="Subjects"
+                  values={book ? book.subjects : []}
+                  minlen={5}
+                />
+                <Many
+                  title="Bookshelves"
+                  values={book ? book.bookshelves : []}
+                  minlen={5}
+                />
+                <Many
+                  title="Languages"
+                  values={book ? book.languages : []}
+                  minlen={0}
+                />
+                <DownloadCount count={book ? book.download_count : null} />
+                <GutenbergLink
+                  title="Project Gutenberg Link"
+                  bookId={book ? book.id : null}
+                />
+              </div>
             </div>
           </div>
         </div>

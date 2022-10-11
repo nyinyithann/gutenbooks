@@ -15,10 +15,10 @@ function App() {
   return (
     <BookContextProvider>
       <ThemeSwitchProvider value={{ theme, setTheme }}>
-        <div>
+        <div className="dark:bg-slate-600">
           <div className={`${theme} flex flex-col dark:bg-slate-600`}>
             <Navbar setTheme={setTheme} />
-            <div className="h-screen py-12 dark:bg-slate-600 md:py-14">
+            <div className="h-screen py-12 dark:bg-slate-600 lg:py-14">
               <Routes>
                 <Route index path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />

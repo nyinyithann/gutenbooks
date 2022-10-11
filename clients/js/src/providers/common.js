@@ -114,7 +114,7 @@ const getContentLinks = (formats) => {
         onlist: true,
         type: 'html',
         short: 'html',
-        long: 'linked text',
+        long: 'html',
         download: false,
         link,
       });
@@ -147,7 +147,7 @@ const getContentLinks = (formats) => {
         onlist: true,
         type: 'text_plain',
         short: 'text',
-        long: 'plain text',
+        long: 'text',
         download: false,
         link,
       });

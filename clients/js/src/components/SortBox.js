@@ -92,7 +92,7 @@ function SortBox({ selectedIndex, displayField, className, onSelected }) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute mt-[1.7rem] ml-[-0.2rem] w-full overflow-auto rounded-sm border-[1px] border-100 bg-200 shadow-lg dark:border-slate-500 dark:bg-slate-600 dark:text-slate-200">
+          <Listbox.Options className="absolute mt-[1.7rem] ml-[-0.2rem] w-full overflow-auto rounded-sm border-[1px] border-100 bg-slate-50 shadow-lg dark:border-slate-500 dark:bg-slate-600 dark:text-slate-200">
             {items.map((item) => (
               <Listbox.Option
                 key={item.id}

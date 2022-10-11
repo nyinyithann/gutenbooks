@@ -17,7 +17,7 @@ module.exports = {
     proxy: {
       '/dev': {
         target: {
-          host: '188.166.217.54',
+          host: 'gutenbooks.org',
           protocol: 'http:',
           port: 80,
         },

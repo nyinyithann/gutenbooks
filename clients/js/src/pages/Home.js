@@ -111,14 +111,16 @@ export default function Home() {
   }
 
   return (
-    <div className="flex h-screen w-full dark:bg-slate-600">
-      <div className="fixed z-40 mt-[-0.7rem] h-auto w-full md:mt-[-1.2rem]">
+    <div className="flex w-full dark:bg-slate-600">
+      <div className="fixed z-40 mt-[-0.7rem] h-auto w-full md:mt-[-0.5rem] lg:mt-[-1rem]">
         <div className="flex w-full flex-col">
-          <div className="dark-bg-md bg-200 px-2 pt-3 pb-3 md:pt-3">
-            <SearchBox searchTerm={searchTerm} />
+          <div className="bg-100 px-2 pt-3 pb-3 dark:bg-slate-700 md:pt-[0.8rem]">
+            <div className="dark:border-b-[1px] dark:border-slate-600 dark:pb-[0.25rem] lg:mx-[10rem]">
+              <SearchBox searchTerm={searchTerm} />
+            </div>
           </div>
-          <div className="dark-bg mt-[-0.5rem] w-full flex-auto bg-white px-3 pt-1 pb-1 text-[0.9rem] dark:border-b-[1px] dark:border-b-slate-500/80 md:text-[0.85rem]">
-            <div className="dark-text flex items-center border-b-[2px] border-300 pb-1 dark:border-0 dark:pb-0">
+          <div className="mt-[-0.5rem] w-full flex-auto bg-white px-[0.6rem] pt-1 pb-[0.4rem] text-[0.9rem] dark:bg-slate-700 md:text-[0.85rem]">
+            <div className="dark-text flex items-center border-b-[1px] border-400 pb-1 dark:border-0 dark:pb-0 lg:mx-[10rem]">
               <p className="inline-block pr-1">
                 {`${books.length} of ${totalHits} results`}
                 {searchTerm || bookshelveKey ? (
@@ -144,14 +146,14 @@ export default function Home() {
                   selectedIndex={sortIndex}
                   displayField="desc"
                   onSelected={handleSortItemSelected}
-                  className="dark-text dark-border dark-bg-light flex w-[8.5rem] rounded border-[1px] border-300 bg-white p-1 text-left text-[0.8rem] text-900 hover:border-200 hover:shadow-lg focus:border-200 dark:text-slate-900 dark:hover:border-slate-500 dark:focus:border-slate-500 md:w-40 md:text-[0.85rem]"
+                  className="dark-text dark-border dark-bg-light flex w-[8.5rem] rounded border-[1px] border-300 bg-white p-1 py-[0.38rem] text-left text-[0.8rem] text-900 hover:border-200 hover:shadow-lg focus:border-200 dark:text-slate-900 dark:hover:border-slate-500 dark:focus:border-slate-500 md:w-[14rem] md:text-[0.85rem]"
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="dark-bg-md relative flex h-screen w-full flex-col pt-2">
+      <div className="dark-bg-md relative flex w-full flex-col pt-8 md:pt-10 lg:pt-8 lg:px-[9.5rem]">
         <div className="dark-bg-md mt-[6rem] flex w-full md:mt-[5.5rem]">
           <main className="dark-bg-md flex w-full flex-[3_0_0%]">
             {(bookListLoading && books.lenth > 0) || bookshelvesLoading ? (
@@ -162,14 +164,14 @@ export default function Home() {
               <BookList books={books} />
             )}
           </main>
-          <nav className="sticky right-0 top-[11rem] bottom-1 hidden h-[82vh] w-[20rem] rounded pl-8 pr-4 md:flex md:h-[77vh]">
+          <nav className="sticky right-0 top-[10rem] bottom-1 hidden h-[82vh] w-[20rem] rounded pl-8 pr-4 md:flex md:h-[77vh]">
             <Bookshelves shelves={shelves} />
           </nav>
         </div>
         {hasMore ? (
-          <div className="min-h-12 dark-bg flex flex-none items-stretch">
+          <div className="min-h-12 dark-bg-md flex flex-none items-stretch">
             <button
-              className="dark-bg-md dark-text m-4 flex h-12 grow justify-center rounded bg-400 text-white shadow dark:hover:border-slate-500 md:h-8 md:hover:border-[1px] md:hover:border-500"
+              className="dark-bg-md dark-text m-4 flex h-12 grow justify-center rounded bg-400 text-white shadow dark:border-[1px] dark:border-slate-500/50 md:h-8 md:hover:border-slate-500"
               type="button"
               onClick={loadMore}
             >
