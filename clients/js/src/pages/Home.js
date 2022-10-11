@@ -1,9 +1,9 @@
 import isEqual from 'lodash.isequal';
 import React, { useContext, useEffect } from 'react';
-import ReactLoading from 'react-loading';
 
 import { BookList } from '../components/Book';
 import Bookshelves from '../components/Bookshelves';
+import Loading from '../components/Loading';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import SearchBox from '../components/SearchBox';
 import SortBox from '../components/SortBox';
@@ -153,12 +153,12 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="dark-bg-md relative flex w-full flex-col pt-8 md:pt-10 lg:pt-8 lg:px-[9.5rem]">
+      <div className="dark-bg-md relative flex w-full flex-col pt-8 md:pt-10 lg:px-[9.5rem] lg:pt-8">
         <div className="dark-bg-md mt-[6rem] flex w-full md:mt-[5.5rem]">
           <main className="dark-bg-md flex w-full flex-[3_0_0%]">
             {(bookListLoading && books.lenth > 0) || bookshelvesLoading ? (
               <div className="m-auto flex">
-                <ReactLoading type="bubbles" color="#cbd5e1" />
+                <Loading />
               </div>
             ) : (
               <BookList books={books} />
@@ -177,12 +177,7 @@ export default function Home() {
             >
               {bookListLoading ? (
                 <div className="flex flex-none flex-col items-center justify-center pt-4 md:pt-2">
-                  <ReactLoading
-                    type="spin"
-                    color="#fff"
-                    height={16}
-                    width={16}
-                  />
+                  <Loading type="spin" color="#fff" height={16} width={16} />
                 </div>
               ) : (
                 <span className="flex-none self-center text-lg md:text-base">

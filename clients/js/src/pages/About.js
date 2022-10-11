@@ -21,17 +21,20 @@ function About() {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-2 text-center font-mono text-600">
       <div className="-mt-40">
-        <h1 className="font-sans text-2xl font-bold text-900 dark:text-slate-100">
+        <h1 className="font-booktitle text-2xl font-bold text-900 dark:text-slate-100">
           Gutenbooks
         </h1>
+        <span className="font-nav text-xl font-bold text-900 dark:text-slate-100">
+          Search free ebooks from Project Gutenberg
+        </span>
         <div className="pt-4">
           <a
             target="_blank"
             rel="noreferrer"
-            className="inline text-center font-sans text-xl text-800 underline dark:text-slate-100"
+            className="inline text-center font-sans text-base text-500 underline dark:text-slate-100"
             href="https://github.com/nyinyithann/gutenbooks"
           >
-            Gutenbooks GitHub Repository
+            GitHub Repository
           </a>
         </div>
         <div className="pt-2 font-sans text-xl">

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import ReactLoading from 'react-loading';
 import { Link, useSearchParams } from 'react-router-dom';
 
+import Loading from '../components/Loading';
 import { getContentLinks, getImageLinks } from '../providers/common';
 import { BookContext } from '../providers/ContextProvider';
 
@@ -297,9 +297,7 @@ export default function Book() {
   return (
     <>
       {bookDetailLoading ? (
-        <div className="flex w-full items-center justify-center">
-          <ReactLoading type="bubbles" color="#cbd5e1" />
-        </div>
+        <Loading />
       ) : (
         <div className="p-4 pt-8 text-900 dark:bg-slate-600 lg:px-[11.5rem]">
           <div className="flex flex-wrap gap-1 md:hidden">
