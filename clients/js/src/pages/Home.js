@@ -114,7 +114,7 @@ export default function Home() {
     <div className="flex w-full dark:bg-slate-600">
       <div className="fixed z-40 mt-[-0.7rem] h-auto w-full md:mt-[-0.5rem] lg:mt-[-1rem]">
         <div className="flex w-full flex-col">
-          <div className="bg-100 px-2 pt-3 pb-3 dark:bg-slate-700 md:pt-[0.8rem]">
+          <div className="bg-100 px-2 pt-4 pb-3 dark:bg-slate-700 md:pt-[0.8rem]">
             <div className="dark:border-b-[1px] dark:border-slate-600 dark:pb-[0.25rem] lg:mx-[10rem]">
               <SearchBox searchTerm={searchTerm} />
             </div>

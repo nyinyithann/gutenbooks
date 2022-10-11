@@ -238,7 +238,7 @@ function SearchBox({ searchTerm }) {
     <div className="z-100 relative mx-auto flex w-full flex-col pt-1">
       <div className="dark-bg-mask dark-border flex w-full rounded-md border-[1px] border-300 bg-white hover:border-500 focus:outline-none dark:hover:border-slate-500">
         <input
-          className="text-medium dark-bg-light h-9 w-[80%] flex-auto rounded-l-md border-0 px-2 outline-none focus:ring-0 md:h-8 md:text-sm md:font-normal"
+          className="text-medium dark-bg-light h-10 w-[80%] flex-auto rounded-l-md border-0 px-2 outline-none focus:ring-0 md:h-9 md:text-sm md:font-normal"
           type="text"
           name="search"
           maxLength="64"
